@@ -5,7 +5,7 @@
     <Version>0.8.0</Version>
     <Authors>Sebastian Nilsson</Authors>
     <Company>Sebastian Nilsson</Company>
-    <Description>Helpers for handling the SEO-data for a ASP.NET web-application</Description>
+    <Description>Helpers for handling the SEO-data for ASP.NET web-applications</Description>
   </PropertyGroup>
 
 </Project>

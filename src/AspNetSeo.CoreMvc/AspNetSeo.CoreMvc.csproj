@@ -6,7 +6,7 @@
     <Authors>Sebastian Nilsson</Authors>
     <Company />
     <Product />
-    <Description>Helpers for handling the SEO-data for a ASP.NET Core MVC web-application</Description>
+    <Description>Helpers for handling the SEO-data for ASP.NET Core MVC web-applications</Description>
     <Version>0.8.0</Version>
   </PropertyGroup>
 

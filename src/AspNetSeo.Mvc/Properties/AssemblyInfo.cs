@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("AspNetSeo.Mvc")]
-[assembly: AssemblyDescription("Helpers for handling the SEO-data for a ASP.NET MVC web-application")]
+[assembly: AssemblyDescription("Helpers for handling the SEO-data for ASP.NET MVC web-applications")]
 [assembly: AssemblyCompany("Sebastian Nilsson")]
 
 // Setting ComVisible to false makes the types in this assembly not visible
