@@ -1,6 +1,6 @@
-# ASP.NET MVC SEO
+# ASP.NET SEO
 
-Helpers for handling the SEO-data for a web-application.
+Helpers for handling the SEO-data for ASP.NET web-applications.
 
 Provides a `SeoHelper`-class which is easily accessible in Controllers, Views and through ActionFilterAttributes.
 

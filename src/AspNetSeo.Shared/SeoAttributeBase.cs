@@ -1,6 +1,5 @@
 ﻿using System;
 
-
 #if NETSTANDARD
 using Microsoft.AspNetCore.Mvc.Filters;
 #else
