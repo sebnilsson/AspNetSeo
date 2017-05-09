@@ -1,0 +1,12 @@
+﻿@model TestActionsViewModel
+
+<h1>Tests</h1>
+
+<ul>
+    @foreach (var actionName in Model.ActionNames)
+    {
+        <li>
+            @Html.ActionLink(actionName, actionName, "Tests")
+        </li>
+    }
+</ul>

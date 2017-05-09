@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.0</TargetFramework>
+    <AssemblyName>AspNetSeo.Testing</AssemblyName>
+    <RootNamespace>AspNetSeo.Testing</RootNamespace>
+    <Authors />
+    <Company />
+    <Description />
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\AspNetSeo\AspNetSeo.csproj" />
+  </ItemGroup>
+
+</Project>

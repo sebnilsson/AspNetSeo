@@ -1,0 +1,11 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.0</TargetFramework>
+    <Version>0.8.0</Version>
+    <Authors>Sebastian Nilsson</Authors>
+    <Company>Sebastian Nilsson</Company>
+    <Description>Helpers for handling the SEO-data for a ASP.NET web-application</Description>
+  </PropertyGroup>
+
+</Project>

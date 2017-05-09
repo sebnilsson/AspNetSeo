@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>AspNetSeo</id>
+    <version>$version$</version>
+    <title>ASP.NET SEO</title>
+    <authors>Sebastian Nilsson</authors>
+    <description>$description$</description>
+    <tags>aspnet asp.net mvc seo</tags>
+
+    <projectUrl>https://github.com/sebnilsson/AspNetSeo</projectUrl>
+    <licenseUrl>https://github.com/sebnilsson/AspNetSeo/blob/master/LICENSE</licenseUrl>
+  </metadata>
+</package>

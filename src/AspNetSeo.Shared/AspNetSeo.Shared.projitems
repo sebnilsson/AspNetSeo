@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>86485e94-3852-4726-81ca-644df9ed1971</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>AspNetSeo.Shared</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)SeoAttributeBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SeoBaseLinkCanonicalAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SeoBaseTitleAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SeoLinkCanonicalAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SeoMetaDescriptionAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SeoMetaKeywordsAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SeoMetaRobotsIndexAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SeoMetaRobotsNoIndexAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SeoTitleAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SeoTitleAttributeBase.cs" />
+  </ItemGroup>
+</Project>
