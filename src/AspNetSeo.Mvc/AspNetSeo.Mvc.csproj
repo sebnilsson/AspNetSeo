@@ -1,4 +1,5 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
     <TargetFramework>net45</TargetFramework>
     <Description>Helpers for handling the SEO-data for ASP.NET MVC web-applications</Description>
@@ -11,6 +12,7 @@
   
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.0.0" />
+    <PackageReference Include="NETStandard.Library" Version="1.6.1" />
   </ItemGroup>
   
   <ItemGroup>
@@ -22,4 +24,5 @@
   </ItemGroup>
   
   <Import Project="..\AspNetSeo.Shared\AspNetSeo.Shared.projitems" Label="Shared" />
+
 </Project>
