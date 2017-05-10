@@ -6,6 +6,8 @@
     <Authors>Sebastian Nilsson</Authors>
     <Company>Sebastian Nilsson</Company>
     <Description>Helpers for handling the SEO-data for ASP.NET web-applications</Description>
+    <RepositoryUrl>https://github.com/sebnilsson/AspNetSeo</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/sebnilsson/AspNetSeo</PackageProjectUrl>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

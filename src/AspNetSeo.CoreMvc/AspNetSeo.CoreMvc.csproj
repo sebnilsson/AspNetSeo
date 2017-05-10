@@ -8,6 +8,8 @@
     <Product />
     <Description>Helpers for handling the SEO-data for ASP.NET Core MVC web-applications</Description>
     <Version>0.8.0</Version>
+    <PackageProjectUrl>https://github.com/sebnilsson/AspNetSeo</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/sebnilsson/AspNetSeo</RepositoryUrl>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -19,11 +21,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Html.Abstractions" Version="1.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="1.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor" Version="1.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.ViewFeatures" Version="1.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Razor.Runtime" Version="1.0.0" />
   </ItemGroup>
 
   <ItemGroup>

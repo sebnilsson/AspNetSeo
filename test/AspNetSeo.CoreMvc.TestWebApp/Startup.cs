@@ -39,7 +39,6 @@ namespace AspNetSeo.CoreMvc.TestWebApp
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseBrowserLink();
             }
             else
             {
