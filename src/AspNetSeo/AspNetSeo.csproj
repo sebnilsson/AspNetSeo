@@ -21,10 +21,6 @@
     <DefineConstants>TRACE;DEBUG;NETSTANDARD</DefineConstants>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Compile Remove="DictionaryExtensions.cs" />
-  </ItemGroup>
-
   <!--<ItemGroup Condition=" '$(TargetFramework)' == 'net45' ">
     <Reference Include="mscorlib" />
     <Reference Include="System" />
