@@ -27,10 +27,6 @@
     <DefineConstants>TRACE;NETSTANDARD</DefineConstants>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\AspNetSeo\AspNetSeo.csproj" />
-  </ItemGroup>
-
   <Import Project="..\AspNetSeo.Shared\AspNetSeo.Shared.projitems" Label="Shared" />
 
 </Project>
