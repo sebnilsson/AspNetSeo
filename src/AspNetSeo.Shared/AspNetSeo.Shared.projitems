@@ -9,6 +9,7 @@
     <Import_RootNamespace>AspNetSeo.Shared</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)DictionaryExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SeoAttributeBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SeoBaseLinkCanonicalAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SeoBaseTitleAttribute.cs" />

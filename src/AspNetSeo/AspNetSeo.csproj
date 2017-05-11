@@ -1,8 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <!--<TargetFrameworks>net45;netstandard1.0</TargetFrameworks>-->
     <TargetFramework>netstandard1.0</TargetFramework>
     <Version>0.8.0</Version>
+    <AssemblyTitle>ASP.NET SEO</AssemblyTitle>
+    <AssemblyName>AspNetSeo</AssemblyName>
     <Authors>Sebastian Nilsson</Authors>
     <Company>Sebastian Nilsson</Company>
     <Description>Helpers for handling the SEO-data for ASP.NET web-applications</Description>
@@ -17,5 +20,14 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DefineConstants>TRACE;DEBUG;NETSTANDARD</DefineConstants>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="DictionaryExtensions.cs" />
+  </ItemGroup>
+
+  <!--<ItemGroup Condition=" '$(TargetFramework)' == 'net45' ">
+    <Reference Include="mscorlib" />
+    <Reference Include="System" />
+  </ItemGroup>-->
 
 </Project>

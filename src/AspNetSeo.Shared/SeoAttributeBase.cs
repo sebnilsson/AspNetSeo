@@ -39,8 +39,14 @@ namespace AspNetSeo.Mvc
             {
                 throw new ArgumentNullException(nameof(context));
             }
-        
+
             var seoHelper = context.Controller?.ViewData?.GetSeoHelper();
+            if (seoHelper == null)
+            {
+                throw new ArgumentOutOfRangeException(
+                    nameof(context),
+                    $"Could not get '{nameof(SeoHelper)}' from {nameof(ActionExecutingContext)}.");
+            }
 
             this.OnHandleSeoValues(seoHelper);
         }

@@ -2,9 +2,13 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace AspNetSeo
+#if NETSTANDARD
+namespace AspNetSeo.CoreMvc
+#else
+namespace AspNetSeo.Mvc
+#endif
 {
-    public static class DictionaryExtensions
+    internal static class DictionaryExtensions
     {
         internal static readonly string DictionaryKey = "AspNetSeo.SeoHelper";
 
