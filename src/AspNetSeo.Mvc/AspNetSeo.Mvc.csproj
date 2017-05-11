@@ -8,7 +8,7 @@
     <Version>0.8.0</Version>
     <PackageProjectUrl>https://github.com/sebnilsson/AspNetSeo</PackageProjectUrl>
     <RepositoryUrl>https://github.com/sebnilsson/AspNetSeo</RepositoryUrl>
-    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
   </PropertyGroup>
   
   <ItemGroup>
