@@ -14,6 +14,14 @@
     <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.0.0" />
     <PackageReference Include="NETStandard.Library" Version="1.6.1" />
   </ItemGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DefineConstants>TRACE</DefineConstants>
+  </PropertyGroup>
   
   <ItemGroup>
     <ProjectReference Include="..\AspNetSeo\AspNetSeo.csproj" />
