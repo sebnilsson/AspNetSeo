@@ -10,14 +10,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)DictionaryExtensions.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)RobotsIndex.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)RobotsIndexManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SeoAttributeBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SeoBaseLinkCanonicalAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SeoBaseTitleAttribute.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)SeoHelper.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)SeoHelperLinkCanonicalHelper.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)SeoHelperTitleHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SeoLinkCanonicalAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SeoMetaDescriptionAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SeoMetaKeywordsAttribute.cs" />

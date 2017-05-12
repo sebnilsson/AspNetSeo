@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-#if NETSTANDARD
+#if COREMVC
 namespace AspNetSeo.CoreMvc
 #else
 namespace AspNetSeo.Mvc

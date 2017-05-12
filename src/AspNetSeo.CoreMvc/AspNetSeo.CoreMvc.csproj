@@ -2,16 +2,19 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard1.6</TargetFramework>
-    <RootNamespace>AspNetSeo.CoreMvc</RootNamespace>
-    <Authors>Sebastian Nilsson</Authors>
-    <Company />
-    <Product />
-    <Description>Helpers for handling the SEO-data for ASP.NET Core MVC web-applications</Description>
     <Version>0.8.0</Version>
+    <Description>Helpers for handling the SEO-data for ASP.NET Core MVC web-applications</Description>
+    <AssemblyTitle>ASP.NET Core MVC SEO</AssemblyTitle>
+    <AssemblyName>AspNetSeo.CoreMvc</AssemblyName>
+    <Authors>Sebastian Nilsson</Authors>
     <PackageProjectUrl>https://github.com/sebnilsson/AspNetSeo</PackageProjectUrl>
     <RepositoryUrl>https://github.com/sebnilsson/AspNetSeo</RepositoryUrl>
-    <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+    <RootNamespace>AspNetSeo.CoreMvc</RootNamespace>
   </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AspNetSeo\AspNetSeo.csproj" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="1.0.0" />
@@ -20,11 +23,11 @@
   </ItemGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DefineConstants>TRACE;DEBUG;NETSTANDARD</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;NETSTANDARD1_6;COREMVC</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DefineConstants>TRACE;NETSTANDARD</DefineConstants>
+    <DefineConstants>TRACE;NETSTANDARD1_6;COREMVC</DefineConstants>
   </PropertyGroup>
 
   <Import Project="..\AspNetSeo.Shared\AspNetSeo.Shared.projitems" Label="Shared" />

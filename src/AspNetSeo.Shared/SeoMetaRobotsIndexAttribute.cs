@@ -1,6 +1,6 @@
 ﻿using System;
 
-#if NETSTANDARD
+#if COREMVC
 namespace AspNetSeo.CoreMvc
 #else
 namespace AspNetSeo.Mvc

@@ -1,18 +1,18 @@
 ﻿using System;
 
-#if NETSTANDARD
+#if COREMVC
 using Microsoft.AspNetCore.Mvc.Filters;
 #else
 using System.Web.Mvc;
 #endif
 
-#if NETSTANDARD
+#if COREMVC
 namespace AspNetSeo.CoreMvc
 #else
 namespace AspNetSeo.Mvc
 #endif
 {
-#if NETSTANDARD
+#if COREMVC
     public abstract class SeoAttributeBase : ActionFilterAttribute
     {
         public override void OnActionExecuting(ActionExecutingContext context)
