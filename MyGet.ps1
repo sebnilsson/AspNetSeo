@@ -1,3 +1,7 @@
+dotnet restore src/AspNetSeo/AspNetSeo.csproj --no-cache
+dotnet build src/AspNetSeo/AspNetSeo.csproj -c Release
+dotnet pack src/AspNetSeo/AspNetSeo.csproj -c Release --include-source --include-symbols --output '../..'
+
 dotnet restore src/AspNetSeo.CoreMvc/AspNetSeo.CoreMvc.csproj --no-cache
 dotnet build src/AspNetSeo.CoreMvc/AspNetSeo.CoreMvc.csproj -c Release
 dotnet pack src/AspNetSeo.CoreMvc/AspNetSeo.CoreMvc.csproj -c Release --include-source --include-symbols --output '../..'
