@@ -12,6 +12,8 @@
     <RootNamespace>AspNetSeo.CoreMvc</RootNamespace>
     <AssemblyVersion>0.8.0.0</AssemblyVersion>
     <PackageTags>AspNet Mvc AspNetMvc AspNetCore CoreMvc AspNetCoreMvc SEO</PackageTags>
+    <Product>ASP.NET Core MVC SEO</Product>
+    <PackageLicenseUrl>https://github.com/sebnilsson/AspNetSeo/blob/master/LICENSE</PackageLicenseUrl>
   </PropertyGroup>
 
   <ItemGroup>

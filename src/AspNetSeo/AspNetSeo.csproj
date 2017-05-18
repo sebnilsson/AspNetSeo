@@ -12,6 +12,8 @@
     <RootNamespace>AspNetSeo</RootNamespace>
     <PackageTags>AspNet SEO</PackageTags>
     <AssemblyVersion>0.8.0.0</AssemblyVersion>
+    <PackageLicenseUrl>https://github.com/sebnilsson/AspNetSeo/blob/master/LICENSE</PackageLicenseUrl>
+    <Product>ASP.NET SEO</Product>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

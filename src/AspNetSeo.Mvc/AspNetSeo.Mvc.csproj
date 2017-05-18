@@ -12,6 +12,8 @@
     <RootNamespace>AspNetSeo.Mvc</RootNamespace>
     <PackageTags>AspNet Mvc AspNetMvc SEO</PackageTags>
     <AssemblyVersion>0.8.0.0</AssemblyVersion>
+    <Product>ASP.NET MVC SEO</Product>
+    <PackageLicenseUrl>https://github.com/sebnilsson/AspNetSeo/blob/master/LICENSE</PackageLicenseUrl>
   </PropertyGroup>
 
   <ItemGroup>
