@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net45</TargetFramework>
-    <Version>0.8.0</Version>
+    <Version>0.8.1</Version>
     <Description>Helpers for handling the SEO-data for ASP.NET MVC web-applications</Description>
     <AssemblyTitle>ASP.NET MVC SEO</AssemblyTitle>
     <AssemblyName>AspNetSeo.Mvc</AssemblyName>
@@ -10,6 +10,7 @@
     <PackageProjectUrl>https://github.com/sebnilsson/AspNetSeo</PackageProjectUrl>
     <RepositoryUrl>https://github.com/sebnilsson/AspNetSeo</RepositoryUrl>
     <RootNamespace>AspNetSeo.Mvc</RootNamespace>
+    <PackageTags>AspNet Mvc AspNetMvc SEO</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>

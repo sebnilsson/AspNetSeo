@@ -107,13 +107,13 @@ namespace AspNetSeo.Mvc
 
             var seoHelper = GetSeoHelper(htmlHelper);
 
-            title = title ?? SeoHelperTitleHelper.GetTitle(seoHelper);
-            if (title == null)
+            string fullTitle = SeoHelperTitleHelper.GetFullTitle(seoHelper, title);
+            if (fullTitle == null)
             {
                 return null;
             }
 
-            var tag = new TagBuilder("title") { InnerHtml = HttpUtility.HtmlEncode(title) };
+            var tag = new TagBuilder("title") { InnerHtml = fullTitle };
 
             return new HtmlString(tag.ToString());
         }

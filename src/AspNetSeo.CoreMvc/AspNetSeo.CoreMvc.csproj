@@ -10,6 +10,8 @@
     <PackageProjectUrl>https://github.com/sebnilsson/AspNetSeo</PackageProjectUrl>
     <RepositoryUrl>https://github.com/sebnilsson/AspNetSeo</RepositoryUrl>
     <RootNamespace>AspNetSeo.CoreMvc</RootNamespace>
+    <AssemblyVersion>0.8.0.0</AssemblyVersion>
+    <PackageTags>AspNet Mvc AspNetMvc AspNetCore CoreMvc AspNetCoreMvc SEO</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>

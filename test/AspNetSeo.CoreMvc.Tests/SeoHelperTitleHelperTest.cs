@@ -6,35 +6,35 @@ namespace AspNetSeo.CoreMvc.Tests
     public class SeoHelperTitleHelperTest
     {
         [Fact]
-        public void GetTitle_TitleEmptyAndBaseTitleNotEmpty_ReturnsBaseTitle()
+        public void GetFullTitle_TitleEmptyAndBaseTitleNotEmpty_ReturnsBaseTitle()
         {
             // Arrange
             var seoHelper = SeoHelperTestFactory.Create();
             seoHelper.BaseTitle = TestData.BaseTitle;
 
             // Act
-            var title = SeoHelperTitleHelper.GetTitle(seoHelper);
+            var title = SeoHelperTitleHelper.GetFullTitle(seoHelper);
 
             // Assert
             Assert.Equal(TestData.BaseTitle, title);
         }
 
         [Fact]
-        public void GetTitle_TitleNotEmptyAndBaseTitleEmpty_ReturnsTitle()
+        public void GetFullTitle_TitleNotEmptyAndBaseTitleEmpty_ReturnsTitle()
         {
             // Arrange
             var seoHelper = SeoHelperTestFactory.Create();
             seoHelper.Title = TestData.Title;
 
             // Act
-            var title = SeoHelperTitleHelper.GetTitle(seoHelper);
+            var title = SeoHelperTitleHelper.GetFullTitle(seoHelper);
 
             // Assert
             Assert.Equal(TestData.Title, title);
         }
 
         [Fact]
-        public void GetTitle_TitleAndBaseTitleNotEmpty_ReturnsTitleWithTitleAndBaseTitle()
+        public void GetFullTitle_TitleAndBaseTitleNotEmpty_ReturnsTitleWithTitleAndBaseTitle()
         {
             // Arrange
             var seoHelper = SeoHelperTestFactory.Create();
@@ -42,7 +42,7 @@ namespace AspNetSeo.CoreMvc.Tests
             seoHelper.Title = TestData.Title;
 
             // Act
-            var title = SeoHelperTitleHelper.GetTitle(seoHelper);
+            var title = SeoHelperTitleHelper.GetFullTitle(seoHelper);
 
             // Assert
             bool titleEndsWithSiteTitle = title.EndsWith(TestData.BaseTitle);

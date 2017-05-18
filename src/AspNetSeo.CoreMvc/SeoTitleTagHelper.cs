@@ -21,19 +21,20 @@ namespace AspNetSeo.CoreMvc
         {
             var title = !string.IsNullOrWhiteSpace(this.Value) ? this.Value : this.SeoHelper.Title;
 
-            title = title ?? SeoHelperTitleHelper.GetTitle(this.SeoHelper);
+            var fullTitle = SeoHelperTitleHelper.GetFullTitle(this.SeoHelper, title);
 
-            if (title == null)
+            if (fullTitle == null)
             {
                 output.SuppressOutput();
                 return;
             }
 
             output.TagName = "title";
+            output.TagMode = TagMode.StartTagAndEndTag;
 
             output.Attributes.RemoveAll(nameof(this.Value));
 
-            output.Content.SetContent(title);
+            output.Content.SetContent(fullTitle);
         }
     }
 }

@@ -4,15 +4,17 @@ namespace AspNetSeo
 {
     public static class SeoHelperTitleHelper
     {
-        public static string GetTitle(SeoHelper seoHelper)
+        public static string GetFullTitle(SeoHelper seoHelper, string title = null)
         {
             if (seoHelper == null)
             {
                 throw new ArgumentNullException(nameof(seoHelper));
             }
 
+            title = title ?? seoHelper.Title;
+
             bool isBaseTitleSet = !string.IsNullOrWhiteSpace(seoHelper.BaseTitle);
-            bool isPageTitleSet = !string.IsNullOrWhiteSpace(seoHelper.Title);
+            bool isPageTitleSet = !string.IsNullOrWhiteSpace(title);
 
             if (isBaseTitleSet && isPageTitleSet)
             {
@@ -20,13 +22,13 @@ namespace AspNetSeo
                                          ? seoHelper.TitleFormat
                                          : SeoHelper.DefaultTitleFormat;
 
-                string title = string.Format(titleFormat, seoHelper.Title, seoHelper.BaseTitle);
-                return title;
+                string fullTitle = string.Format(titleFormat, title, seoHelper.BaseTitle);
+                return fullTitle;
             }
 
             if (!isBaseTitleSet)
             {
-                return !string.IsNullOrWhiteSpace(seoHelper.Title) ? seoHelper.Title : null;
+                return !string.IsNullOrWhiteSpace(title) ? title : null;
             }
 
             return !string.IsNullOrWhiteSpace(seoHelper.BaseTitle) ? seoHelper.BaseTitle : null;
