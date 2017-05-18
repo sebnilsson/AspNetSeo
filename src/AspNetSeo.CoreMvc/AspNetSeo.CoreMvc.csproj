@@ -3,9 +3,9 @@
   <PropertyGroup>
     <TargetFramework>netstandard1.6</TargetFramework>
     <Version>0.8.1</Version>
-    <AssemblyVersion>0.8.0.0</AssemblyVersion>
     <FileVersion>0.8.1.0</FileVersion>
 
+    <AssemblyVersion>0.8.0.0</AssemblyVersion>
     <AssemblyName>AspNetSeo.CoreMvc</AssemblyName>
     <AssemblyTitle>ASP.NET Core MVC SEO</AssemblyTitle>
     <RootNamespace>AspNetSeo.CoreMvc</RootNamespace>

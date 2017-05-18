@@ -1,11 +1,10 @@
-dotnet restore src/AspNetSeo/AspNetSeo.csproj --no-cache
-dotnet build src/AspNetSeo/AspNetSeo.csproj -c Release
-dotnet pack src/AspNetSeo/AspNetSeo.csproj -c Release --include-source --include-symbols --output '../..'
+$projects = @(
+    "./src/AspNetSeo/AspNetSeo.csproj",
+    "./src/AspNetSeo.CoreMvc/AspNetSeo.CoreMvc.csproj",
+    "./src/AspNetSeo.Mvc/AspNetSeo.Mvc.csproj")
 
-dotnet restore src/AspNetSeo.CoreMvc/AspNetSeo.CoreMvc.csproj --no-cache
-dotnet build src/AspNetSeo.CoreMvc/AspNetSeo.CoreMvc.csproj -c Release
-dotnet pack src/AspNetSeo.CoreMvc/AspNetSeo.CoreMvc.csproj -c Release --include-source --include-symbols --output '../..'
-
-dotnet restore src/AspNetSeo.Mvc/AspNetSeo.Mvc.csproj --no-cache
-dotnet build src/AspNetSeo.Mvc/AspNetSeo.Mvc.csproj -c Release
-dotnet pack src/AspNetSeo.Mvc/AspNetSeo.Mvc.csproj -c Release --include-source --include-symbols --output '../..'
+foreach ($project in $projects) {
+    dotnet restore $project --no-cache
+    dotnet build $project -c Release
+    dotnet pack $project --no-build -c Release --output '../..'
+}

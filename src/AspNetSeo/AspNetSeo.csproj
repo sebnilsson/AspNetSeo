@@ -3,9 +3,9 @@
   <PropertyGroup>
     <TargetFramework>netstandard1.0</TargetFramework>
     <Version>0.8.1</Version>
-    <AssemblyVersion>0.8.0.0</AssemblyVersion>
     <FileVersion>0.8.1.0</FileVersion>
 
+    <AssemblyVersion>0.8.0.0</AssemblyVersion>
     <AssemblyName>AspNetSeo</AssemblyName>
     <AssemblyTitle>ASP.NET SEO</AssemblyTitle>
     <RootNamespace>AspNetSeo</RootNamespace>
