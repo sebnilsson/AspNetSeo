@@ -3,17 +3,24 @@
   <PropertyGroup>
     <TargetFramework>net45</TargetFramework>
     <Version>0.8.1</Version>
-    <Description>Helpers for handling the SEO-data for ASP.NET MVC web-applications</Description>
-    <AssemblyTitle>ASP.NET MVC SEO</AssemblyTitle>
-    <AssemblyName>AspNetSeo.Mvc</AssemblyName>
-    <Authors>Sebastian Nilsson</Authors>
-    <PackageProjectUrl>https://github.com/sebnilsson/AspNetSeo</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/sebnilsson/AspNetSeo</RepositoryUrl>
-    <RootNamespace>AspNetSeo.Mvc</RootNamespace>
-    <PackageTags>AspNet Mvc AspNetMvc SEO</PackageTags>
     <AssemblyVersion>0.8.0.0</AssemblyVersion>
-    <Product>ASP.NET MVC SEO</Product>
+    <FileVersion>0.8.1.0</FileVersion>
+    
+    <AssemblyName>AspNetSeo.Mvc</AssemblyName>
+    <AssemblyTitle>ASP.NET MVC SEO</AssemblyTitle>
+    <RootNamespace>AspNetSeo.Mvc</RootNamespace>
+
+    <Authors>Sebastian Nilsson</Authors>
+    <Description>Helpers for handling the SEO-data for ASP.NET MVC web-applications</Description>
+    <Summary>Helpers for handling the SEO-data for ASP.NET MVC web-applications</Summary>
+    
+    <PackageId>AspNetSeo.Mvc</PackageId>
+    <PackageTags>AspNet Mvc AspNetMvc SEO</PackageTags>
     <PackageLicenseUrl>https://github.com/sebnilsson/AspNetSeo/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/sebnilsson/AspNetSeo</PackageProjectUrl>
+    
+    <RepositoryUrl>https://github.com/sebnilsson/AspNetSeo</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
   </PropertyGroup>
 
   <ItemGroup>
