@@ -5,8 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AspNetSeo.CoreMvc.TestWebApp.Controllers
 {
-    [SeoBaseTitle("Controller-title")]
-    [SeoBaseLinkCanonical("https://attributebaselinkcanonical.co/base-path")]
     public class TestsController : SeoController
     {
         public IActionResult Index()
@@ -16,6 +14,8 @@ namespace AspNetSeo.CoreMvc.TestWebApp.Controllers
             return this.View("~/Views/Home/Index.cshtml", model);
         }
 
+        [SeoBaseTitle("Override attribute base-title")]
+        [SeoBaseLinkCanonical("https://test-url-attribute.co/base-path")]
         [SeoTitle("LinkCanonical")]
         public IActionResult LinkCanonical()
         {

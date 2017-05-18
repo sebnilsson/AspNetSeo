@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard1.6</TargetFramework>
-    <Version>0.8.0</Version>
+    <Version>0.8.1</Version>
     <Description>Helpers for handling the SEO-data for ASP.NET Core MVC web-applications</Description>
     <AssemblyTitle>ASP.NET Core MVC SEO</AssemblyTitle>
     <AssemblyName>AspNetSeo.CoreMvc</AssemblyName>
