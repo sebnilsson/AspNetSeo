@@ -9,16 +9,16 @@ namespace AspNetSeo.Mvc
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, Inherited = false)]
     public class SeoLinkCanonicalAttribute : SeoAttributeBase
     {
-        private readonly string linkCanonical;
+        private readonly string _linkCanonical;
 
         public SeoLinkCanonicalAttribute(string linkCanonical)
         {
-            this.linkCanonical = linkCanonical;
+            _linkCanonical = linkCanonical;
         }
 
         public override void OnHandleSeoValues(SeoHelper seoHelper)
         {
-            seoHelper.LinkCanonical = this.linkCanonical;
+            seoHelper.LinkCanonical = _linkCanonical;
         }
     }
 }

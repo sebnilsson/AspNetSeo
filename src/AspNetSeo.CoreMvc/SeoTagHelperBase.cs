@@ -10,12 +10,8 @@ namespace AspNetSeo.CoreMvc
 
         protected SeoTagHelperBase(SeoHelper seoHelper)
         {
-            if (seoHelper == null)
-            {
-                throw new ArgumentNullException(nameof(seoHelper));
-            }
-
-            this.SeoHelper = seoHelper;
+            SeoHelper = seoHelper
+                ?? throw new ArgumentNullException(nameof(seoHelper));
         }
 
         protected void SetMetaTagOutput(TagHelperOutput output, string name, string content)

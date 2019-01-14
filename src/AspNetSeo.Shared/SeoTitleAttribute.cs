@@ -9,11 +9,11 @@ namespace AspNetSeo.Mvc
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = true, Inherited = false)]
     public class SeoTitleAttribute : SeoTitleAttributeBase
     {
-        private readonly string title;
+        private readonly string _title;
 
         public SeoTitleAttribute(string title)
         {
-            this.title = title;
+            _title = title;
         }
 
         public override void OnHandleSeoValues(SeoHelper seoHelper)
@@ -25,9 +25,9 @@ namespace AspNetSeo.Mvc
 
             base.OnHandleSeoValues(seoHelper);
 
-            seoHelper.Title = this.title;
+            seoHelper.Title = _title;
 
-            if (this.OverrideBaseTitle)
+            if (OverrideBaseTitle)
             {
                 seoHelper.BaseTitle = null;
             }

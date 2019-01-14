@@ -9,16 +9,16 @@ namespace AspNetSeo.Mvc
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, Inherited = false)]
     public class SeoMetaDescriptionAttribute : SeoAttributeBase
     {
-        private readonly string metaDescription;
+        private readonly string _metaDescription;
 
         public SeoMetaDescriptionAttribute(string metaDescription)
         {
-            this.metaDescription = metaDescription;
+            _metaDescription = metaDescription;
         }
 
         public override void OnHandleSeoValues(SeoHelper seoHelper)
         {
-            seoHelper.MetaDescription = this.metaDescription;
+            seoHelper.MetaDescription = _metaDescription;
         }
     }
 }

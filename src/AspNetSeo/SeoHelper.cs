@@ -44,9 +44,9 @@ namespace AspNetSeo
                 throw new ArgumentNullException(nameof(addedKeyword));
             }
 
-            string combinedMetaKeywords = CombineTexts(" ", this.MetaKeywords, addedKeyword);
+            string combinedMetaKeywords = CombineTexts(" ", MetaKeywords, addedKeyword);
 
-            this.MetaKeywords = combinedMetaKeywords;
+            MetaKeywords = combinedMetaKeywords;
 
             return combinedMetaKeywords;
         }

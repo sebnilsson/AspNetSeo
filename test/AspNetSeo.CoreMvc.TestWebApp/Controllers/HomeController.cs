@@ -9,7 +9,7 @@ namespace AspNetSeo.CoreMvc.TestWebApp.Controllers
         {
             var model = TestActionsViewModel.Default;
 
-            return this.View(model);
+            return View(model);
         }
     }
 }

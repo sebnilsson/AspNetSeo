@@ -9,26 +9,26 @@ namespace AspNetSeo.Mvc
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, Inherited = false)]
     public class SeoMetaKeywordsAttribute : SeoAttributeBase
     {
-        private readonly string metaKeywords;
+        private readonly string _metaKeywords;
 
         public SeoMetaKeywordsAttribute(string metaKeywords)
         {
-            this.metaKeywords = metaKeywords;
+            _metaKeywords = metaKeywords;
 
-            this.Append = true;
+            Append = true;
         }
 
         public bool Append { get; set; }
 
         public override void OnHandleSeoValues(SeoHelper seoHelper)
         {
-            if (this.Append)
+            if (Append)
             {
-                seoHelper.AddMetaKeyword(this.metaKeywords);
+                seoHelper.AddMetaKeyword(_metaKeywords);
             }
             else
             {
-                seoHelper.MetaKeywords = this.metaKeywords;
+                seoHelper.MetaKeywords = _metaKeywords;
             }
         }
     }

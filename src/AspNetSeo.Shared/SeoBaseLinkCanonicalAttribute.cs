@@ -9,11 +9,11 @@ namespace AspNetSeo.Mvc
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = true, Inherited = false)]
     public class SeoBaseLinkCanonicalAttribute : SeoAttributeBase
     {
-        private readonly string linkCanonical;
+        private readonly string _linkCanonical;
 
         public SeoBaseLinkCanonicalAttribute(string linkCanonical)
         {
-            this.linkCanonical = linkCanonical;
+            _linkCanonical = linkCanonical;
         }
 
         public override void OnHandleSeoValues(SeoHelper seoHelper)
@@ -23,7 +23,7 @@ namespace AspNetSeo.Mvc
                 throw new ArgumentNullException(nameof(seoHelper));
             }
 
-            seoHelper.BaseLinkCanonical = this.linkCanonical;
+            seoHelper.BaseLinkCanonical = _linkCanonical;
         }
     }
 }

@@ -16,9 +16,9 @@ namespace AspNetSeo.Mvc
                 throw new ArgumentNullException(nameof(seoHelper));
             }
             
-            if (!string.IsNullOrWhiteSpace(this.Format))
+            if (!string.IsNullOrWhiteSpace(Format))
             {
-                seoHelper.TitleFormat = this.Format;
+                seoHelper.TitleFormat = Format;
             }
         }
 

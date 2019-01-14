@@ -8,11 +8,11 @@ namespace AspNetSeo.CoreMvc
     {
         private readonly Lazy<SeoHelper> seoLazy;
 
-        public SeoHelper Seo => this.seoLazy.Value;
+        public SeoHelper Seo => seoLazy.Value;
 
         protected SeoController()
         {
-            this.seoLazy = new Lazy<SeoHelper>(this.GetSeoHelper);
+            seoLazy = new Lazy<SeoHelper>(this.GetSeoHelper);
         }
     }
 }

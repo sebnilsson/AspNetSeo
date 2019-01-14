@@ -19,16 +19,16 @@ namespace AspNetSeo.CoreMvc
 
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
-            var metaKeywords = !string.IsNullOrWhiteSpace(this.Value) ? this.Value : this.SeoHelper.MetaKeywords;
+            var metaKeywords = !string.IsNullOrWhiteSpace(Value) ? Value : SeoHelper.MetaKeywords;
             if (metaKeywords == null)
             {
                 output.SuppressOutput();
                 return;
             }
 
-            output.Attributes.RemoveAll(nameof(this.Value));
+            output.Attributes.RemoveAll(nameof(Value));
 
-            this.SetMetaTagOutput(output, name: "keywords", content: metaKeywords);
+            SetMetaTagOutput(output, name: "keywords", content: metaKeywords);
         }
     }
 }

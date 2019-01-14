@@ -19,16 +19,16 @@ namespace AspNetSeo.CoreMvc
 
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
-            var metaDescription = !string.IsNullOrWhiteSpace(this.Value) ? this.Value : this.SeoHelper.MetaDescription;
+            var metaDescription = !string.IsNullOrWhiteSpace(Value) ? Value : SeoHelper.MetaDescription;
             if (metaDescription == null)
             {
                 output.SuppressOutput();
                 return;
             }
 
-            output.Attributes.RemoveAll(nameof(this.Value));
+            output.Attributes.RemoveAll(nameof(Value));
 
-            this.SetMetaTagOutput(output, name: "description", content: metaDescription);
+            SetMetaTagOutput(output, name: "description", content: metaDescription);
         }
     }
 }

@@ -19,9 +19,9 @@ namespace AspNetSeo.CoreMvc
 
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
-            var title = !string.IsNullOrWhiteSpace(this.Value) ? this.Value : this.SeoHelper.Title;
+            var title = !string.IsNullOrWhiteSpace(Value) ? Value : SeoHelper.Title;
 
-            var fullTitle = SeoHelperTitleHelper.GetFullTitle(this.SeoHelper, title);
+            var fullTitle = SeoHelperTitleHelper.GetFullTitle(SeoHelper, title);
 
             if (fullTitle == null)
             {
@@ -32,7 +32,7 @@ namespace AspNetSeo.CoreMvc
             output.TagName = "title";
             output.TagMode = TagMode.StartTagAndEndTag;
 
-            output.Attributes.RemoveAll(nameof(this.Value));
+            output.Attributes.RemoveAll(nameof(Value));
 
             output.Content.SetContent(fullTitle);
         }

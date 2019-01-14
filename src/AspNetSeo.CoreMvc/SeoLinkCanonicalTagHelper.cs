@@ -34,15 +34,15 @@ namespace AspNetSeo.CoreMvc
 
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
-            var urlHelper = (this.ViewContext != null) ? new UrlHelper(this.ViewContext) : null;
+            var urlHelper = (ViewContext != null) ? new UrlHelper(ViewContext) : null;
             
-            var linkCanonical = !string.IsNullOrWhiteSpace(this.Value) ? this.Value : this.SeoHelper.LinkCanonical;
+            var linkCanonical = !string.IsNullOrWhiteSpace(Value) ? Value : SeoHelper.LinkCanonical;
 
             linkCanonical = urlHelper?.Content(linkCanonical) ?? linkCanonical;
 
-            var linkCanonicalBase = !string.IsNullOrWhiteSpace(this.Base) ? this.Base : this.SeoHelper.BaseLinkCanonical;
+            var linkCanonicalBase = !string.IsNullOrWhiteSpace(Base) ? Base : SeoHelper.BaseLinkCanonical;
 
-            var requestUrl = this.ViewContext?.HttpContext?.Request?.GetDisplayUrl() ?? string.Empty;
+            var requestUrl = ViewContext?.HttpContext?.Request?.GetDisplayUrl() ?? string.Empty;
             var requestUri = new Uri(requestUrl);
 
             string combinedLinkCanonical = SeoHelperLinkCanonicalHelper.GetLinkCanonical(
@@ -58,8 +58,8 @@ namespace AspNetSeo.CoreMvc
 
             output.TagName = "link";
 
-            output.Attributes.RemoveAll(nameof(this.Base));
-            output.Attributes.RemoveAll(nameof(this.Value));
+            output.Attributes.RemoveAll(nameof(Base));
+            output.Attributes.RemoveAll(nameof(Value));
 
             output.Attributes.SetAttribute("rel", "canonical");
             output.Attributes.SetAttribute("href", combinedLinkCanonical);

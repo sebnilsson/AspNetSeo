@@ -16,7 +16,7 @@ namespace AspNetSeo.CoreMvc.TestWebApp
                     .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
                     .AddEnvironmentVariables();
 
-            this.Configuration = builder.Build();
+            Configuration = builder.Build();
         }
 
         public IConfigurationRoot Configuration { get; }

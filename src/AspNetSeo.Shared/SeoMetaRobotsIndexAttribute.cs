@@ -9,11 +9,11 @@ namespace AspNetSeo.Mvc
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, Inherited = false)]
     public class SeoMetaRobotsIndexAttribute : SeoAttributeBase
     {
-        private readonly RobotsIndex? robotsIndex;
+        private readonly RobotsIndex? _robotsIndex;
 
         public SeoMetaRobotsIndexAttribute(RobotsIndex robotsIndex)
         {
-            this.robotsIndex = robotsIndex;
+            _robotsIndex = robotsIndex;
         }
 
         public SeoMetaRobotsIndexAttribute()
@@ -22,7 +22,7 @@ namespace AspNetSeo.Mvc
 
         public override void OnHandleSeoValues(SeoHelper seoHelper)
         {
-            seoHelper.MetaRobotsIndex = this.robotsIndex;
+            seoHelper.MetaRobotsIndex = _robotsIndex;
         }
     }
 }

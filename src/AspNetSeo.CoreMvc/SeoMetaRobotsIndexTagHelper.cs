@@ -24,9 +24,9 @@ namespace AspNetSeo.CoreMvc
 
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
-            var metaRobotsIndex = this.Value ?? this.SeoHelper.MetaRobotsIndex;
+            var metaRobotsIndex = Value ?? SeoHelper.MetaRobotsIndex;
 
-            metaRobotsIndex = this.NoIndex ? RobotsIndexManager.DefaultRobotsNoIndex : metaRobotsIndex;
+            metaRobotsIndex = NoIndex ? RobotsIndexManager.DefaultRobotsNoIndex : metaRobotsIndex;
 
             if (metaRobotsIndex == null)
             {
@@ -36,10 +36,10 @@ namespace AspNetSeo.CoreMvc
 
             string content = RobotsIndexManager.GetMetaContent(metaRobotsIndex.Value);
 
-            output.Attributes.RemoveAll(nameof(this.Value));
-            output.Attributes.RemoveAll(nameof(this.NoIndex));
+            output.Attributes.RemoveAll(nameof(Value));
+            output.Attributes.RemoveAll(nameof(NoIndex));
 
-            this.SetMetaTagOutput(output, name: "robots", content: content);
+            SetMetaTagOutput(output, name: "robots", content: content);
         }
     }
 }

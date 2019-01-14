@@ -28,7 +28,7 @@ namespace AspNetSeo.Mvc
                 throw new TypeLoadException($"Could not resolve service for type '{nameof(SeoHelper)}'.");
             }
 
-            this.OnHandleSeoValues(seoHelper);
+            OnHandleSeoValues(seoHelper);
         }
 #else
     public abstract class SeoAttributeBase : ActionFilterAttribute
@@ -48,7 +48,7 @@ namespace AspNetSeo.Mvc
                     $"Could not get '{nameof(SeoHelper)}' from {nameof(ActionExecutingContext)}.");
             }
 
-            this.OnHandleSeoValues(seoHelper);
+            OnHandleSeoValues(seoHelper);
         }
 #endif
 

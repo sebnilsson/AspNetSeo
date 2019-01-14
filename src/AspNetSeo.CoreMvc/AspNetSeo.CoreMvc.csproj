@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard1.6</TargetFramework>
-    <Version>0.8.1</Version>
-    <FileVersion>0.8.1.0</FileVersion>
+    <Version>0.8.5</Version>
+    <FileVersion>0.8.5.0</FileVersion>
 
     <AssemblyVersion>0.8.0.0</AssemblyVersion>
     <AssemblyName>AspNetSeo.CoreMvc</AssemblyName>
