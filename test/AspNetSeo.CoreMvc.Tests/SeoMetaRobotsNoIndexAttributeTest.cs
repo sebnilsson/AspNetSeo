@@ -20,10 +20,8 @@ namespace AspNetSeo.CoreMvc.Tests
             Assert.Equal(RobotsIndexManager.DefaultRobotsNoIndex, seo.MetaRobotsIndex);
         }
 
-        [Theory]
-        [InlineData(true)]
-        [InlineData(false)]
-        public void OnHandleSeoValues_NoIndexValue_MetaNoIndexOnly(bool noIndex)
+        [Fact]
+        public void OnHandleSeoValues_NoIndexValue_MetaNoIndexOnly()
         {
             // Arrange
             var attribute = new SeoMetaRobotsNoIndexAttribute();

@@ -17,25 +17,6 @@ namespace AspNetSeo.CoreMvc.Tests
             // Assert
             Assert.Equal(TestData.Title, seoHelper.Title);
         }
-
-        public void Title_ChangedTitleFormat_SetsTitle()
-        {
-            const string BaseTitle = "BASE_TITLE";
-            const string PageTitle = "PAGE_TITLE";
-            
-            // Arrange
-            var seo = SeoHelperTestFactory.Create();
-
-            // Act
-            seo.BaseTitle = BaseTitle;
-            seo.Title = PageTitle;
-            seo.TitleFormat = TestData.TitleFormat;
-
-            // Assert
-            string expectedTitle = string.Format(TestData.TitleFormat, PageTitle, BaseTitle);
-
-            Assert.Equal(expectedTitle, seo.Title);
-        }
         
         [Fact]
         public void Title_BaseTitleEmpty_SetsTitleToPageTitleOnly()

@@ -23,13 +23,13 @@ namespace AspNetSeo
         {
             get
             {
-                return (this.MetaRobotsIndex == RobotsIndexManager.DefaultRobotsNoIndex);
+                return (MetaRobotsIndex == RobotsIndexManager.DefaultRobotsNoIndex);
             }
             set
             {
                 var metaRobotsIndex = value ? RobotsIndexManager.DefaultRobotsNoIndex : (RobotsIndex?)null;
 
-                this.MetaRobotsIndex = metaRobotsIndex;
+                MetaRobotsIndex = metaRobotsIndex;
             }
         }
 
