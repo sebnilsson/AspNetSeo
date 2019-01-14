@@ -33,6 +33,18 @@ namespace AspNetSeo
             }
         }
 
+        public string OgDescription { get; set; }
+
+        public string OgImage { get; set; }
+
+        public string OgSiteName { get; set; }
+
+        public string OgTitle { get; set; }
+
+        public string OgType { get; set; }
+
+        public string OgUrl { get; set; }
+
         public string Title { get; set; }
 
         public string TitleFormat { get; set; } = DefaultTitleFormat;
@@ -51,19 +63,22 @@ namespace AspNetSeo
             return combinedMetaKeywords;
         }
 
-        private static string CombineTexts(string separator, params string[] values)
+        private static string CombineTexts(
+            string separator,
+            params string[] values)
         {
             var cleanedValues =
-                (values?.Select(x => x?.Trim()).Where(x => !string.IsNullOrWhiteSpace(x)) ?? Enumerable.Empty<string>())
+                values?
+                .Select(x => x?.Trim())
+                .Where(x => !string.IsNullOrWhiteSpace(x))
                 .ToList();
 
-            if (!cleanedValues.Any())
+            if (cleanedValues == null || !cleanedValues.Any())
             {
                 return null;
             }
 
-            string combined = string.Join(separator, cleanedValues).Trim();
-            return combined;
+            return string.Join(separator, cleanedValues).Trim();
         }
     }
 }

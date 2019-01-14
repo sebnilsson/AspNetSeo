@@ -14,16 +14,42 @@ namespace AspNetSeo.CoreMvc
                 ?? throw new ArgumentNullException(nameof(seoHelper));
         }
 
-        protected void SetMetaTagOutput(TagHelperOutput output, string name, string content)
+        protected void ProcessMetaTag(
+            TagHelperOutput output,
+            string name,
+            string htmlValue,
+            string content)
         {
             if (output == null)
-            {
                 throw new ArgumentNullException(nameof(output));
-            }
             if (name == null)
-            {
                 throw new ArgumentNullException(nameof(name));
+
+            var outputContent =
+                !string.IsNullOrWhiteSpace(htmlValue)
+                ? htmlValue
+                : content;
+
+            if (outputContent == null)
+            {
+                output.SuppressOutput();
+                return;
             }
+
+            output.Attributes.RemoveAll("Value");
+
+            SetMetaTagOutput(output, name, content: outputContent);
+        }
+
+        protected void SetMetaTagOutput(
+            TagHelperOutput output,
+            string name,
+            string content)
+        {
+            if (output == null)
+                throw new ArgumentNullException(nameof(output));
+            if (name == null)
+                throw new ArgumentNullException(nameof(name));
 
             if (content == null)
             {

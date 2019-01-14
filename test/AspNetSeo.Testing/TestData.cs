@@ -12,6 +12,18 @@
 
         public static readonly string MetaKeywords = $"Test{nameof(SeoHelper.MetaKeywords)}";
 
+        public static readonly string OgDescription = $"Test{nameof(SeoHelper.OgDescription)}";
+
+        public static readonly string OgImage = $"Test{nameof(SeoHelper.OgImage)}";
+
+        public static readonly string OgSiteName = $"Test{nameof(SeoHelper.OgSiteName)}";
+
+        public static readonly string OgTitle = $"Test{nameof(SeoHelper.OgTitle)}";
+
+        public static readonly string OgType = $"Test{nameof(SeoHelper.OgType)}";
+
+        public static readonly string OgUrl = $"Test{nameof(SeoHelper.OgUrl)}";
+
         public static readonly string Title = $"Test{nameof(SeoHelper.Title)}";
 
         public static readonly string TitleFormat = "{1} > {0}";

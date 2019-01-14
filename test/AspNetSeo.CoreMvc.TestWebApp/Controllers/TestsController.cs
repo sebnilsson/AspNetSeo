@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AspNetSeo.CoreMvc.TestWebApp.Controllers
 {
+    [SeoOgSiteName("Class-level OG Site Name")]
     public class TestsController : SeoController
     {
         public IActionResult Index()
@@ -126,6 +127,42 @@ namespace AspNetSeo.CoreMvc.TestWebApp.Controllers
         public IActionResult MetaRobotsNoIndexAttribute()
         {
             return View("MetaRobotsIndex");
+        }
+        
+        [SeoOgDescription("OgDesciptionAttribute")]
+        public IActionResult OgDescription()
+        {
+            return View();
+        }
+
+        [SeoOgImage("OgImage")]
+        public IActionResult OgImage()
+        {
+            return View();
+        }
+
+        [SeoOgSiteName("OgSiteName action override")]
+        public IActionResult OgSiteName()
+        {
+            return View();
+        }
+
+        [SeoOgTitle("OgTitle")]
+        public IActionResult OgTitle()
+        {
+            return View();
+        }
+
+        [SeoOgType("OgType")]
+        public IActionResult OgType()
+        {
+            return View();
+        }
+
+        [SeoOgUrl("OgUrl")]
+        public IActionResult OgUrl()
+        {
+            return View();
         }
 
         [SeoTitle("Overridden attribute action-title", OverrideBaseTitle = true)]

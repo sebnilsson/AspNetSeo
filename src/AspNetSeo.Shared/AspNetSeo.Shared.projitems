@@ -14,6 +14,12 @@
     <Compile Include="$(MSBuildThisFileDirectory)SeoBaseLinkCanonicalAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SeoBaseTitleAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SeoLinkCanonicalAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SeoOgDescriptionAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SeoOgImageAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SeoOgSiteNameAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SeoOgTypeAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SeoOgUrlAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SeoOgTitleAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SeoMetaDescriptionAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SeoMetaKeywordsAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SeoMetaRobotsIndexAttribute.cs" />
