@@ -1,4 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Text.Encodings.Web;
+using System.Threading.Tasks;
 
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
@@ -6,18 +10,50 @@ namespace AspNetSeo.Testing
 {
     public static class TagHelperExtensions
     {
-        public static TagHelperOutput Process(
+        //public static TagHelperOutput Process(
+        //    this TagHelper tagHelper,
+        //    string tagName,
+        //    IEnumerable<TagHelperAttribute> contextAttributes = null)
+        //{
+        //    var context = TagHelperTestFactory.CreateContext(contextAttributes);
+
+        //    var output = TagHelperTestFactory.CreateOutput(tagName);
+
+        //    tagHelper.Process(context, output);
+
+        //    return output;
+        //}
+
+        public static string GetHtml(
             this TagHelper tagHelper,
-            string tagName,
-            IEnumerable<TagHelperAttribute> contextAttributes = null)
+            string tagName)
         {
-            var context = TagHelperTestFactory.CreateContext(contextAttributes);
+            var tagHelperContext = new TagHelperContext(
+                new TagHelperAttributeList(),
+                new Dictionary<object, object>(),
+                Guid.NewGuid().ToString("N"));
 
-            var output = TagHelperTestFactory.CreateOutput(tagName);
+            var tagHelperOutput = new TagHelperOutput(tagName,
+                new TagHelperAttributeList(),
+                (result, encoder) =>
+                {
+                    var tagHelperContent = new DefaultTagHelperContent();
+                    tagHelperContent.SetHtmlContent(string.Empty);
 
-            tagHelper.Process(context, output);
+                    return Task.FromResult<TagHelperContent>(tagHelperContent);
+                });
 
-            return output;
+            tagHelper.Process(tagHelperContext, tagHelperOutput);
+
+            string html;
+            using (var writer = new StringWriter())
+            {
+                tagHelperOutput.WriteTo(writer, HtmlEncoder.Default);
+
+                html = writer.ToString();
+            }
+
+            return html;
         }
     }
 }

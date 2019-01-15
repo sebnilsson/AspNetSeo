@@ -3,13 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26430.4
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetSeo", "src\AspNetSeo\AspNetSeo.csproj", "{78F8442D-8186-4591-B8D1-16BD57D3926A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetSeo", "src\AspNetSeo\AspNetSeo.csproj", "{78F8442D-8186-4591-B8D1-16BD57D3926A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetSeo.CoreMvc", "src\AspNetSeo.CoreMvc\AspNetSeo.CoreMvc.csproj", "{AFE7506D-41B4-4CDA-B706-231683DC16BE}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetSeo.Mvc", "src\AspNetSeo.Mvc\AspNetSeo.Mvc.csproj", "{02D85B1C-A0B9-49D8-ABBE-F388EC2ADB55}"
-EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "AspNetSeo.Shared", "src\AspNetSeo.Shared\AspNetSeo.Shared.shproj", "{86485E94-3852-4726-81CA-644DF9ED1971}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{8666C94E-FE27-427C-9575-0CA71123AE35}"
 	ProjectSection(SolutionItems) = preProject
@@ -17,10 +13,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{8666C94E
 	EndProjectSection
 EndProject
 Global
-	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		src\AspNetSeo.Shared\AspNetSeo.Shared.projitems*{02d85b1c-a0b9-49d8-abbe-f388ec2adb55}*SharedItemsImports = 4
-		src\AspNetSeo.Shared\AspNetSeo.Shared.projitems*{86485e94-3852-4726-81ca-644df9ed1971}*SharedItemsImports = 13
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -34,12 +26,11 @@ Global
 		{AFE7506D-41B4-4CDA-B706-231683DC16BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AFE7506D-41B4-4CDA-B706-231683DC16BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AFE7506D-41B4-4CDA-B706-231683DC16BE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{02D85B1C-A0B9-49D8-ABBE-F388EC2ADB55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{02D85B1C-A0B9-49D8-ABBE-F388EC2ADB55}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{02D85B1C-A0B9-49D8-ABBE-F388EC2ADB55}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{02D85B1C-A0B9-49D8-ABBE-F388EC2ADB55}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2345D94C-21DB-4140-8468-FD0A217495F0}
 	EndGlobalSection
 EndGlobal

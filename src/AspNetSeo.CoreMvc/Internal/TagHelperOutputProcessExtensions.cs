@@ -23,6 +23,7 @@ namespace AspNetSeo.CoreMvc.Internal
             }
 
             output.TagName = "meta";
+            output.TagMode = TagMode.SelfClosing;
 
             output.Attributes.Clear();
 

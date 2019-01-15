@@ -2,7 +2,7 @@
 
 namespace AspNetSeo.CoreMvc
 {
-    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, Inherited = false)]
+    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false, Inherited = false)]
     public class OgTypeAttribute : SeoAttributeBase
     {
         private readonly string _value;

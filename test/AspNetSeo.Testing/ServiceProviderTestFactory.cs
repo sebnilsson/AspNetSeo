@@ -18,7 +18,8 @@ namespace AspNetSeo.Testing
             return serviceProvider;
         }
 
-        private class ServiceCollection : List<ServiceDescriptor>, IServiceCollection
+        private class ServiceCollection 
+            : List<ServiceDescriptor>, IServiceCollection
         {
         }
     }

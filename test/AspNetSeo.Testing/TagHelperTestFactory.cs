@@ -1,50 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text.Encodings.Web;
-using System.Threading.Tasks;
-
-using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace AspNetSeo.Testing
 {
     public static class TagHelperTestFactory
     {
-        public static TagHelperOutput CreateOutput(
-            string tagName,
-            IEnumerable<TagHelperAttribute> attributes = null,
-            Func<bool, HtmlEncoder, Task<TagHelperContent>> getChildContentAsync = null)
+        public static TTagHelper Create<TTagHelper>(
+            Func<SeoHelper, TTagHelper> tagHelperFactory,
+            Action<SeoHelper> seoConfig = null,
+            Action<TTagHelper> tagConfig = null)
         {
-            var attributeList = (attributes != null)
-                                    ? new TagHelperAttributeList(attributes)
-                                    : new TagHelperAttributeList();
+            var seoHelper = new SeoHelper();
+            seoConfig?.Invoke(seoHelper);
 
-            getChildContentAsync = getChildContentAsync ?? DefaultGetChildContentAsync;
+            var tagHelper = tagHelperFactory(seoHelper);
+            tagConfig?.Invoke(tagHelper);
 
-            var output = new TagHelperOutput(tagName, attributeList, getChildContentAsync);
-            return output;
-        }
-
-        public static TagHelperContext CreateContext(IEnumerable<TagHelperAttribute> attributes = null)
-        {
-            var attributeList = (attributes != null)
-                                    ? new TagHelperAttributeList(attributes)
-                                    : new TagHelperAttributeList();
-            var items = new Dictionary<object, object>();
-            var uniqueId = Convert.ToString(Guid.NewGuid());
-
-            var context = new TagHelperContext(attributeList, items, uniqueId);
-            return context;
-        }
-
-        private static async Task<TagHelperContent> DefaultGetChildContentAsync(
-            bool useCachedResult,
-            HtmlEncoder encoder)
-        {
-            var tagHelperContent = new DefaultTagHelperContent();
-
-            await Task.CompletedTask;
-
-            return tagHelperContent;
+            return tagHelper;
         }
     }
 }

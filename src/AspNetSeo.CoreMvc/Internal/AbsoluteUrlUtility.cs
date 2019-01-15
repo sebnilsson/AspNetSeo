@@ -1,5 +1,6 @@
 ﻿using System;
 
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AspNetSeo.CoreMvc.Internal
@@ -14,75 +15,74 @@ namespace AspNetSeo.CoreMvc.Internal
             if (urlHelper == null)
                 throw new ArgumentNullException(nameof(urlHelper));
 
-            var uri = GetUri(urlHelper, url);
-            if (uri == null)
+            var escapedUrl = url != null ? Uri.EscapeUriString(url) : null;
+
+            var contentUrl = urlHelper.Content(escapedUrl);
+            //var encoded = System.Net.WebUtility.UrlEncode(contentUrl);
+
+            //var canCreate = Uri.TryCreate(contentUrl, UriKind.RelativeOrAbsolute, out Uri result);
+
+            //var test = encoded != null
+            //    && Uri.IsWellFormedUriString(
+            //        encoded,
+            //        UriKind.RelativeOrAbsolute);
+
+            var isWellFormedUri = contentUrl != null
+                && Uri.IsWellFormedUriString(
+                    contentUrl,
+                    UriKind.RelativeOrAbsolute);
+
+            if (!isWellFormedUri)
             {
                 return null;
             }
 
-            var absoluteUrl = GetAbsoluteUrl(uri, siteUrl);
-            if (absoluteUrl != null)
-            {
-                return absoluteUrl;
-            }
-
-            var request = urlHelper.ActionContext?.HttpContext?.Request;
-            if (request == null)
-            {
-                return null;
-            }
-
-            var uriBuilder = new UriBuilder
-            {
-                Scheme = request.Scheme,
-                Host = request.Host.Host,
-                Path = uri.ToString()
-            };
-
-            return uriBuilder.Uri.ToString();
+            return
+                GetAbsoluteUrl(contentUrl)
+                ?? GetSiteUrl(contentUrl, siteUrl)
+                ?? GetRequestUrl(
+                    contentUrl,
+                    urlHelper.ActionContext?.HttpContext?.Request);
         }
 
-        private static string GetAbsoluteUrl(Uri uri, string siteUrl)
+        private static string GetAbsoluteUrl(string url)
         {
-            if (uri.IsAbsoluteUri)
+            var isAbsolute = Uri.IsWellFormedUriString(
+                    url,
+                    UriKind.Absolute);
+
+            return isAbsolute ? url : null;
+        }
+
+        private static string GetRequestUrl(string url, HttpRequest request)
+        {
+            if (request.Host.Host == null
+                || request.Scheme == null)
             {
-                return uri.ToString();
+                return null;
             }
 
-            if (siteUrl != null
+            var path = request.Path.HasValue
+                ? $"/{request.Path.Value.TrimStart('/')}"
+                : null;
+
+            var requestSiteUri =
+                new Uri($"{request.Scheme}://{request.Host.Host}{path}");
+
+            var absoluteUri = new Uri(requestSiteUri, url);
+            return absoluteUri.ToString();
+        }
+
+        private static string GetSiteUrl(string url, string siteUrl)
+        {
+            if (siteUrl == null
                 || !Uri.TryCreate(siteUrl, UriKind.Absolute, out Uri siteUri))
             {
                 return null;
             }
 
-            var uriBuilder = new UriBuilder(siteUri)
-            {
-                Path = uri.ToString()
-            };
-            return uriBuilder.Uri.ToString();
-        }
-
-        private static Uri GetUri(
-            IUrlHelper urlHelper,
-            string url)
-        {
-            if (string.IsNullOrWhiteSpace(url)
-                || !Uri.TryCreate(
-                    url,
-                    UriKind.RelativeOrAbsolute,
-                    out Uri result))
-            {
-                return null;
-            }
-
-            if (result.IsAbsoluteUri)
-            {
-                return result;
-            }
-
-            var contentUrl = urlHelper.Content(result.ToString());
-
-            return new Uri(contentUrl);
+            var absoluteUri = new Uri(siteUri, url);
+            return absoluteUri.ToString();
         }
     }
 }

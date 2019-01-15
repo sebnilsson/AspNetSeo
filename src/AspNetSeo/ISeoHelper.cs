@@ -4,6 +4,8 @@ namespace AspNetSeo
 {
     public interface ISeoHelper
     {
+        IDictionary<string, string> CustomMetas { get; }
+
         string DocumentTitle { get; }
 
         string DocumentTitleFormat { get; set; }
@@ -15,8 +17,6 @@ namespace AspNetSeo
         string MetaKeywords { get; set; }
 
         string MetaRobots { get; set; }
-
-        IDictionary<string, string> Metas { get; }
 
         string OgDescription { get; set; }
 

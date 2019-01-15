@@ -44,6 +44,7 @@ namespace AspNetSeo.CoreMvc.TagHelpers
             }
 
             output.TagName = "link";
+            output.TagMode = TagMode.SelfClosing;
 
             output.Attributes.Clear();
 
