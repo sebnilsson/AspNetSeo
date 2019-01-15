@@ -31,14 +31,6 @@ namespace AspNetSeo.CoreMvc
                 ? htmlValue
                 : (content ?? fallbackContent);
 
-            if (outputContent == null)
-            {
-                output.SuppressOutput();
-                return;
-            }
-
-            output.Attributes.RemoveAll("Value");
-
             SetMetaTagOutput(output, name, content: outputContent);
         }
 
@@ -59,6 +51,8 @@ namespace AspNetSeo.CoreMvc
             }
 
             output.TagName = "meta";
+
+            output.Attributes.Clear();
 
             output.Attributes.SetAttribute("name", name);
             output.Attributes.SetAttribute("content", content);

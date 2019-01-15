@@ -1,8 +1,4 @@
-﻿using System;
-
-using Microsoft.AspNetCore.Http.Extensions;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.AspNetCore.Mvc.Routing;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
@@ -22,7 +18,7 @@ namespace AspNetSeo.CoreMvc
 
         [HtmlAttributeName(ValueAttributeName)]
         public string Value { get; set; }
-        
+
         [HtmlAttributeNotBound]
         [ViewContext]
         public ViewContext ViewContext { get; set; }
@@ -34,21 +30,12 @@ namespace AspNetSeo.CoreMvc
 
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
-            var urlHelper = (ViewContext != null) ? new UrlHelper(ViewContext) : null;
-            
-            var linkCanonical = !string.IsNullOrWhiteSpace(Value) ? Value : SeoHelper.LinkCanonical;
-
-            linkCanonical = urlHelper?.Content(linkCanonical) ?? linkCanonical;
-
-            var linkCanonicalBase = !string.IsNullOrWhiteSpace(Base) ? Base : SeoHelper.BaseLinkCanonical;
-
-            var requestUrl = ViewContext?.HttpContext?.Request?.GetDisplayUrl() ?? string.Empty;
-            var requestUri = new Uri(requestUrl);
-
-            string combinedLinkCanonical = SeoHelperLinkCanonicalHelper.GetLinkCanonical(
-                linkCanonical,
-                linkCanonicalBase,
-                requestUri);
+            string combinedLinkCanonical =
+                LinkCanonicalUtility.GetLinkCanonical(
+                    SeoHelper,
+                    ViewContext,
+                    Value,
+                    Base);
 
             if (string.IsNullOrWhiteSpace(combinedLinkCanonical))
             {
@@ -58,8 +45,7 @@ namespace AspNetSeo.CoreMvc
 
             output.TagName = "link";
 
-            output.Attributes.RemoveAll(nameof(Base));
-            output.Attributes.RemoveAll(nameof(Value));
+            output.Attributes.Clear();
 
             output.Attributes.SetAttribute("rel", "canonical");
             output.Attributes.SetAttribute("href", combinedLinkCanonical);

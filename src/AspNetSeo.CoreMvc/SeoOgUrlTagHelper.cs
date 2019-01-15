@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Razor.TagHelpers;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
+using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace AspNetSeo.CoreMvc
 {
@@ -12,19 +14,26 @@ namespace AspNetSeo.CoreMvc
         [HtmlAttributeName(ValueAttributeName)]
         public string Value { get; set; }
 
+        [HtmlAttributeNotBound]
+        [ViewContext]
+        public ViewContext ViewContext { get; set; }
+
         public SeoOgUrlTagHelper(SeoHelper seoHelper)
             : base(seoHelper)
         {
         }
 
-        public override void Process(TagHelperContext context, TagHelperOutput output)
+        public override void Process(
+            TagHelperContext context,
+            TagHelperOutput output)
         {
-            ProcessMetaTag(
-                output,
-                "og:url",
-                Value,
-                SeoHelper.OgUrl,
-                SeoHelper.LinkCanonical);
+            string combinedLinkCanonical =
+                LinkCanonicalUtility.GetLinkCanonical(
+                    SeoHelper,
+                    ViewContext,
+                    Value);
+
+            SetMetaTagOutput(output, "og:url", combinedLinkCanonical);
         }
     }
 }
