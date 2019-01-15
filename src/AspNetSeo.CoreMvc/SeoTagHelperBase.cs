@@ -18,7 +18,8 @@ namespace AspNetSeo.CoreMvc
             TagHelperOutput output,
             string name,
             string htmlValue,
-            string content)
+            string content,
+            string fallbackContent = null)
         {
             if (output == null)
                 throw new ArgumentNullException(nameof(output));
@@ -28,7 +29,7 @@ namespace AspNetSeo.CoreMvc
             var outputContent =
                 !string.IsNullOrWhiteSpace(htmlValue)
                 ? htmlValue
-                : content;
+                : (content ?? fallbackContent);
 
             if (outputContent == null)
             {

@@ -19,7 +19,12 @@ namespace AspNetSeo.CoreMvc
 
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
-            ProcessMetaTag(output, "og:description", Value, SeoHelper.OgDescription);
+            ProcessMetaTag(
+                output,
+                "og:description",
+                Value,
+                SeoHelper.OgDescription,
+                SeoHelper.MetaDescription);
         }
     }
 }
