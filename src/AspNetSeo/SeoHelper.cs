@@ -1,84 +1,108 @@
 ﻿using System;
-using System.Linq;
+using System.Collections.Generic;
+
+using AspNetSeo.Internal;
 
 namespace AspNetSeo
 {
-    public class SeoHelper
+    public class SeoHelper : ISeoHelper
     {
-        internal const string DefaultTitleFormat = "{0} - {1}";
+        internal const string DefaultDocumentTitleFormat = "{0} - {1}";
 
-        public string BaseLinkCanonical { get; set; }
+        private bool _metaRobotsFollow = true;
+        private bool _metaRobotsIndex = true;
 
-        public string BaseTitle { get; set; }
+        public string DocumentTitle => DocumentTitleValue.Get(this);
+
+        public string DocumentTitleFormat { get; set; }
+            = DefaultDocumentTitleFormat;
 
         public string LinkCanonical { get; set; }
 
-        public string MetaDescription { get; set; }
-
-        public string MetaKeywords { get; set; }
-
-        public RobotsIndex? MetaRobotsIndex { get; set; }
-
-        public bool MetaRobotsNoIndex
+        public string MetaDescription
         {
-            get
-            {
-                return (MetaRobotsIndex == RobotsIndexManager.DefaultRobotsNoIndex);
-            }
-            set
-            {
-                var metaRobotsIndex = value ? RobotsIndexManager.DefaultRobotsNoIndex : (RobotsIndex?)null;
-
-                MetaRobotsIndex = metaRobotsIndex;
-            }
+            get => GetMeta(MetaName.Description);
+            set => SetMeta(MetaName.Description, value);
         }
 
-        public string OgDescription { get; set; }
-
-        public string OgImage { get; set; }
-
-        public string OgSiteName { get; set; }
-
-        public string OgTitle { get; set; }
-
-        public string OgType { get; set; }
-
-        public string OgUrl { get; set; }
-
-        public string Title { get; set; }
-
-        public string TitleFormat { get; set; } = DefaultTitleFormat;
-
-        public string AddMetaKeyword(string addedKeyword)
+        public string MetaKeywords
         {
-            if (addedKeyword == null)
-            {
-                throw new ArgumentNullException(nameof(addedKeyword));
-            }
-
-            string combinedMetaKeywords = CombineTexts(" ", MetaKeywords, addedKeyword);
-
-            MetaKeywords = combinedMetaKeywords;
-
-            return combinedMetaKeywords;
+            get => GetMeta(MetaName.Keywords);
+            set => SetMeta(MetaName.Keywords, value);
         }
 
-        private static string CombineTexts(
-            string separator,
-            params string[] values)
+        public string MetaRobots
         {
-            var cleanedValues =
-                values?
-                .Select(x => x?.Trim())
-                .Where(x => !string.IsNullOrWhiteSpace(x))
-                .ToList();
+            get => GetMeta(MetaName.Robots);
+            set => SetMeta(MetaName.Robots, value);
+        }
 
-            if (cleanedValues == null || !cleanedValues.Any())
-            {
-                return null;
-            }
+        public IDictionary<string, string> Metas { get; }
+            = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
 
-            return string.Join(separator, cleanedValues).Trim();
+        public string OgDescription
+        {
+            get => GetMeta(OgMetaName.Description);
+            set => SetMeta(OgMetaName.Description, value);
+        }
+
+        public string OgImage
+        {
+            get => GetMeta(OgMetaName.Image);
+            set => SetMeta(OgMetaName.Image, value);
+        }
+
+        public string OgSiteName
+        {
+            get => GetMeta(OgMetaName.SiteName);
+            set => SetMeta(OgMetaName.SiteName, value);
+        }
+
+        public string OgTitle
+        {
+            get => GetMeta(OgMetaName.Title);
+            set => SetMeta(OgMetaName.Title, value);
+        }
+
+        public string OgType
+        {
+            get => GetMeta(OgMetaName.Type);
+            set => SetMeta(OgMetaName.Type, value);
+        }
+
+        public string OgUrl
+        {
+            get => GetMeta(OgMetaName.Url);
+            set => SetMeta(OgMetaName.Url, value);
+        }
+
+        public string PageTitle { get; set; }
+
+        public string SiteName { get; set; }
+
+        public string SiteUrl { get; set; }
+
+        public string SetMetaRobots(bool index, bool follow)
+        {
+            MetaRobots = MetaRobotsValue.Get(index, follow);
+
+            return MetaRobots;
+        }
+
+        private string GetMeta(string key)
+        {
+            if (key == null)
+                throw new ArgumentNullException(nameof(key));
+
+            return Metas.ContainsKey(key) ? Metas[key] : null;
+        }
+
+        private void SetMeta(string key, string value)
+        {
+            if (key == null)
+                throw new ArgumentNullException(nameof(key));
+
+            Metas[key] = value;
         }
     }
 }

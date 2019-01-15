@@ -9,9 +9,7 @@ namespace AspNetSeo.CoreMvc
         public static SeoHelper GetSeoHelper(this ActionContext context)
         {
             if (context == null)
-            {
                 throw new ArgumentNullException(nameof(context));
-            }
 
             var serviceProvider = context.HttpContext.RequestServices;
             if (serviceProvider == null)

@@ -27,7 +27,7 @@ namespace AspNetSeo.CoreMvc.TestWebApp
             // Add framework services.
             services.AddMvc();
 
-            services.AddSeoHelper(baseTitle: "Base title (Dependency Injection)", baseLinkCanonical: "https://test-url-di.co/");
+            services.AddSeoHelper(siteName: "Site Name (Dependency Injection)", siteUrl: "https://test-url-di.co/");
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

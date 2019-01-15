@@ -5,7 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AspNetSeo.CoreMvc.TestWebApp.Controllers
 {
-    [SeoOgSiteName("Class-level OG Site Name")]
+    [SiteName("Class-level Site Name")]
+    [OgSiteName("Class-level OG Site Name")]
     public class TestsController : SeoController
     {
         public IActionResult Index()
@@ -15,9 +16,9 @@ namespace AspNetSeo.CoreMvc.TestWebApp.Controllers
             return View("~/Views/Home/Index.cshtml", model);
         }
 
-        [SeoBaseTitle("Override attribute base-title")]
-        [SeoBaseLinkCanonical("https://test-url-attribute.co/base-path")]
-        [SeoTitle("LinkCanonical")]
+        [SiteName("Override attribute site name")]
+        [LinkCanonical("https://test-url-attribute.co/base-path")]
+        [PageTitle("LinkCanonical")]
         public IActionResult LinkCanonical()
         {
             Seo.LinkCanonical = "~/Tests/LinkCanonicalAttribute_FromHelperProperty/?abc=123&param=param";
@@ -25,14 +26,14 @@ namespace AspNetSeo.CoreMvc.TestWebApp.Controllers
             return View();
         }
 
-        [SeoLinkCanonical("TestsAttribute/LinkCanonicalAttribute_FromAttribute/?abc=123&param=param")]
-        [SeoTitle("LinkCanonicalAttribute")]
+        [LinkCanonical("TestsAttribute/LinkCanonicalAttribute_FromAttribute/?abc=123&param=param")]
+        [PageTitle("LinkCanonicalAttribute")]
         public IActionResult LinkCanonicalAttribute()
         {
             return View("LinkCanonical");
         }
 
-        [SeoTitle("MetaDescription")]
+        [PageTitle("MetaDescription")]
         public IActionResult MetaDescription()
         {
             Seo.MetaDescription = $"Test meta-description{Environment.NewLine}Newline-content";
@@ -40,14 +41,14 @@ namespace AspNetSeo.CoreMvc.TestWebApp.Controllers
             return View();
         }
 
-        [SeoMetaDescription("Test attribute meta-description\r\nNewline-content")]
-        [SeoTitle("MetaDescriptionAttribute")]
+        [MetaDescription("Test attribute meta-description\r\nNewline-content")]
+        [PageTitle("MetaDescriptionAttribute")]
         public IActionResult MetaDescriptionAttribute()
         {
             return View("MetaDescription");
         }
 
-        [SeoTitle("MetaKeywords")]
+        [PageTitle("MetaKeywords")]
         public IActionResult MetaKeywords()
         {
             Seo.MetaKeywords = $"Test meta-keywords{Environment.NewLine}Newline-content";
@@ -55,126 +56,111 @@ namespace AspNetSeo.CoreMvc.TestWebApp.Controllers
             return View();
         }
 
-        [SeoMetaKeywords("Test meta-keywords\r\nNewline-content")]
-        [SeoTitle("MetaKeywordsAttribute")]
+        [MetaKeywords("Test meta-keywords\r\nNewline-content")]
+        [PageTitle("MetaKeywordsAttribute")]
         public IActionResult MetaKeywordsAttribute()
         {
             return View("MetaKeywords");
         }
 
-        [SeoTitle("MetaRobotsIndexAttribute")]
-        [SeoMetaRobotsIndex]
+        [PageTitle("MetaRobotsIndexAttribute")]
+        [MetaRobots(index: true, follow: true)]
         public IActionResult MetaRobotsIndexAttribute()
         {
             return View("MetaRobotsIndex");
         }
 
-        [SeoTitle("MetaRobotsIndexIndexNoFollow")]
+        [PageTitle("MetaRobotsIndexIndexNoFollow")]
         public IActionResult MetaRobotsIndexIndexNoFollow()
         {
-            Seo.MetaRobotsIndex = RobotsIndex.IndexNoFollow;
+            Seo.SetMetaRobots(index: true, follow: false);
 
             return View("MetaRobotsIndex");
         }
 
-        [SeoMetaRobotsIndex(RobotsIndex.IndexNoFollow)]
-        [SeoTitle("MetaRobotsIndexIndexNoFollowAttribute")]
+        [MetaRobots(index: true, follow: false)]
+        [PageTitle("MetaRobotsIndexIndexNoFollowAttribute")]
         public IActionResult MetaRobotsIndexIndexNoFollowAttribute()
         {
             return View("MetaRobotsIndex");
         }
 
-        [SeoTitle("MetaRobotsIndexNoIndexFollow")]
+        [PageTitle("MetaRobotsIndexNoIndexFollow")]
         public IActionResult MetaRobotsIndexNoIndexFollow()
         {
-            Seo.MetaRobotsIndex = RobotsIndex.NoIndexFollow;
+            Seo.SetMetaRobots(index: false, follow: true);
 
             return View("MetaRobotsIndex");
         }
 
-        [SeoMetaRobotsIndex(RobotsIndex.NoIndexFollow)]
-        [SeoTitle("MetaRobotsIndexNoIndexFollowAttribute")]
+        [MetaRobots(index: false, follow: true)]
+        [PageTitle("MetaRobotsIndexNoIndexFollowAttribute")]
         public IActionResult MetaRobotsIndexNoIndexFollowAttribute()
         {
             return View("MetaRobotsIndex");
         }
 
-        [SeoTitle("MetaRobotsIndexNoIndexNoFollow")]
+        [PageTitle("MetaRobotsIndexNoIndexNoFollow")]
         public IActionResult MetaRobotsIndexNoIndexNoFollow()
         {
-            Seo.MetaRobotsIndex = RobotsIndex.NoIndexNoFollow;
+            Seo.SetMetaRobots(index: false, follow: false);
 
             return View("MetaRobotsIndex");
         }
 
-        [SeoMetaRobotsIndex(RobotsIndex.NoIndexNoFollow)]
-        [SeoTitle("MetaRobotsIndexNoIndexNoFollowAttribute")]
+        [MetaRobots(index: false, follow: false)]
+        [PageTitle("MetaRobotsIndexNoIndexNoFollowAttribute")]
         public IActionResult MetaRobotsIndexNoIndexNoFollowAttribute()
         {
             return View("MetaRobotsIndex");
         }
-
-        [SeoTitle("MetaRobotsNoIndex")]
-        public IActionResult MetaRobotsNoIndex()
-        {
-            Seo.MetaRobotsNoIndex = true;
-
-            return View("MetaRobotsIndex");
-        }
-
-        [SeoMetaRobotsNoIndex]
-        [SeoTitle("MetaRobotsNoIndexAttribute")]
-        public IActionResult MetaRobotsNoIndexAttribute()
-        {
-            return View("MetaRobotsIndex");
-        }
-        
-        [SeoOgDescription("OgDesciptionAttribute")]
+                
+        [OgDescription("OgDesciptionAttribute")]
         public IActionResult OgDescription()
         {
             return View();
         }
 
-        [SeoOgImage("OgImage")]
+        [OgImage("OgImage")]
         public IActionResult OgImage()
         {
             return View();
         }
 
-        [SeoOgSiteName("OgSiteName action override")]
+        [OgSiteName("OgSiteName action override")]
         public IActionResult OgSiteName()
         {
             return View();
         }
 
-        [SeoOgTitle("OgTitle")]
+        [OgTitle("OgTitle")]
         public IActionResult OgTitle()
         {
             return View();
         }
 
-        [SeoOgType("OgType")]
+        [OgType("OgType")]
         public IActionResult OgType()
         {
             return View();
         }
 
-        [SeoOgUrl("OgUrl")]
+        [OgUrl("OgUrl")]
         public IActionResult OgUrl()
         {
             return View();
         }
 
-        [SeoTitle("Overridden attribute action-title", OverrideBaseTitle = true)]
+        [PageTitle("Overridden attribute action-title", OverrideSiteName = true)]
         public IActionResult Title()
         {
-            Seo.Title = "Override action-method-title";
-            Seo.TitleFormat = "Base: '{1}' | Title: '{0}'";
+            Seo.PageTitle = "Override action-method-title";
+            Seo.DocumentTitleFormat = "Base: '{1}' | Title: '{0}'";
 
             return View();
         }
 
-        [SeoTitle("Attribute action-title", Format = "Attribute Base: '{1}' | Title: '{0}'")]
+        [PageTitle("Attribute action-title", Format = "Attribute Base: '{1}' | Title: '{0}'")]
         public IActionResult TitleAttribute()
         {
             return View("Title");

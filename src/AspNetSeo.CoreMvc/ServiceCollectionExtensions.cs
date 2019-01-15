@@ -9,20 +9,22 @@ namespace AspNetSeo.CoreMvc
     {
         public static void AddSeoHelper(
             this IServiceCollection services,
-            string baseTitle = null,
-            string baseLinkCanonical = null)
+            string siteName = null,
+            string siteUrl = null,
+            string documentTitleFormat = null)
         {
             if (services == null)
-            {
                 throw new ArgumentNullException(nameof(services));
-            }
-
-            services.TryAddScoped(
-                _ =>
-                    {
-                        var seoHelper = new SeoHelper { BaseLinkCanonical = baseLinkCanonical, BaseTitle = baseTitle };
-                        return seoHelper;
-                    });
+            
+            services.TryAddScoped<ISeoHelper>(_ =>
+            {
+                return new SeoHelper
+                {
+                    SiteName = siteName,
+                    SiteUrl = siteUrl,
+                    DocumentTitleFormat = documentTitleFormat
+                };
+            });
         }
     }
 }
