@@ -6,7 +6,7 @@ namespace AspNetSeo.CoreMvc.TagHelpers
     [OutputElementHint("title")]
     public class DocumentTitleTagHelper : SeoTagHelperBase
     {
-        public DocumentTitleTagHelper(SeoHelper seoHelper)
+        public DocumentTitleTagHelper(ISeoHelper seoHelper)
             : base(seoHelper)
         {
         }

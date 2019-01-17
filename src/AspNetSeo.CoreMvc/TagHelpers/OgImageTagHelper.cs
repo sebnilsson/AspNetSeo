@@ -7,7 +7,7 @@ namespace AspNetSeo.CoreMvc.TagHelpers
     [OutputElementHint("meta")]
     public class OgImageTagHelper : SeoTagHelperBase
     {
-        public OgImageTagHelper(SeoHelper seoHelper)
+        public OgImageTagHelper(ISeoHelper seoHelper)
             : base(seoHelper)
         {
         }

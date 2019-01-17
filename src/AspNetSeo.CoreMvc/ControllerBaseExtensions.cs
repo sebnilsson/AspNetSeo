@@ -6,7 +6,7 @@ namespace AspNetSeo.CoreMvc
 {
     public static class ControllerBaseExtensions
     {
-        public static SeoHelper GetSeoHelper(this ControllerBase controller)
+        public static ISeoHelper GetSeoHelper(this ControllerBase controller)
         {
             if (controller == null)
                 throw new ArgumentNullException(nameof(controller));

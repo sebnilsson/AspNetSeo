@@ -13,7 +13,7 @@ namespace AspNetSeo.CoreMvc.TagHelpers
         private readonly IUrlHelper _urlHelper;
 
         public LinkCanonicalTagHelper(
-            SeoHelper seoHelper,
+            ISeoHelper seoHelper,
             IUrlHelper urlHelper)
             : base(seoHelper)
         {

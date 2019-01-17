@@ -43,6 +43,14 @@ namespace AspNetSeo
 
         public string SiteUrl { get; set; }
 
+        public void SetCustomMeta(string key, string value)
+        {
+            if (key == null)
+                throw new ArgumentNullException(nameof(key));
+
+            CustomMetas[key] = value;
+        }
+
         public string SetMetaRobots(bool index, bool follow)
         {
             MetaRobots = MetaRobotsValue.Get(index, follow);

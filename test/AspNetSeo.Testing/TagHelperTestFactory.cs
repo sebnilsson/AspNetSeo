@@ -5,8 +5,8 @@ namespace AspNetSeo.Testing
     public static class TagHelperTestFactory
     {
         public static TTagHelper Create<TTagHelper>(
-            Func<SeoHelper, TTagHelper> tagHelperFactory,
-            Action<SeoHelper> seoConfig = null,
+            Func<ISeoHelper, TTagHelper> tagHelperFactory,
+            Action<ISeoHelper> seoConfig = null,
             Action<TTagHelper> tagConfig = null)
         {
             var seoHelper = new SeoHelper();

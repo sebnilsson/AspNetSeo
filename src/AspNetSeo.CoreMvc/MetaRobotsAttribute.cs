@@ -19,9 +19,9 @@ namespace AspNetSeo.CoreMvc
             _value = MetaRobotsValue.Get(index, follow);
         }
 
-        public override void OnHandleSeoValues(SeoHelper seoHelper)
+        public override void OnHandleSeoValues(ISeoHelper seoHelper)
         {
-            seoHelper.MetaKeywords = _value;
+            seoHelper.MetaRobots = _value;
         }
     }
 }

@@ -16,12 +16,13 @@ namespace AspNetSeo.CoreMvc
             var seoHelper = context.GetSeoHelper();
             if (seoHelper == null)
             {
-                throw new TypeLoadException($"Could not resolve service for type '{nameof(SeoHelper)}'.");
+                throw new TypeLoadException(
+                    $"Could not resolve service for type '{nameof(ISeoHelper)}'.");
             }
 
             OnHandleSeoValues(seoHelper);
         }
 
-        public abstract void OnHandleSeoValues(SeoHelper seoHelper);
+        public abstract void OnHandleSeoValues(ISeoHelper seoHelper);
     }
 }

@@ -16,7 +16,7 @@ namespace AspNetSeo.CoreMvc
 
         public bool OverrideSiteName { get; set; }
 
-        public override void OnHandleSeoValues(SeoHelper seoHelper)
+        public override void OnHandleSeoValues(ISeoHelper seoHelper)
         {
             seoHelper.PageTitle = _value;
 

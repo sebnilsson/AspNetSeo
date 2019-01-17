@@ -6,7 +6,7 @@ namespace AspNetSeo.CoreMvc
 {
     public static class ActionContextExtensions
     {
-        public static SeoHelper GetSeoHelper(this ActionContext context)
+        public static ISeoHelper GetSeoHelper(this ActionContext context)
         {
             if (context == null)
                 throw new ArgumentNullException(nameof(context));

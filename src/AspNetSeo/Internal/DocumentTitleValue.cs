@@ -4,7 +4,7 @@ namespace AspNetSeo.Internal
 {
     internal static class DocumentTitleValue
     {
-        public static string Get(SeoHelper seoHelper)
+        public static string Get(ISeoHelper seoHelper)
         {
             if (seoHelper == null)
                 throw new ArgumentNullException(nameof(seoHelper));

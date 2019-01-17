@@ -36,6 +36,8 @@ namespace AspNetSeo
 
         string SiteUrl { get; set; }
 
+        void SetCustomMeta(string key, string value);
+
         string SetMetaRobots(bool index, bool follow);
     }
 }

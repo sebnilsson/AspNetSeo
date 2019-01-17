@@ -15,7 +15,7 @@ namespace AspNetSeo.CoreMvc
             _content = content;
         }
 
-        public override void OnHandleSeoValues(SeoHelper seoHelper)
+        public override void OnHandleSeoValues(ISeoHelper seoHelper)
         {
             seoHelper.CustomMetas[_name] = _content;
         }

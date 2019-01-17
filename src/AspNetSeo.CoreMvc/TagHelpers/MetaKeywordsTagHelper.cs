@@ -7,7 +7,7 @@ namespace AspNetSeo.CoreMvc.TagHelpers
     [OutputElementHint("meta")]
     public class MetaKeywordsTagHelper : SeoTagHelperBase
     {
-        public MetaKeywordsTagHelper(SeoHelper seoHelper)
+        public MetaKeywordsTagHelper(ISeoHelper seoHelper)
             : base(seoHelper)
         {
         }

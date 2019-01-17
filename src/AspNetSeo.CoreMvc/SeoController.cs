@@ -6,13 +6,13 @@ namespace AspNetSeo.CoreMvc
 {
     public abstract class SeoController : Controller
     {
-        private readonly Lazy<SeoHelper> seoLazy;
+        private readonly Lazy<ISeoHelper> seoLazy;
 
-        public SeoHelper Seo => seoLazy.Value;
+        public ISeoHelper Seo => seoLazy.Value;
 
         protected SeoController()
         {
-            seoLazy = new Lazy<SeoHelper>(this.GetSeoHelper);
+            seoLazy = new Lazy<ISeoHelper>(this.GetSeoHelper);
         }
     }
 }

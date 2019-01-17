@@ -8,12 +8,11 @@ namespace AspNetSeo
         private const string DefaultSeparator = ", ";
 
         public static string AddMetaKeywords(
-            this SeoHelper seoHelper,
+            this ISeoHelper seoHelper,
             params string[] keywords)
         {
             if (seoHelper == null)
                 throw new ArgumentNullException(nameof(seoHelper));
-
             if (keywords == null)
                 throw new ArgumentNullException(nameof(keywords));
 
@@ -21,7 +20,7 @@ namespace AspNetSeo
         }
 
         public static string AddMetaKeywordsWithSeparator(
-            this SeoHelper seoHelper,
+            this ISeoHelper seoHelper,
             string separator,
             params string[] keywords)
         {

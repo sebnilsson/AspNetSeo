@@ -8,7 +8,7 @@ namespace AspNetSeo.CoreMvc
     public class SeoRazorPage<T> : RazorPage<T>
     {
         [RazorInject]
-        public SeoHelper Seo { get; set; }
+        public ISeoHelper Seo { get; set; }
 
         public override Task ExecuteAsync()
         {
