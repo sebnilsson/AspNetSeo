@@ -16,6 +16,7 @@ namespace AspNetSeo.CoreMvc.TestWebApp
 
             string encodedChildContent = WebUtility.HtmlEncode(childContent ?? string.Empty);
 
+            output.TagName = null;
             output.Content.SetHtmlContent(encodedChildContent);
         }
     }

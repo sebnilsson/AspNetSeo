@@ -25,7 +25,7 @@ namespace AspNetSeo.CoreMvc.Tests.TagHelpers
 
         public static IEnumerable<object[]> GetMemberData()
         {
-            var urlHelper = UrlHelperTestFactory.Create(
+            var urlHelper = SeoUrlHelperTestFactory.Create(
                 new Uri("http://url-helper.co/helper/page.html?query=123"));
 
             yield return new object[]

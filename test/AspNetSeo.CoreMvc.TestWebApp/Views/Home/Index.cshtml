@@ -1,12 +1,98 @@
-﻿@model TestActionsViewModel
+﻿@model HomeViewModel
+@inject ISeoHelper Seo
 
-<h1>Tests</h1>
+<div class="container">
+    <h2>Actions</h2>
 
-<ul>
-    @foreach (var actionName in Model.ActionNames)
-    {
-        <li>
-            @Html.ActionLink(actionName, actionName, "Tests")
-        </li>
-    }
-</ul>
+    <ul>
+        @foreach (var action in Model.ActionNames)
+        {
+            <li>
+                <a asp-action="@action">@action</a>
+            </li>
+        }
+    </ul>
+
+    <h2>Values</h2>
+
+    <p>
+        <strong>Seo.DocumentTitle</strong>:<br />
+        <code>@Seo.DocumentTitle</code>
+    </p>
+    <p>
+        <strong>Seo.DocumentTitleFormat</strong>:<br />
+        <code>@Seo.DocumentTitleFormat</code>
+    </p>
+    <p>
+        <strong>Seo.LinkCanonical</strong>:<br />
+        <code>@Seo.LinkCanonical</code>
+    </p>
+    <p>
+        <strong>Seo.MetaDescription</strong>:<br />
+        <code>@Seo.MetaDescription</code>
+    </p>
+    <p>
+        <strong>Seo.MetaKeywords</strong>:<br />
+        <code>@Seo.MetaKeywords</code>
+    </p>
+    <p>
+        <strong>Seo.MetaRobots</strong>:<br />
+        <code>@Seo.MetaRobots</code>
+    </p>
+    <p>
+        <strong>Seo.OgDescription</strong>:<br />
+        <code>@Seo.OgDescription</code>
+    </p>
+    <p>
+        <strong>Seo.OgImage</strong>:<br />
+        <code>@Seo.OgImage</code>
+    </p>
+    <p>
+        <strong>Seo.OgSiteName</strong>:<br />
+        <code>@Seo.OgSiteName</code>
+    </p>
+    <p>
+        <strong>Seo.OgTitle</strong>:<br />
+        <code>@Seo.OgTitle</code>
+    </p>
+    <p>
+        <strong>Seo.OgType</strong>:<br />
+        <code>@Seo.OgType</code>
+    </p>
+    <p>
+        <strong>Seo.OgUrl</strong>:<br />
+        <code>@Seo.OgUrl</code>
+    </p>
+    <p>
+        <strong>Seo.PageTitle</strong>:<br />
+        <code>@Seo.PageTitle</code>
+    </p>
+    <p>
+        <strong>Seo.SiteName</strong>:<br />
+        <code>@Seo.SiteName</code>
+    </p>
+    <p>
+        <strong>Seo.SiteUrl</strong>:<br />
+        <code>@Seo.SiteUrl</code>
+    </p>
+
+    <p>
+        <strong>Seo.CustomMetas</strong>:<br />
+        @foreach (var item in Seo.CustomMetas)
+        {
+            <span>
+                <code>@item.Key</code> =
+                <code>@item.Value</code>
+            </span>
+        }
+    </p>
+
+    @*<h2>HTML Tags</h2>
+
+    <pre><code>
+        <html-encode>
+            <document-title />
+            <meta-description />
+        </html-encode>
+    </code></pre>*@
+</div>

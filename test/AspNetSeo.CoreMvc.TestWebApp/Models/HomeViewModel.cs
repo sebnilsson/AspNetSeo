@@ -1,31 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 
 using AspNetSeo.CoreMvc.TestWebApp.Controllers;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AspNetSeo.CoreMvc.TestWebApp.Models
 {
-    public class TestActionsViewModel
+    public class HomeViewModel
     {
-        private static readonly Lazy<TestActionsViewModel> DefaultLazy = new Lazy<TestActionsViewModel>(GetDefault);
+        private static readonly Lazy<HomeViewModel> DefaultLazy = new Lazy<HomeViewModel>(GetDefault);
 
-        public static TestActionsViewModel Default => DefaultLazy.Value;
+        public static HomeViewModel Default => DefaultLazy.Value;
 
         public IReadOnlyCollection<string> ActionNames { get; private set; }
 
-        private static TestActionsViewModel GetDefault()
+        private static HomeViewModel GetDefault()
         {
-            var model = new TestActionsViewModel { ActionNames = GetActionNames().ToList() };
+            var model = new HomeViewModel { ActionNames = GetActionNames().ToList() };
 
             return model;
         }
 
         private static IEnumerable<string> GetActionNames()
         {
-            var controllerType = typeof(TestsController);
+            var controllerType = typeof(HomeController);
 
             var properties = controllerType.GetMethods().Where(x => x.ReturnType == typeof(IActionResult));
 

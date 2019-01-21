@@ -1,7 +1,6 @@
 ﻿using System;
 
 using AspNetSeo.CoreMvc.Internal;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace AspNetSeo.CoreMvc.TagHelpers
@@ -10,11 +9,11 @@ namespace AspNetSeo.CoreMvc.TagHelpers
     [OutputElementHint("link")]
     public class LinkCanonicalTagHelper : SeoTagHelperBase
     {
-        private readonly IUrlHelper _urlHelper;
+        private readonly ISeoUrlHelper _urlHelper;
 
         public LinkCanonicalTagHelper(
             ISeoHelper seoHelper,
-            IUrlHelper urlHelper)
+            ISeoUrlHelper urlHelper)
             : base(seoHelper)
         {
             _urlHelper = urlHelper

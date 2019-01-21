@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 
 using AspNetSeo.CoreMvc.TagHelpers;
+using AspNetSeo.Internal;
 using AspNetSeo.Testing;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using Xunit;
@@ -25,7 +26,7 @@ namespace AspNetSeo.CoreMvc.Tests.TagHelpers
 
         public static IEnumerable<object[]> GetMemberData()
         {
-            var urlHelper = UrlHelperTestFactory.Create(
+            var urlHelper = SeoUrlHelperTestFactory.Create(
                 new Uri("http://urlhelper.co/helper/page.html?query=123"));
 
             yield return new object[]

@@ -154,6 +154,14 @@ namespace AspNetSeo.CoreMvc.Tests
                     (ISeoHelper seoHelper) => seoHelper.SiteName),
                 "TEST_SITE_NAME"
             };
+
+            yield return new object[]
+            {
+                new SiteUrlAttribute("TEST_SITE_URL"),
+                GetResultFactory(
+                    (ISeoHelper seoHelper) => seoHelper.SiteUrl),
+                "TEST_SITE_URL"
+            };
         }
 
         private static object GetResultFactory<TResult>(

@@ -1,6 +1,6 @@
-﻿namespace AspNetSeo
+﻿namespace AspNetSeo.Internal
 {
-    public static class OgMetaName
+    internal static class OgMetaName
     {
         public const string Description = "og:description";
 

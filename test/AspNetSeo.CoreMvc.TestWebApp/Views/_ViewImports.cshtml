@@ -1,11 +1,14 @@
 ﻿@using AspNetSeo
 @using AspNetSeo.CoreMvc
+@using AspNetSeo.CoreMvc.TagHelpers
 @using AspNetSeo.CoreMvc.TestWebApp
+
 @using AspNetSeo.CoreMvc.TestWebApp.Models
 
 @inherits SeoRazorPage<TModel>
 
-@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, AspNetSeo.CoreMvc.TestWebApp
+
 @addTagHelper "*, AspNetSeo.CoreMvc"
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @addTagHelper "*, AspNetSeo.CoreMvc.TagHelpers"
-@addTagHelper "*, AspNetSeo.CoreMvc.TestWebApp"

@@ -1,6 +1,6 @@
-﻿namespace AspNetSeo
+﻿namespace AspNetSeo.Internal
 {
-    public static class MetaName
+    internal static class MetaName
     {
         public const string Description = "description";
         public const string Keywords = "keywords";

@@ -1,7 +1,8 @@
 ﻿using System;
 
 using AspNetSeo.CoreMvc.Internal;
-using Microsoft.AspNetCore.Mvc;
+using AspNetSeo.Internal;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace AspNetSeo.CoreMvc.TagHelpers
@@ -10,11 +11,12 @@ namespace AspNetSeo.CoreMvc.TagHelpers
     [OutputElementHint("meta")]
     public class OgUrlTagHelper : SeoTagHelperBase
     {
-        private readonly IUrlHelper _urlHelper;
+        private readonly ISeoUrlHelper _urlHelper;
+        private readonly IActionContextAccessor _actionAccessor;
 
         public OgUrlTagHelper(
             ISeoHelper seoHelper,
-            IUrlHelper urlHelper)
+            ISeoUrlHelper urlHelper)
             : base(seoHelper)
         {
             _urlHelper = urlHelper
