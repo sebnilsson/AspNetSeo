@@ -18,14 +18,6 @@ namespace AspNetSeo.CoreMvc.Internal
             var escapedUrl = url != null ? Uri.EscapeUriString(url) : null;
 
             var contentUrl = urlHelper.Content(escapedUrl);
-            //var encoded = System.Net.WebUtility.UrlEncode(contentUrl);
-
-            //var canCreate = Uri.TryCreate(contentUrl, UriKind.RelativeOrAbsolute, out Uri result);
-
-            //var test = encoded != null
-            //    && Uri.IsWellFormedUriString(
-            //        encoded,
-            //        UriKind.RelativeOrAbsolute);
 
             var isWellFormedUri = contentUrl != null
                 && Uri.IsWellFormedUriString(
@@ -56,7 +48,8 @@ namespace AspNetSeo.CoreMvc.Internal
 
         private static string GetRequestUrl(string url, HttpRequest request)
         {
-            if (request.Host.Host == null
+            if (request == null
+                || request.Host.Host == null
                 || request.Scheme == null)
             {
                 return null;
