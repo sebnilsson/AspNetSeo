@@ -15,7 +15,7 @@ namespace AspNetSeo.Internal
             if (hasPageTitle && hasSiteName)
             {
                 return string.Format(
-                    seoHelper.DocumentTitleFormat,
+                    seoHelper.DocumentTitleFormat ?? string.Empty,
                     seoHelper.PageTitle,
                     seoHelper.SiteName);
             }

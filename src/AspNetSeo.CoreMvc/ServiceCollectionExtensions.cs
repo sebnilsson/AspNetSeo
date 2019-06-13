@@ -25,7 +25,9 @@ namespace AspNetSeo.CoreMvc
                 {
                     SiteName = siteName,
                     SiteUrl = siteUrl,
-                    DocumentTitleFormat = documentTitleFormat
+                    DocumentTitleFormat = 
+                        documentTitleFormat
+                        ?? SeoHelper.DefaultDocumentTitleFormat
                 };
             });
 
