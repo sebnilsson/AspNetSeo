@@ -7,8 +7,8 @@
     <AssemblyTitle>ASP.NET Core MVC SEO</AssemblyTitle>
 
     <PackageId>AspNetSeo.CoreMvc</PackageId>
-    <PackageVersion>1.0.0</PackageVersion>
-    <Version>1.0.0</Version>
+    <PackageVersion>1.0.1</PackageVersion>
+    <Version>1.0.1</Version>
 
     <PackageTags>AspNet Mvc AspNetMvc AspNetCore CoreMvc AspNetCoreMvc SEO</PackageTags>
     <PackageLicenseUrl>https://github.com/sebnilsson/AspNetSeo/blob/master/LICENSE</PackageLicenseUrl>
