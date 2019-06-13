@@ -15,7 +15,7 @@ namespace AspNetSeo.CoreMvc.Internal
                 throw new ArgumentNullException(nameof(output));
             if (name == null)
                 throw new ArgumentNullException(nameof(name));
-            
+
             if (content == null)
             {
                 output.SuppressOutput();

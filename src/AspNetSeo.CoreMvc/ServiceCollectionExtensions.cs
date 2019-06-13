@@ -38,7 +38,7 @@ namespace AspNetSeo.CoreMvc
                 var actionAccessor =
                     x.GetRequiredService<IActionContextAccessor>();
 
-                var urlHelper = 
+                var urlHelper =
                     urlHelperFactory.GetUrlHelper(actionAccessor.ActionContext);
 
                 return new SeoUrlHelper(urlHelper);

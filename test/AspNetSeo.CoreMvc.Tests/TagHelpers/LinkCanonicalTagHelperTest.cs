@@ -38,7 +38,7 @@ namespace AspNetSeo.CoreMvc.Tests.TagHelpers
                         seo.OgUrl = null;
                     })
             };
-            
+
             yield return new object[]
             {
                 string.Empty,

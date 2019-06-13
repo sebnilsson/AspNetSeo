@@ -10,7 +10,7 @@ namespace AspNetSeo.CoreMvc
 
         public CustomMetaAttribute(string name, string content)
         {
-            _name = name 
+            _name = name
                 ?? throw new ArgumentNullException(nameof(name));
             _content = content;
         }

@@ -23,14 +23,14 @@ namespace AspNetSeo.Testing
 
             HttpContext httpContext = new DefaultHttpContext { RequestServices = serviceProvider };
             var request = new DefaultHttpRequest(httpContext)
-                              {
-                                  Host = new HostString(Domain),
-                                  PathBase = "/testpathbase",
-                                  Path = "/testpath",
-                                  QueryString =
+            {
+                Host = new HostString(Domain),
+                PathBase = "/testpathbase",
+                Path = "/testpath",
+                QueryString =
                                       new QueryString("?testquery=123&test=ABC"),
-                                  Scheme = "https"
-                              };
+                Scheme = "https"
+            };
 
             if (requestPathBase != null)
             {

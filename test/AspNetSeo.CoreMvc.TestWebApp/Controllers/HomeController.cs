@@ -17,7 +17,7 @@ namespace AspNetSeo.CoreMvc.TestWebApp.Controllers
         {
             return HomeView();
         }
-        
+
         public IActionResult LinkCanonical()
         {
             Seo.LinkCanonical = "https://t.co/seohelper-linkcanonical";
@@ -29,7 +29,7 @@ namespace AspNetSeo.CoreMvc.TestWebApp.Controllers
         {
             return HomeView();
         }
-        
+
         public IActionResult MetaDescription()
         {
             Seo.MetaDescription = "SeoHelper MetaDescription";
