@@ -1,7 +1,5 @@
 ﻿using System.IO;
-
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.Internal;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Abstractions;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
@@ -22,22 +20,21 @@ namespace AspNetSeo.Testing
             var serviceProvider = ServiceProviderTestFactory.Create();
 
             HttpContext httpContext = new DefaultHttpContext { RequestServices = serviceProvider };
-            var request = new DefaultHttpRequest(httpContext)
-            {
-                Host = new HostString(Domain),
-                PathBase = "/testpathbase",
-                Path = "/testpath",
-                QueryString =
-                                      new QueryString("?testquery=123&test=ABC"),
-                Scheme = "https"
-            };
+            //var request = new DefaultHttpRequest(httpContext)
+            //{
+            //    Host = new HostString(Domain),
+            //    PathBase = "/testpathbase",
+            //    Path = "/testpath",
+            //    QueryString = new QueryString("?testquery=123&test=ABC"),
+            //    Scheme = "https"
+            //};
 
             if (requestPathBase != null)
             {
-                request.PathBase = new PathString(requestPathBase);
+                //request.PathBase = new PathString(requestPathBase);
             }
 
-            httpContext = request.HttpContext;
+            //httpContext = request.HttpContext;
 
             var routeData = new RouteData();
             var actionDescriptor = new ActionDescriptor();

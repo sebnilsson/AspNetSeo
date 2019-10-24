@@ -7,7 +7,6 @@
     <AssemblyTitle>ASP.NET SEO</AssemblyTitle>
     
     <PackageId>AspNetSeo</PackageId>
-    <PackageVersion>1.0.1</PackageVersion>
     <Version>1.0.1</Version>
 
     <PackageTags>AspNet SEO</PackageTags>

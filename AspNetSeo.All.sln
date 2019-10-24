@@ -1,4 +1,5 @@
-﻿Microsoft Visual Studio Solution File, Format Version 12.00
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28803.452
 MinimumVisualStudioVersion = 10.0.40219.1
@@ -18,7 +19,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetSeo.Tests", "test\Asp
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "testing", "testing", "{BFD20C47-0934-45A9-AF15-4B64B1A7E25D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetSeo.CoreMvc.TestWebApp", "test\AspNetSeo.CoreMvc.TestWebApp\AspNetSeo.CoreMvc.TestWebApp.csproj", "{ECE5F381-83D9-4F9A-8E4F-9EED16E6990E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetSeo.CoreMvc.TestWebApp", "test\AspNetSeo.CoreMvc.TestWebApp\AspNetSeo.CoreMvc.TestWebApp.csproj", "{ECE5F381-83D9-4F9A-8E4F-9EED16E6990E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

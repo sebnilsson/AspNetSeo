@@ -12,7 +12,6 @@ namespace AspNetSeo.CoreMvc.TagHelpers
     public class OgUrlTagHelper : SeoTagHelperBase
     {
         private readonly ISeoUrlHelper _urlHelper;
-        private readonly IActionContextAccessor _actionAccessor;
 
         public OgUrlTagHelper(
             ISeoHelper seoHelper,

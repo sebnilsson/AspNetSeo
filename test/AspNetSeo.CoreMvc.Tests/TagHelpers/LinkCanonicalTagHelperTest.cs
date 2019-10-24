@@ -91,6 +91,17 @@ namespace AspNetSeo.CoreMvc.Tests.TagHelpers
                         seo.LinkCanonical = "~/test/test.html";
                     })
             };
+
+            yield return new object[]
+            {
+                LinkCanonicalTag("http://url-helper.co/test/test.html"),
+                TagHelperTestFactory.Create(
+                    seo => new LinkCanonicalTagHelper(seo, urlHelper),
+                    seo => {
+                        seo.SiteUrl = null;
+                        seo.LinkCanonical = "~/test/test.html";
+                    })
+            };
         }
 
         private static string LinkCanonicalTag(string href)

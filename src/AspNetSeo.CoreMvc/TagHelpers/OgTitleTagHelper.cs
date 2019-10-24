@@ -4,10 +4,12 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace AspNetSeo.CoreMvc.TagHelpers
 {
-    [HtmlTargetElement("og-title", TagStructure = TagStructure.WithoutEndTag)]
+    [HtmlTargetElement(Tag, TagStructure = TagStructure.WithoutEndTag)]
     [OutputElementHint("meta")]
     public class OgTitleTagHelper : SeoTagHelperBase
     {
+        public const string Tag = "og-title";
+
         public OgTitleTagHelper(ISeoHelper seoHelper)
             : base(seoHelper)
         {

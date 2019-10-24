@@ -1,18 +1,22 @@
-﻿namespace AspNetSeo.CoreMvc.Internal
+﻿using System.Linq;
+
+namespace AspNetSeo.CoreMvc.Internal
 {
     internal static class TagValueUtility
     {
         public static string GetContent(
             string htmlValue,
             string content,
-            string fallbackContent = null)
+            params string[] fallbackContents)
         {
             var outputContent =
                 !string.IsNullOrWhiteSpace(htmlValue)
                 ? htmlValue
                 : content;
 
-            return outputContent ?? fallbackContent;
+            return
+                outputContent
+                ?? fallbackContents.FirstOrDefault(x => x != null);
         }
     }
 }

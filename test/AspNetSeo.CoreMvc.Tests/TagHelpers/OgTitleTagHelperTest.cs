@@ -1,47 +1,43 @@
 ﻿using System.Collections.Generic;
-
 using AspNetSeo.CoreMvc.TagHelpers;
+using AspNetSeo.Internal;
 using AspNetSeo.Testing;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using Xunit;
 
 namespace AspNetSeo.CoreMvc.Tests.TagHelpers
 {
-    public class DocumentTitleTagHelperTest
+    public class OgTitleTagHelperTest
     {
         [Theory]
         [MemberData(nameof(GetMemberData))]
         public void Process_TestData_ReturnsExpectedHtml(
-            string expected,
             TagHelper tagHelper)
         {
             // Act
-            var html = tagHelper.GetHtml("document-title");
+            var html = tagHelper.GetHtml(OgTitleTagHelper.Tag);
 
             // Assert
-            Assert.Equal(expected, html);
+            Assert.Equal(string.Empty, html);
         }
 
         public static IEnumerable<object[]> GetMemberData()
         {
             yield return new object[]
             {
-                "<title>TEST_PAGE_TITLE</title>",
-                TagHelperTestFactory.Create(
-                    seo => new DocumentTitleTagHelper(seo),
-                    seo => seo.PageTitle = "TEST_PAGE_TITLE")
-            };
-            yield return new object[]
-            {
-                "<title>TEST_PAGE_TITLE - TEST_SITE_NAME</title>",
+                //MetaTag(OgMetaName.Title, "TEST_SITE_NAME"),
                 TagHelperTestFactory.Create(
                     seo => {
                         seo.SiteName = "TEST_SITE_NAME";
 
-                        return new DocumentTitleTagHelper(seo);
-                    },
-                    seo => seo.PageTitle = "TEST_PAGE_TITLE")
+                        return new OgTitleTagHelper(seo);
+                    })
             };
+        }
+
+        private static string MetaTag(string name, string content)
+        {
+            return $"<meta name=\"{name}\" content=\"{content}\" />";
         }
     }
 }
