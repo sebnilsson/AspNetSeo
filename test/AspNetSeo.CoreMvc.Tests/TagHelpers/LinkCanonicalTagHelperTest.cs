@@ -8,7 +8,7 @@ using Xunit;
 
 namespace AspNetSeo.CoreMvc.Tests.TagHelpers
 {
-    public class LinkCanonicalTagHelperTest
+    public class LinkCanonicalTagHelperTest : TagHelperTestBase
     {
         [Theory]
         [MemberData(nameof(GetMemberData))]

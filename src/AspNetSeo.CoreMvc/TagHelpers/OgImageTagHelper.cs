@@ -23,7 +23,7 @@ namespace AspNetSeo.CoreMvc.TagHelpers
                 Value,
                 SeoHelper.OgImage);
 
-            output.ProcessMeta(OgMetaName.Image, content);
+            output.ProcessOpenGraph(OgMetaName.Image, content);
         }
     }
 }

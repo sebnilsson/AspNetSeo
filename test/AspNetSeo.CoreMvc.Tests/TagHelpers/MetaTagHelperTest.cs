@@ -8,7 +8,7 @@ using Xunit;
 
 namespace AspNetSeo.CoreMvc.Tests.TagHelpers
 {
-    public class MetaTagHelperTest
+    public class MetaTagHelperTest : TagHelperTestBase
     {
         [Theory]
         [MemberData(nameof(GetMemberData))]
@@ -46,7 +46,7 @@ namespace AspNetSeo.CoreMvc.Tests.TagHelpers
 
             yield return new object[]
             {
-                MetaTag(OgMetaName.Description, "TEST_OG_DESCRIPTION"),
+                OpenGraphTag(OgMetaName.Description, "TEST_OG_DESCRIPTION"),
                 TagHelperTestFactory.Create(
                     seo => new OgDescriptionTagHelper(seo),
                     seo => seo.OgDescription = "TEST_OG_DESCRIPTION"),
@@ -55,7 +55,7 @@ namespace AspNetSeo.CoreMvc.Tests.TagHelpers
 
             yield return new object[]
             {
-                MetaTag(OgMetaName.Description, "TEST_META_DESCRIPTION"),
+                OpenGraphTag(OgMetaName.Description, "TEST_META_DESCRIPTION"),
                 TagHelperTestFactory.Create(
                     seo => new OgDescriptionTagHelper(seo),
                     seo => seo.MetaDescription = "TEST_META_DESCRIPTION"),
@@ -64,7 +64,7 @@ namespace AspNetSeo.CoreMvc.Tests.TagHelpers
 
             yield return new object[]
             {
-                MetaTag(OgMetaName.Image, "TEST_OG_IMAGE"),
+                OpenGraphTag(OgMetaName.Image, "TEST_OG_IMAGE"),
                 TagHelperTestFactory.Create(
                     seo => new OgImageTagHelper(seo),
                     seo => seo.OgImage = "TEST_OG_IMAGE"),
@@ -73,7 +73,7 @@ namespace AspNetSeo.CoreMvc.Tests.TagHelpers
 
             yield return new object[]
             {
-                MetaTag(OgMetaName.SiteName, "TEST_OG_SITENAME"),
+                OpenGraphTag(OgMetaName.SiteName, "TEST_OG_SITENAME"),
                 TagHelperTestFactory.Create(
                     seo => new OgSiteNameTagHelper(seo),
                     seo => seo.OgSiteName = "TEST_OG_SITENAME"),
@@ -82,7 +82,7 @@ namespace AspNetSeo.CoreMvc.Tests.TagHelpers
 
             yield return new object[]
             {
-                MetaTag(OgMetaName.SiteName, "TEST_SITENAME"),
+                OpenGraphTag(OgMetaName.SiteName, "TEST_SITENAME"),
                 TagHelperTestFactory.Create(
                     seo => new OgSiteNameTagHelper(seo),
                     seo => seo.SiteName = "TEST_SITENAME"),
@@ -91,7 +91,7 @@ namespace AspNetSeo.CoreMvc.Tests.TagHelpers
 
             yield return new object[]
             {
-                MetaTag(OgMetaName.Title, "TEST_OG_TITLE"),
+                OpenGraphTag(OgMetaName.Title, "TEST_OG_TITLE"),
                 TagHelperTestFactory.Create(
                     seo => new OgTitleTagHelper(seo),
                     seo => seo.OgTitle = "TEST_OG_TITLE"),
@@ -100,7 +100,7 @@ namespace AspNetSeo.CoreMvc.Tests.TagHelpers
 
             yield return new object[]
             {
-                MetaTag(OgMetaName.Title, "TEST_PAGE_TITLE"),
+                OpenGraphTag(OgMetaName.Title, "TEST_PAGE_TITLE"),
                 TagHelperTestFactory.Create(
                     seo => new OgTitleTagHelper(seo),
                     seo => seo.PageTitle = "TEST_PAGE_TITLE"),
@@ -109,17 +109,12 @@ namespace AspNetSeo.CoreMvc.Tests.TagHelpers
 
             yield return new object[]
             {
-                MetaTag(OgMetaName.Type, "TEST_OG_TYPE"),
+                OpenGraphTag(OgMetaName.Type, "TEST_OG_TYPE"),
                 TagHelperTestFactory.Create(
                     seo => new OgTypeTagHelper(seo),
                     seo => seo.OgType = "TEST_OG_TYPE"),
                 "og-type"
             };
-        }
-
-        private static string MetaTag(string name, string content)
-        {
-            return $"<meta name=\"{name}\" content=\"{content}\" />";
         }
     }
 }

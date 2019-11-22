@@ -7,7 +7,7 @@ using Xunit;
 
 namespace AspNetSeo.CoreMvc.Tests.TagHelpers
 {
-    public class CustomMetasTagHelperTest
+    public class CustomMetasTagHelperTest : TagHelperTestBase
     {
         [Fact]
         public void Process_TestData_ReturnsExpectedHtml()
@@ -26,9 +26,10 @@ namespace AspNetSeo.CoreMvc.Tests.TagHelpers
             var html = tagHelper.GetHtml("custom-metas");
 
             // Assert
-            var expected = $"{MetaTag("CUSTOM_KEY1", "CUSTOM_VALUE1")}" +
+            var expected =
+                $"{MetaTagContentFirst("CUSTOM_KEY1", "CUSTOM_VALUE1")}" +
                 $"{Environment.NewLine}" +
-                $"{MetaTag("CUSTOM_KEY2", "CUSTOM_VALUE2")}";
+                $"{MetaTagContentFirst("CUSTOM_KEY2", "CUSTOM_VALUE2")}";
 
             Assert.Equal(expected, html);
         }
@@ -42,11 +43,6 @@ namespace AspNetSeo.CoreMvc.Tests.TagHelpers
                     seo => new CustomMetasTagHelper(seo),
                     seo => seo.PageTitle = "TEST_PAGE_TITLE")
             };
-        }
-
-        private static string MetaTag(string name, string content)
-        {
-            return $"<meta content=\"{content}\" name=\"{name}\" />";
         }
     }
 }

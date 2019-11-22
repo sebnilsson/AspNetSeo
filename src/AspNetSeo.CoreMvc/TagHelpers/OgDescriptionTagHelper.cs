@@ -24,7 +24,7 @@ namespace AspNetSeo.CoreMvc.TagHelpers
                 SeoHelper.OgDescription,
                 SeoHelper.MetaDescription);
 
-            output.ProcessMeta(OgMetaName.Description, content);
+            output.ProcessOpenGraph(OgMetaName.Description, content);
         }
     }
 }

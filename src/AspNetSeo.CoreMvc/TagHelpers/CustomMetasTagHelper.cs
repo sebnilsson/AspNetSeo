@@ -27,7 +27,7 @@ namespace AspNetSeo.CoreMvc.TagHelpers
             output.TagName = null;
             output.Attributes.Clear();
 
-            bool isFirst = true;
+            var isFirst = true;
             foreach (var custom in SeoHelper.CustomMetas)
             {
                 if (!isFirst)

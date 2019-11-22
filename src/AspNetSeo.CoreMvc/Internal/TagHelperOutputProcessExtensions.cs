@@ -16,6 +16,23 @@ namespace AspNetSeo.CoreMvc.Internal
             if (name == null)
                 throw new ArgumentNullException(nameof(name));
 
+            ProcessInternal(output, name, content, "name");
+        }
+
+        public static void ProcessOpenGraph(
+            this TagHelperOutput output,
+            string name,
+            string content)
+        {
+            ProcessInternal(output, name, content, "property");
+        }
+
+        private static void ProcessInternal(
+            this TagHelperOutput output,
+            string name,
+            string content,
+            string attributeName)
+        {
             if (content == null)
             {
                 output.SuppressOutput();
@@ -27,7 +44,7 @@ namespace AspNetSeo.CoreMvc.Internal
 
             output.Attributes.Clear();
 
-            output.Attributes.SetAttribute("name", name);
+            output.Attributes.SetAttribute(attributeName, name);
             output.Attributes.SetAttribute("content", content);
         }
     }

@@ -7,7 +7,7 @@ using Xunit;
 
 namespace AspNetSeo.CoreMvc.Tests.TagHelpers
 {
-    public class DocumentTitleTagHelperTest
+    public class DocumentTitleTagHelperTest : TagHelperTestBase
     {
         [Theory]
         [MemberData(nameof(GetMemberData))]

@@ -7,7 +7,7 @@ using Xunit;
 
 namespace AspNetSeo.CoreMvc.Tests.TagHelpers
 {
-    public class OgTitleTagHelperTest
+    public class OgTitleTagHelperTest : TagHelperTestBase
     {
         [Theory]
         [MemberData(nameof(GetMemberData))]
@@ -33,11 +33,6 @@ namespace AspNetSeo.CoreMvc.Tests.TagHelpers
                         return new OgTitleTagHelper(seo);
                     })
             };
-        }
-
-        private static string MetaTag(string name, string content)
-        {
-            return $"<meta name=\"{name}\" content=\"{content}\" />";
         }
     }
 }

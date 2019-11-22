@@ -2,7 +2,6 @@
 
 using AspNetSeo.CoreMvc.Internal;
 using AspNetSeo.Internal;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace AspNetSeo.CoreMvc.TagHelpers
@@ -39,7 +38,7 @@ namespace AspNetSeo.CoreMvc.TagHelpers
                     value,
                     SeoHelper.SiteUrl);
 
-            output.ProcessMeta(OgMetaName.Url, linkCanonical);
+            output.ProcessOpenGraph(OgMetaName.Url, linkCanonical);
         }
     }
 }

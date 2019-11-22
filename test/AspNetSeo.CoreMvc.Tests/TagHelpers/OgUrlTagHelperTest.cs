@@ -9,7 +9,7 @@ using Xunit;
 
 namespace AspNetSeo.CoreMvc.Tests.TagHelpers
 {
-    public class OgUrlTagHelperTest
+    public class OgUrlTagHelperTest : TagHelperTestBase
     {
         [Theory]
         [MemberData(nameof(GetMemberData))]
@@ -31,7 +31,7 @@ namespace AspNetSeo.CoreMvc.Tests.TagHelpers
 
             yield return new object[]
             {
-                MetaTag(OgMetaName.Url, "https://t.com/t/test/TEST_OG_URL?q=1&amp;query=&#xF6;"),
+                OpenGraphTag(OgMetaName.Url, "https://t.com/t/test/TEST_OG_URL?q=1&amp;query=&#xF6;"),
                 TagHelperTestFactory.Create(
                     seo => new OgUrlTagHelper(seo, urlHelper),
                     seo => {
@@ -42,7 +42,7 @@ namespace AspNetSeo.CoreMvc.Tests.TagHelpers
 
             yield return new object[]
             {
-                MetaTag(OgMetaName.Url, "http://urlhelper.co/test/TEST_OG_URL?q=1&amp;query=&#xF6;"),
+                OpenGraphTag(OgMetaName.Url, "http://urlhelper.co/test/TEST_OG_URL?q=1&amp;query=&#xF6;"),
                 TagHelperTestFactory.Create(
                     seo => new OgUrlTagHelper(seo, urlHelper),
                     seo => {
@@ -52,7 +52,7 @@ namespace AspNetSeo.CoreMvc.Tests.TagHelpers
 
             yield return new object[]
             {
-                MetaTag(OgMetaName.Url, "https://t.co/t/t/test/TEST_OG_URL?q=1&amp;query=&#xF6;"),
+                OpenGraphTag(OgMetaName.Url, "https://t.co/t/t/test/TEST_OG_URL?q=1&amp;query=&#xF6;"),
                 TagHelperTestFactory.Create(
                     seo => new OgUrlTagHelper(seo, urlHelper),
                     seo => {
@@ -73,7 +73,7 @@ namespace AspNetSeo.CoreMvc.Tests.TagHelpers
 
             yield return new object[]
             {
-                MetaTag(OgMetaName.Url, "https://t.co/test/test.html"),
+                OpenGraphTag(OgMetaName.Url, "https://t.co/test/test.html"),
                 TagHelperTestFactory.Create(
                     seo => new OgUrlTagHelper(seo, urlHelper),
                     seo => {
@@ -84,7 +84,7 @@ namespace AspNetSeo.CoreMvc.Tests.TagHelpers
 
             yield return new object[]
             {
-                MetaTag(OgMetaName.Url, "https://t.com/t/test/TEST_OG_URL?q=1&amp;query=&#xF6;"),
+                OpenGraphTag(OgMetaName.Url, "https://t.com/t/test/TEST_OG_URL?q=1&amp;query=&#xF6;"),
                 TagHelperTestFactory.Create(
                     seo => new OgUrlTagHelper(seo, urlHelper),
                     seo => {
@@ -95,18 +95,13 @@ namespace AspNetSeo.CoreMvc.Tests.TagHelpers
 
             yield return new object[]
             {
-                MetaTag(OgMetaName.Url, "http://urlhelper.co/test/TEST_OG_URL?q=1&amp;query=&#xF6;"),
+                OpenGraphTag(OgMetaName.Url, "http://urlhelper.co/test/TEST_OG_URL?q=1&amp;query=&#xF6;"),
                 TagHelperTestFactory.Create(
                     seo => new OgUrlTagHelper(seo, urlHelper),
                     seo => {
                         seo.LinkCanonical = "/test/TEST_OG_URL?q=1&query=ö";
                     })
             };
-        }
-
-        private static string MetaTag(string name, string content)
-        {
-            return $"<meta name=\"{name}\" content=\"{content}\" />";
-        }
+        }        
     }
 }

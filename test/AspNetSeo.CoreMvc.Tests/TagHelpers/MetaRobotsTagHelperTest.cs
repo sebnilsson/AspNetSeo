@@ -8,7 +8,7 @@ using Xunit;
 
 namespace AspNetSeo.CoreMvc.Tests.TagHelpers
 {
-    public class MetaRobotsTagHelperTest
+    public class MetaRobotsTagHelperTest : TagHelperTestBase
     {
         [Theory]
         [MemberData(nameof(GetMemberData))]
@@ -64,11 +64,6 @@ namespace AspNetSeo.CoreMvc.Tests.TagHelpers
                     seo => new MetaRobotsTagHelper(seo),
                     seo => seo.SetMetaRobots(index: false, follow: false))
             };
-        }
-
-        private static string MetaTag(string name, string content)
-        {
-            return $"<meta name=\"{name}\" content=\"{content}\" />";
         }
     }
 }
