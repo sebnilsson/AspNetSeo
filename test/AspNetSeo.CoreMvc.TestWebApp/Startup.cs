@@ -6,6 +6,8 @@ namespace AspNetSeo.CoreMvc.TestWebApp
 {
     public class Startup
     {
+        private const string TestSiteUrl = "https://testurl.co";
+
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
@@ -14,7 +16,7 @@ namespace AspNetSeo.CoreMvc.TestWebApp
 
             services.AddSeoHelper(
                 siteName: "Startup Site Name",
-                siteUrl: "https://testurl.co",
+                siteUrl: TestSiteUrl,
                 documentTitleFormat: "{0} | {1}");
         }
 
