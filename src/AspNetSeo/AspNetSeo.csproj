@@ -1,13 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard1.0</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
 
     <AssemblyName>AspNetSeo</AssemblyName>
     <AssemblyTitle>ASP.NET SEO</AssemblyTitle>
     
     <PackageId>AspNetSeo</PackageId>
-    <Version>1.0.1</Version>
+    <Version>1.5.0</Version>
 
     <PackageTags>AspNet SEO</PackageTags>
     <PackageLicenseUrl>https://github.com/sebnilsson/AspNetSeo/blob/master/LICENSE</PackageLicenseUrl>

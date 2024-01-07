@@ -15,7 +15,9 @@ namespace AspNetSeo.CoreMvc.Internal
             if (urlHelper == null)
                 throw new ArgumentNullException(nameof(urlHelper));
 
+#pragma warning disable SYSLIB0013 // Type or member is obsolete
             var escapedUrl = url != null ? Uri.EscapeUriString(url) : null;
+#pragma warning restore SYSLIB0013 // Type or member is obsolete
 
             var contentUrl = urlHelper.Content(escapedUrl);
 

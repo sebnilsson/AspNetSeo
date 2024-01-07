@@ -1,17 +1,4 @@
-﻿using Microsoft.AspNetCore;
-using Microsoft.AspNetCore.Hosting;
+﻿var builder = WebApplication.CreateBuilder(args);
+var app = builder.Build();
 
-namespace AspNetSeo.CoreMvc.TestWebApp
-{
-    public static class Program
-    {
-        public static void Main(string[] args)
-        {
-            CreateWebHostBuilder(args).Build().Run();
-        }
-
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>();
-    }
-}
+app.Run();
