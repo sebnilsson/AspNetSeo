@@ -6,11 +6,11 @@
 
     <ul>
         @foreach (var action in Model.ActionNames)
-        {
-            <li>
+    {
+        <li>
                 <a asp-action="@action">@action</a>
             </li>
-        }
+    }
     </ul>
 
     <h2>Values</h2>
@@ -79,12 +79,12 @@
     <p>
         <strong>Seo.CustomMetas</strong>:<br />
         @foreach (var item in Seo.CustomMetas)
-        {
-            <span>
+    {
+        <span>
                 <code>@item.Key</code> =
                 <code>@item.Value</code>
             </span>
-        }
+    }
     </p>
 
     @*<h2>HTML Tags</h2>

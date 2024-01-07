@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace AspNetSeo.CoreMvc.Internal
+namespace AspNetSeo.CoreMvc.Internal;
+
+public interface ISeoUrlHelper : IUrlHelper
 {
-    public interface ISeoUrlHelper : IUrlHelper
-    {
-    }
 }

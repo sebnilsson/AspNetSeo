@@ -1,35 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-using AspNetSeo.CoreMvc.TestWebApp.Controllers;
+﻿using AspNetSeo.CoreMvc.TestWebApp.Controllers;
 using Microsoft.AspNetCore.Mvc;
 
-namespace AspNetSeo.CoreMvc.TestWebApp.Models
+namespace AspNetSeo.CoreMvc.TestWebApp.Models;
+
+public class HomeViewModel
 {
-    public class HomeViewModel
+    private static readonly Lazy<HomeViewModel> s_defaultLazy = new(GetDefault);
+
+    public static HomeViewModel Default => s_defaultLazy.Value;
+
+    public IReadOnlyList<string> ActionNames { get; private set; } = [];
+
+    private static HomeViewModel GetDefault()
     {
-        private static readonly Lazy<HomeViewModel> DefaultLazy = new Lazy<HomeViewModel>(GetDefault);
+        var model = new HomeViewModel { ActionNames = GetActionNames() };
 
-        public static HomeViewModel Default => DefaultLazy.Value;
+        return model;
+    }
 
-        public IReadOnlyCollection<string> ActionNames { get; private set; }
+    private static List<string> GetActionNames()
+    {
+        var controllerType = typeof(HomeController);
 
-        private static HomeViewModel GetDefault()
-        {
-            var model = new HomeViewModel { ActionNames = GetActionNames().ToList() };
+        var properties = controllerType.GetMethods().Where(x => x.ReturnType == typeof(IActionResult));
 
-            return model;
-        }
-
-        private static IEnumerable<string> GetActionNames()
-        {
-            var controllerType = typeof(HomeController);
-
-            var properties = controllerType.GetMethods().Where(x => x.ReturnType == typeof(IActionResult));
-
-            var propertyNames = properties.Select(x => x.Name).OrderBy(x => x).ToList();
-            return propertyNames;
-        }
+        return properties.Select(x => x.Name).OrderBy(x => x).ToList();
     }
 }

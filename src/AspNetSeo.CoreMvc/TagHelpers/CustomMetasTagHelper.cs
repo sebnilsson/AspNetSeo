@@ -4,57 +4,51 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
-namespace AspNetSeo.CoreMvc.TagHelpers
+namespace AspNetSeo.CoreMvc.TagHelpers;
+
+[HtmlTargetElement("custom-metas", TagStructure = TagStructure.NormalOrSelfClosing)]
+public class CustomMetasTagHelper(ISeoHelper seoHelper) : SeoTagHelperBase(seoHelper)
 {
-    [HtmlTargetElement("custom-metas", TagStructure = TagStructure.NormalOrSelfClosing)]
-    public class CustomMetasTagHelper : SeoTagHelperBase
+    public override void Process(
+        TagHelperContext context,
+        TagHelperOutput output)
     {
-        public CustomMetasTagHelper(ISeoHelper seoHelper)
-            : base(seoHelper)
+        if (!SeoHelper.CustomMetas.Any())
         {
+            output.SuppressOutput();
+            return;
         }
 
-        public override void Process(
-            TagHelperContext context,
-            TagHelperOutput output)
+        output.TagName = null;
+        output.Attributes.Clear();
+
+        var isFirst = true;
+        foreach (var custom in SeoHelper.CustomMetas)
         {
-            if (!SeoHelper.CustomMetas.Any())
-            {
-                output.SuppressOutput();
-                return;
-            }
+            if (!isFirst)
+                output.Content.AppendHtml(Environment.NewLine);
 
-            output.TagName = null;
-            output.Attributes.Clear();
+            AddCustomMeta(output, custom.Key, custom.Value);
 
-            var isFirst = true;
-            foreach (var custom in SeoHelper.CustomMetas)
-            {
-                if (!isFirst)
-                    output.Content.AppendHtml(Environment.NewLine);
+            isFirst = false;
+        }
+    }
 
-                AddCustomMeta(output, custom.Key, custom.Value);
-
-                isFirst = false;
-            }
+    private static void AddCustomMeta(TagHelperOutput output, string? name, string? content)
+    {
+        if (name == null || content == null)
+        {
+            return;
         }
 
-        private void AddCustomMeta(TagHelperOutput output, string name, string content)
+        var tag = new TagBuilder("meta")
         {
-            if (name == null || content == null)
-            {
-                return;
-            }
+            TagRenderMode = TagRenderMode.SelfClosing
+        };
 
-            var tag = new TagBuilder("meta")
-            {
-                TagRenderMode = TagRenderMode.SelfClosing
-            };
+        tag.Attributes["name"] = name;
+        tag.Attributes["content"] = content;
 
-            tag.Attributes["name"] = name;
-            tag.Attributes["content"] = content;
-
-            output.Content.AppendHtml(tag);
-        }
+        output.Content.AppendHtml(tag);
     }
 }

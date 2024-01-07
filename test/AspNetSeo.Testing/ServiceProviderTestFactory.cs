@@ -4,23 +4,22 @@ using System.Collections.Generic;
 using AspNetSeo.CoreMvc;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace AspNetSeo.Testing
+namespace AspNetSeo.Testing;
+
+public static class ServiceProviderTestFactory
 {
-    public static class ServiceProviderTestFactory
+    public static IServiceProvider Create()
     {
-        public static IServiceProvider Create()
-        {
-            var serviceCollection = new ServiceCollection();
+        var serviceCollection = new ServiceCollection();
 
-            serviceCollection.AddSeoHelper();
+        serviceCollection.AddSeoHelper();
 
-            var serviceProvider = serviceCollection.BuildServiceProvider();
-            return serviceProvider;
-        }
+        var serviceProvider = serviceCollection.BuildServiceProvider();
+        return serviceProvider;
+    }
 
-        private class ServiceCollection
-            : List<ServiceDescriptor>, IServiceCollection
-        {
-        }
+    private class ServiceCollection
+        : List<ServiceDescriptor>, IServiceCollection
+    {
     }
 }

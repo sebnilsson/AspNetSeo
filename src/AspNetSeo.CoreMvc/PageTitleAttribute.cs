@@ -1,33 +1,27 @@
 ﻿using System;
 
-namespace AspNetSeo.CoreMvc
+namespace AspNetSeo.CoreMvc;
+
+[AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false, Inherited = false)]
+public class PageTitleAttribute(string value) : SeoAttributeBase
 {
-    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false, Inherited = false)]
-    public class PageTitleAttribute : SeoAttributeBase
+    private readonly string _value = value;
+
+    public string? Format { get; set; }
+
+    public bool OverrideSiteName { get; set; }
+
+    public override void OnHandleSeoValues(ISeoHelper seoHelper)
     {
-        private readonly string _value;
+        seoHelper.PageTitle = _value;
 
-        public PageTitleAttribute(string value)
+        if (Format != null)
         {
-            _value = value;
+            seoHelper.DocumentTitleFormat = Format;
         }
-
-        public string Format { get; set; }
-
-        public bool OverrideSiteName { get; set; }
-
-        public override void OnHandleSeoValues(ISeoHelper seoHelper)
+        if (OverrideSiteName)
         {
-            seoHelper.PageTitle = _value;
-
-            if (Format != null)
-            {
-                seoHelper.DocumentTitleFormat = Format;
-            }
-            if (OverrideSiteName)
-            {
-                seoHelper.SiteName = null;
-            }
+            seoHelper.SiteName = null;
         }
     }
 }

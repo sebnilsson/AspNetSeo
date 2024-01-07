@@ -6,45 +6,49 @@ using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 
-namespace AspNetSeo.CoreMvc
+namespace AspNetSeo.CoreMvc;
+
+public static class ServiceCollectionExtensions
 {
-    public static class ServiceCollectionExtensions
+    public static void AddSeoHelper(
+        this IServiceCollection services,
+        string? siteName = null,
+        string? siteUrl = null,
+        string? documentTitleFormat = null)
     {
-        public static void AddSeoHelper(
-            this IServiceCollection services,
-            string siteName = null,
-            string siteUrl = null,
-            string documentTitleFormat = null)
+        ArgumentNullException.ThrowIfNull(services);
+
+        services.TryAddScoped<ISeoHelper>(_ =>
         {
-            if (services == null)
-                throw new ArgumentNullException(nameof(services));
-
-            services.TryAddScoped<ISeoHelper>(_ =>
+            return new SeoHelper
             {
-                return new SeoHelper
-                {
-                    SiteName = siteName,
-                    SiteUrl = siteUrl,
-                    DocumentTitleFormat = 
-                        documentTitleFormat
-                        ?? SeoHelper.DefaultDocumentTitleFormat
-                };
-            });
+                SiteName = siteName,
+                SiteUrl = siteUrl,
+                DocumentTitleFormat =
+                    documentTitleFormat
+                    ?? SeoHelper.DefaultDocumentTitleFormat
+            };
+        });
 
-            services.TryAddSingleton<IActionContextAccessor, ActionContextAccessor>();
+        services.TryAddSingleton<IActionContextAccessor, ActionContextAccessor>();
 
-            services.TryAddTransient<ISeoUrlHelper>(x =>
+        services.TryAddTransient<ISeoUrlHelper>(x =>
+        {
+            var urlHelperFactory =
+                x.GetRequiredService<IUrlHelperFactory>();
+            var actionAccessor =
+                x.GetRequiredService<IActionContextAccessor>();
+
+            if (actionAccessor.ActionContext == null)
             {
-                var urlHelperFactory =
-                    x.GetRequiredService<IUrlHelperFactory>();
-                var actionAccessor =
-                    x.GetRequiredService<IActionContextAccessor>();
+                throw new ApplicationException(
+                    $"{nameof(IActionContextAccessor)} cannot have a null {nameof(actionAccessor.ActionContext)}");
+            }
 
-                var urlHelper =
-                    urlHelperFactory.GetUrlHelper(actionAccessor.ActionContext);
+            var urlHelper =
+                urlHelperFactory.GetUrlHelper(actionAccessor.ActionContext);
 
-                return new SeoUrlHelper(urlHelper);
-            });
-        }
+            return new SeoUrlHelper(urlHelper);
+        });
     }
 }

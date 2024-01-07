@@ -2,27 +2,26 @@
 
 using Microsoft.Extensions.DependencyInjection;
 
-namespace AspNetSeo.CoreMvc
+namespace AspNetSeo.CoreMvc;
+
+public static class ServiceProviderExtensions
 {
-    public static class ServiceProviderExtensions
+    public static ISeoHelper GetSeoHelper(this IServiceProvider serviceProvider)
     {
-        public static ISeoHelper GetSeoHelper(this IServiceProvider serviceProvider)
+        if (serviceProvider == null)
         {
-            if (serviceProvider == null)
-            {
-                throw new ArgumentNullException(nameof(serviceProvider));
-            }
-
-            var seoHelper = serviceProvider.GetService<ISeoHelper>();
-            if (seoHelper == null)
-            {
-                var message = $"Could not resolve service for type '{nameof(ISeoHelper)}'."
-                    + $" Use the extension-method '{nameof(ServiceCollectionExtensions.AddSeoHelper)}'"
-                    + " in service-configuration.";
-                throw new TypeLoadException(message);
-            }
-
-            return seoHelper;
+            throw new ArgumentNullException(nameof(serviceProvider));
         }
+
+        var seoHelper = serviceProvider.GetService<ISeoHelper>();
+        if (seoHelper == null)
+        {
+            var message = $"Could not resolve service for type '{nameof(ISeoHelper)}'."
+                + $" Use the extension-method '{nameof(ServiceCollectionExtensions.AddSeoHelper)}'"
+                + " in service-configuration.";
+            throw new TypeLoadException(message);
+        }
+
+        return seoHelper;
     }
 }

@@ -2,26 +2,25 @@
 
 using AspNetSeo.Internal;
 
-namespace AspNetSeo.CoreMvc
+namespace AspNetSeo.CoreMvc;
+
+[AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false, Inherited = false)]
+public class MetaRobotsAttribute : SeoAttributeBase
 {
-    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false, Inherited = false)]
-    public class MetaRobotsAttribute : SeoAttributeBase
+    private readonly string _value;
+
+    public MetaRobotsAttribute(string value)
     {
-        private readonly string _value;
+        _value = value;
+    }
 
-        public MetaRobotsAttribute(string value)
-        {
-            _value = value;
-        }
+    public MetaRobotsAttribute(bool index, bool follow)
+    {
+        _value = MetaRobotsValue.Get(index, follow);
+    }
 
-        public MetaRobotsAttribute(bool index, bool follow)
-        {
-            _value = MetaRobotsValue.Get(index, follow);
-        }
-
-        public override void OnHandleSeoValues(ISeoHelper seoHelper)
-        {
-            seoHelper.MetaRobots = _value;
-        }
+    public override void OnHandleSeoValues(ISeoHelper seoHelper)
+    {
+        seoHelper.MetaRobots = _value;
     }
 }

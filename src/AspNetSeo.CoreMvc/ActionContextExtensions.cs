@@ -2,25 +2,23 @@
 
 using Microsoft.AspNetCore.Mvc;
 
-namespace AspNetSeo.CoreMvc
+namespace AspNetSeo.CoreMvc;
+
+public static class ActionContextExtensions
 {
-    public static class ActionContextExtensions
+    public static ISeoHelper GetSeoHelper(this ActionContext context)
     {
-        public static ISeoHelper GetSeoHelper(this ActionContext context)
+        ArgumentNullException.ThrowIfNull(context);
+
+        var serviceProvider = context.HttpContext.RequestServices;
+        if (serviceProvider == null)
         {
-            if (context == null)
-                throw new ArgumentNullException(nameof(context));
-
-            var serviceProvider = context.HttpContext.RequestServices;
-            if (serviceProvider == null)
-            {
-                string message =
-                    $"The {nameof(context.HttpContext.RequestServices)} of the provided {nameof(ActionContext)} cannot be null.";
-                throw new ArgumentOutOfRangeException(nameof(context), message);
-            }
-
-            var seoHelper = serviceProvider.GetSeoHelper();
-            return seoHelper;
+            var message =
+                $"The {nameof(context.HttpContext.RequestServices)} of the provided {nameof(ActionContext)} cannot be null.";
+            throw new ArgumentOutOfRangeException(nameof(context), message);
         }
+
+        var seoHelper = serviceProvider.GetSeoHelper();
+        return seoHelper;
     }
 }

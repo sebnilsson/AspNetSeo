@@ -1,33 +1,27 @@
 ﻿using Microsoft.AspNetCore.Razor.TagHelpers;
 
-namespace AspNetSeo.CoreMvc.TagHelpers
+namespace AspNetSeo.CoreMvc.TagHelpers;
+
+[HtmlTargetElement("document-title", TagStructure = TagStructure.WithoutEndTag)]
+[OutputElementHint("title")]
+public class DocumentTitleTagHelper(ISeoHelper seoHelper) : SeoTagHelperBase(seoHelper)
 {
-    [HtmlTargetElement("document-title", TagStructure = TagStructure.WithoutEndTag)]
-    [OutputElementHint("title")]
-    public class DocumentTitleTagHelper : SeoTagHelperBase
+    public override void Process(
+        TagHelperContext context,
+        TagHelperOutput output)
     {
-        public DocumentTitleTagHelper(ISeoHelper seoHelper)
-            : base(seoHelper)
+        var documentTitle = SeoHelper.DocumentTitle;
+        if (documentTitle == null)
         {
+            output.SuppressOutput();
+            return;
         }
 
-        public override void Process(
-            TagHelperContext context,
-            TagHelperOutput output)
-        {
-            var documentTitle = SeoHelper.DocumentTitle;
-            if (documentTitle == null)
-            {
-                output.SuppressOutput();
-                return;
-            }
+        output.TagName = "title";
+        output.TagMode = TagMode.StartTagAndEndTag;
 
-            output.TagName = "title";
-            output.TagMode = TagMode.StartTagAndEndTag;
+        output.Attributes.Clear();
 
-            output.Attributes.Clear();
-
-            output.Content.SetContent(documentTitle);
-        }
+        output.Content.SetContent(documentTitle);
     }
 }

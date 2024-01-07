@@ -3,52 +3,45 @@
 using AspNetSeo.CoreMvc.Internal;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
-namespace AspNetSeo.CoreMvc.TagHelpers
+namespace AspNetSeo.CoreMvc.TagHelpers;
+
+[HtmlTargetElement("link-canonical", TagStructure = TagStructure.WithoutEndTag)]
+[OutputElementHint("link")]
+public class LinkCanonicalTagHelper(
+    ISeoHelper seoHelper,
+    ISeoUrlHelper urlHelper) : SeoTagHelperBase(seoHelper)
 {
-    [HtmlTargetElement("link-canonical", TagStructure = TagStructure.WithoutEndTag)]
-    [OutputElementHint("link")]
-    public class LinkCanonicalTagHelper : SeoTagHelperBase
+    private readonly ISeoUrlHelper _urlHelper = urlHelper
+            ?? throw new ArgumentNullException(nameof(urlHelper));
+
+    public string? Value { get; set; }
+
+    public override void Process(
+        TagHelperContext context,
+        TagHelperOutput output)
     {
-        private readonly ISeoUrlHelper _urlHelper;
+        var value = TagValueUtility.GetContent(
+            Value,
+            SeoHelper.LinkCanonical);
 
-        public LinkCanonicalTagHelper(
-            ISeoHelper seoHelper,
-            ISeoUrlHelper urlHelper)
-            : base(seoHelper)
+        var linkCanonical =
+            AbsoluteUrlUtility.Resolve(
+                _urlHelper,
+                value,
+                SeoHelper.SiteUrl);
+
+        if (string.IsNullOrWhiteSpace(linkCanonical))
         {
-            _urlHelper = urlHelper
-                ?? throw new ArgumentNullException(nameof(urlHelper));
+            output.SuppressOutput();
+            return;
         }
 
-        public string Value { get; set; }
+        output.TagName = "link";
+        output.TagMode = TagMode.SelfClosing;
 
-        public override void Process(
-            TagHelperContext context,
-            TagHelperOutput output)
-        {
-            var value = TagValueUtility.GetContent(
-                Value,
-                SeoHelper.LinkCanonical);
+        output.Attributes.Clear();
 
-            var linkCanonical =
-                AbsoluteUrlUtility.Resolve(
-                    _urlHelper,
-                    value,
-                    SeoHelper.SiteUrl);
-
-            if (string.IsNullOrWhiteSpace(linkCanonical))
-            {
-                output.SuppressOutput();
-                return;
-            }
-
-            output.TagName = "link";
-            output.TagMode = TagMode.SelfClosing;
-
-            output.Attributes.Clear();
-
-            output.Attributes.SetAttribute("rel", "canonical");
-            output.Attributes.SetAttribute("href", linkCanonical);
-        }
+        output.Attributes.SetAttribute("rel", "canonical");
+        output.Attributes.SetAttribute("href", linkCanonical);
     }
 }

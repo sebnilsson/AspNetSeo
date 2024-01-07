@@ -9,34 +9,33 @@ using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Routing;
 using Moq;
 
-namespace AspNetSeo.Testing
+namespace AspNetSeo.Testing;
+
+public static class ViewContextTestFactory
 {
-    public static class ViewContextTestFactory
+    public const string Domain = "testhost.co";
+
+    public static ViewContext Create()
     {
-        public const string Domain = "testhost.co";
+        var serviceProvider = ServiceProviderTestFactory.Create();
 
-        public static ViewContext Create(string requestPathBase = null)
-        {
-            var serviceProvider = ServiceProviderTestFactory.Create();
+        HttpContext httpContext = new DefaultHttpContext { RequestServices = serviceProvider };
 
-            HttpContext httpContext = new DefaultHttpContext { RequestServices = serviceProvider };
+        var routeData = new RouteData();
+        var actionDescriptor = new ActionDescriptor();
 
-            var routeData = new RouteData();
-            var actionDescriptor = new ActionDescriptor();
+        var actionContext = new ActionContext(httpContext, routeData, actionDescriptor);
+        var viewData = new ViewDataDictionary(new EmptyModelMetadataProvider(), new ModelStateDictionary());
 
-            var actionContext = new ActionContext(httpContext, routeData, actionDescriptor);
-            var viewData = new ViewDataDictionary(new EmptyModelMetadataProvider(), new ModelStateDictionary());
+        var htmlHelperOptions = new HtmlHelperOptions();
 
-            var htmlHelperOptions = new HtmlHelperOptions();
-
-            var viewContext = new ViewContext(
-                actionContext,
-                Mock.Of<IView>(),
-                viewData,
-                Mock.Of<ITempDataDictionary>(),
-                TextWriter.Null,
-                htmlHelperOptions);
-            return viewContext;
-        }
+        var viewContext = new ViewContext(
+            actionContext,
+            Mock.Of<IView>(),
+            viewData,
+            Mock.Of<ITempDataDictionary>(),
+            TextWriter.Null,
+            htmlHelperOptions);
+        return viewContext;
     }
 }

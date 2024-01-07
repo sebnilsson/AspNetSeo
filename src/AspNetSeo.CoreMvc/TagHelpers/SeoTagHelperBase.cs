@@ -2,16 +2,15 @@
 
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
-namespace AspNetSeo.CoreMvc.TagHelpers
-{
-    public abstract class SeoTagHelperBase : TagHelper
-    {
-        protected readonly ISeoHelper SeoHelper;
+namespace AspNetSeo.CoreMvc.TagHelpers;
 
-        protected SeoTagHelperBase(ISeoHelper seoHelper)
-        {
-            SeoHelper = seoHelper
-                ?? throw new ArgumentNullException(nameof(seoHelper));
-        }
+public abstract class SeoTagHelperBase : TagHelper
+{
+    protected readonly ISeoHelper SeoHelper;
+
+    protected SeoTagHelperBase(ISeoHelper seoHelper)
+    {
+        SeoHelper = seoHelper
+            ?? throw new ArgumentNullException(nameof(seoHelper));
     }
 }

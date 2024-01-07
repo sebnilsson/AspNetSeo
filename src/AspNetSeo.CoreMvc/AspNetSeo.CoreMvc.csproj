@@ -2,7 +2,8 @@
 
   <PropertyGroup>
     <TargetFrameworks>net8.0;net7.0;net6.0</TargetFrameworks>
-    
+    <IsPackable>true</IsPackable>
+
     <AssemblyName>AspNetSeo.CoreMvc</AssemblyName>
     <AssemblyTitle>ASP.NET Core MVC SEO</AssemblyTitle>
 

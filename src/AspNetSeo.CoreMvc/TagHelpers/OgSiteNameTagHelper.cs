@@ -2,29 +2,23 @@
 using AspNetSeo.Internal;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
-namespace AspNetSeo.CoreMvc.TagHelpers
+namespace AspNetSeo.CoreMvc.TagHelpers;
+
+[HtmlTargetElement("og-site-name", TagStructure = TagStructure.WithoutEndTag)]
+[OutputElementHint("meta")]
+public class OgSiteNameTagHelper(ISeoHelper seoHelper) : SeoTagHelperBase(seoHelper)
 {
-    [HtmlTargetElement("og-site-name", TagStructure = TagStructure.WithoutEndTag)]
-    [OutputElementHint("meta")]
-    public class OgSiteNameTagHelper : SeoTagHelperBase
+    public string? Value { get; set; }
+
+    public override void Process(
+        TagHelperContext context,
+        TagHelperOutput output)
     {
-        public OgSiteNameTagHelper(ISeoHelper seoHelper)
-            : base(seoHelper)
-        {
-        }
+        var content = TagValueUtility.GetContent(
+            Value,
+            SeoHelper.OgSiteName,
+            SeoHelper.SiteName);
 
-        public string Value { get; set; }
-
-        public override void Process(
-            TagHelperContext context,
-            TagHelperOutput output)
-        {
-            var content = TagValueUtility.GetContent(
-                Value,
-                SeoHelper.OgSiteName,
-                SeoHelper.SiteName);
-
-            output.ProcessOpenGraph(OgMetaName.SiteName, content);
-        }
+        output.ProcessOpenGraph(OgMetaName.SiteName, content);
     }
 }

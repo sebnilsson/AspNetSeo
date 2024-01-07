@@ -2,28 +2,22 @@
 using AspNetSeo.Internal;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
-namespace AspNetSeo.CoreMvc.TagHelpers
+namespace AspNetSeo.CoreMvc.TagHelpers;
+
+[HtmlTargetElement("og-image", TagStructure = TagStructure.WithoutEndTag)]
+[OutputElementHint("meta")]
+public class OgImageTagHelper(ISeoHelper seoHelper) : SeoTagHelperBase(seoHelper)
 {
-    [HtmlTargetElement("og-image", TagStructure = TagStructure.WithoutEndTag)]
-    [OutputElementHint("meta")]
-    public class OgImageTagHelper : SeoTagHelperBase
+    public string? Value { get; set; }
+
+    public override void Process(
+        TagHelperContext context,
+        TagHelperOutput output)
     {
-        public OgImageTagHelper(ISeoHelper seoHelper)
-            : base(seoHelper)
-        {
-        }
+        var content = TagValueUtility.GetContent(
+            Value,
+            SeoHelper.OgImage);
 
-        public string Value { get; set; }
-
-        public override void Process(
-            TagHelperContext context,
-            TagHelperOutput output)
-        {
-            var content = TagValueUtility.GetContent(
-                Value,
-                SeoHelper.OgImage);
-
-            output.ProcessOpenGraph(OgMetaName.Image, content);
-        }
+        output.ProcessOpenGraph(OgMetaName.Image, content);
     }
 }

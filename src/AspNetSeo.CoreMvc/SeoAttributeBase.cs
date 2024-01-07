@@ -2,27 +2,26 @@
 
 using Microsoft.AspNetCore.Mvc.Filters;
 
-namespace AspNetSeo.CoreMvc
+namespace AspNetSeo.CoreMvc;
+
+public abstract class SeoAttributeBase : ActionFilterAttribute
 {
-    public abstract class SeoAttributeBase : ActionFilterAttribute
+    public override void OnActionExecuting(ActionExecutingContext context)
     {
-        public override void OnActionExecuting(ActionExecutingContext context)
+        if (context == null)
         {
-            if (context == null)
-            {
-                throw new ArgumentNullException(nameof(context));
-            }
-
-            var seoHelper = context.GetSeoHelper();
-            if (seoHelper == null)
-            {
-                throw new TypeLoadException(
-                    $"Could not resolve service for type '{nameof(ISeoHelper)}'.");
-            }
-
-            OnHandleSeoValues(seoHelper);
+            throw new ArgumentNullException(nameof(context));
         }
 
-        public abstract void OnHandleSeoValues(ISeoHelper seoHelper);
+        var seoHelper = context.GetSeoHelper();
+        if (seoHelper == null)
+        {
+            throw new TypeLoadException(
+                $"Could not resolve service for type '{nameof(ISeoHelper)}'.");
+        }
+
+        OnHandleSeoValues(seoHelper);
     }
+
+    public abstract void OnHandleSeoValues(ISeoHelper seoHelper);
 }
