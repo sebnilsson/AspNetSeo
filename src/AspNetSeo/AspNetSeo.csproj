@@ -11,7 +11,7 @@
     <Version>1.5.0</Version>
 
     <PackageTags>AspNet SEO</PackageTags>
-    <PackageLicenseUrl>https://github.com/sebnilsson/AspNetSeo/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/sebnilsson/AspNetSeo</PackageProjectUrl>
 
     <Authors>Sebastian Nilsson</Authors>
