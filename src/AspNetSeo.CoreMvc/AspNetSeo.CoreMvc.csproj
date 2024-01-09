@@ -13,11 +13,12 @@
     <PackageTags>AspNet Mvc AspNetMvc AspNetCore CoreMvc AspNetCoreMvc SEO</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/sebnilsson/AspNetSeo</PackageProjectUrl>
+    <PackageIcon>icon.png</PackageIcon>
 
     <Authors>Sebastian Nilsson</Authors>
     <Description>Helpers for handling the SEO-data for ASP.NET Core MVC web-applications</Description>
     <Summary>Helpers for handling the SEO-data for ASP.NET Core MVC web-applications</Summary>
-    
+
     <RepositoryUrl>https://github.com/sebnilsson/AspNetSeo</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
   </PropertyGroup>
@@ -25,17 +26,13 @@
   <ItemGroup>
     <ProjectReference Include="..\AspNetSeo\AspNetSeo.csproj" />
   </ItemGroup>
-  
+
   <ItemGroup>
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
 
-  <PropertyGroup>
-    <PackageIcon>icon.png</PackageIcon>
-  </PropertyGroup>
-
   <ItemGroup>
-    <None Include="icon.png" Pack="true" PackagePath=""/>
+    <None Include="icon.png" Pack="true" PackagePath="/" Link="Properties/icon.png" />
   </ItemGroup>
 
 </Project>
