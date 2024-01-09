@@ -8,7 +8,7 @@
     <AssemblyTitle>ASP.NET Core MVC SEO</AssemblyTitle>
 
     <PackageId>AspNetSeo.CoreMvc</PackageId>
-    <Version>1.5.0</Version>
+    <Version>1.5.1</Version>
 
     <PackageTags>AspNet Mvc AspNetMvc AspNetCore CoreMvc AspNetCoreMvc SEO</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -28,6 +28,14 @@
   
   <ItemGroup>
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <PackageIcon>icon.png</PackageIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="icon.png" Pack="true" PackagePath=""/>
   </ItemGroup>
 
 </Project>
