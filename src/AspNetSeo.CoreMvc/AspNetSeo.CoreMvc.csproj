@@ -31,7 +31,7 @@
   </ItemGroup>
 
   <PropertyGroup>
-    <PackageIcon>icon.png</PackageIcon>
+    <PackageIcon>../../icon.png</PackageIcon>
   </PropertyGroup>
 
   <ItemGroup>
