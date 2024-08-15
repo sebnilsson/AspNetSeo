@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace AspNetSeo.CoreMvc;
+﻿namespace AspNetSeo.CoreMvc;
 
 [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = true, Inherited = false)]
 public class CustomMetaAttribute(string name, string content) : SeoAttributeBase

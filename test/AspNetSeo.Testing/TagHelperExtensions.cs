@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text.Encodings.Web;
-using System.Threading.Tasks;
+﻿using System.Text.Encodings.Web;
 
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
@@ -15,12 +11,12 @@ public static class TagHelperExtensions
         string tagName)
     {
         var tagHelperContext = new TagHelperContext(
-            new TagHelperAttributeList(),
+            [],
             new Dictionary<object, object>(),
             Guid.NewGuid().ToString("N"));
 
         var tagHelperOutput = new TagHelperOutput(tagName,
-            new TagHelperAttributeList(),
+            [],
             (result, encoder) =>
             {
                 var tagHelperContent = new DefaultTagHelperContent();

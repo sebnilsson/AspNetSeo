@@ -22,6 +22,6 @@ public class DocumentTitleTagHelper(ISeoHelper seoHelper) : SeoTagHelperBase(seo
 
         output.Attributes.Clear();
 
-        output.Content.SetContent(documentTitle);
+        output.Content.SetHtmlContent(documentTitle);
     }
 }

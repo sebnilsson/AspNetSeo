@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-using AspNetSeo.CoreMvc.TagHelpers;
+﻿using AspNetSeo.CoreMvc.TagHelpers;
 using AspNetSeo.Testing;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using Xunit;
@@ -30,6 +28,13 @@ public class DocumentTitleTagHelperTest : TagHelperTestBase
             TagHelperTestFactory.Create(
                 seo => new DocumentTitleTagHelper(seo),
                 seo => seo.PageTitle = "TEST_PAGE_TITLE")
+        };
+        yield return new object[]
+        {
+            "<title>ABC&#xC5;&#xC4;&#xD6;&#xE5;&#xE4;&#xF6;&#xDC;&#xFC;</title>",
+            TagHelperTestFactory.Create(
+                seo => new DocumentTitleTagHelper(seo),
+                seo => seo.PageTitle = "ABCÅÄÖåäöüÜ")
         };
         yield return new object[]
         {

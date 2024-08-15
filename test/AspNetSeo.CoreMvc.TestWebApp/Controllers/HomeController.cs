@@ -3,8 +3,10 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AspNetSeo.CoreMvc.TestWebApp.Controllers;
 
-[SiteName("Controller Attribute SiteName")]
+[SiteName("Controller Attribute SiteName ABCÅÄÖåäöüÜ")]
 [OgSiteName("Controller Attribute OgSiteName")]
+[ApiController]
+[Route("{action=Index}")]
 public class HomeController : SeoController
 {
     public IActionResult Index()
@@ -24,7 +26,7 @@ public class HomeController : SeoController
         return HomeView();
     }
 
-    [MetaDescription("Action Attribute MetaDescription")]
+    [MetaDescription("Action Attribute MetaDescription ABCÅÄÖåäöÜü")]
     public IActionResult MetaDescriptionAttribute()
     {
         return HomeView();

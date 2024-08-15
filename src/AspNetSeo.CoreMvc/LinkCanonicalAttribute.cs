@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace AspNetSeo.CoreMvc;
+﻿namespace AspNetSeo.CoreMvc;
 
 [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false, Inherited = false)]
 public class LinkCanonicalAttribute : SeoAttributeBase

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace AspNetSeo.Testing;
+﻿namespace AspNetSeo.Testing;
 
 public static class TagHelperTestFactory
 {

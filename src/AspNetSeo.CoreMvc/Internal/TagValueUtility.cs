@@ -1,6 +1,4 @@
-﻿using System.Linq;
-
-namespace AspNetSeo.CoreMvc.Internal;
+﻿namespace AspNetSeo.CoreMvc.Internal;
 
 internal static class TagValueUtility
 {

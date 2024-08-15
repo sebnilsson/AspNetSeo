@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-using AspNetSeo.CoreMvc.TagHelpers;
+﻿using AspNetSeo.CoreMvc.TagHelpers;
 using AspNetSeo.Testing;
 using Xunit;
 

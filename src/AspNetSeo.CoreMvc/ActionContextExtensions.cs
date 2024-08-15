@@ -1,6 +1,4 @@
-﻿using System;
-
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace AspNetSeo.CoreMvc;
 

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace AspNetSeo.Internal;
+﻿namespace AspNetSeo.Internal;
 
 internal static class DocumentTitleValue
 {
