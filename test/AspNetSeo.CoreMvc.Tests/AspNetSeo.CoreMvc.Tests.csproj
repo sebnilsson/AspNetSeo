@@ -13,8 +13,6 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.0" />
   </ItemGroup>
 
@@ -22,6 +20,10 @@
     <ProjectReference Include="..\..\src\AspNetSeo.CoreMvc\AspNetSeo.CoreMvc.csproj" />
     <ProjectReference Include="..\..\src\AspNetSeo\AspNetSeo.csproj" />
     <ProjectReference Include="..\AspNetSeo.Testing\AspNetSeo.Testing.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
 
 </Project>
