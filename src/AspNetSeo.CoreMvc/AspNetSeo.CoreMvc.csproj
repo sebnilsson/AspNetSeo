@@ -1,14 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net8.0;net7.0;net6.0</TargetFrameworks>
+    <TargetFrameworks>net9.0;net8.0</TargetFrameworks>
     <IsPackable>true</IsPackable>
 
     <AssemblyName>AspNetSeo.CoreMvc</AssemblyName>
     <AssemblyTitle>ASP.NET Core MVC SEO</AssemblyTitle>
 
     <PackageId>AspNetSeo.CoreMvc</PackageId>
-    <Version>1.5.1</Version>
+    <Version>1.5.5</Version>
 
     <PackageTags>AspNet Mvc AspNetMvc AspNetCore CoreMvc AspNetCoreMvc SEO</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -26,7 +26,7 @@
   <ItemGroup>
     <ProjectReference Include="..\AspNetSeo\AspNetSeo.csproj" />
   </ItemGroup>
-
+  
   <ItemGroup>
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>

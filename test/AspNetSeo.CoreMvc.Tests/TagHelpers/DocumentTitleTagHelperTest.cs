@@ -31,7 +31,7 @@ public class DocumentTitleTagHelperTest : TagHelperTestBase
         };
         yield return new object[]
         {
-            "<title>ABC&#xC5;&#xC4;&#xD6;&#xE5;&#xE4;&#xF6;&#xDC;&#xFC;</title>",
+            "<title>ABCÅÄÖåäöüÜ</title>",
             TagHelperTestFactory.Create(
                 seo => new DocumentTitleTagHelper(seo),
                 seo => seo.PageTitle = "ABCÅÄÖåäöüÜ")
