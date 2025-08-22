@@ -1,4 +1,5 @@
 ﻿using AspNetSeo.Internal;
+using System.Collections.Generic;
 
 namespace AspNetSeo;
 
@@ -22,9 +23,17 @@ public class SeoHelper : ISeoHelper
 
     public string? MetaRobots { get; set; }
 
+    public string? OgAudio { get; set; }
+
     public string? OgDescription { get; set; }
 
+    public string? OgDeterminer { get; set; }
+
     public string? OgImage { get; set; }
+
+    public string? OgLocale { get; set; }
+
+    public IList<string> OgLocaleAlternates { get; } = new List<string>();
 
     public string? OgSiteName { get; set; }
 
@@ -33,6 +42,8 @@ public class SeoHelper : ISeoHelper
     public string? OgType { get; set; }
 
     public string? OgUrl { get; set; }
+
+    public string? OgVideo { get; set; }
 
     public string? PageTitle { get; set; }
 

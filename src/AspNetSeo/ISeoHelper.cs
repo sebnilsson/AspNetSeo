@@ -1,4 +1,6 @@
-﻿namespace AspNetSeo;
+﻿using System.Collections.Generic;
+
+namespace AspNetSeo;
 
 public interface ISeoHelper
 {
@@ -16,9 +18,17 @@ public interface ISeoHelper
 
     string? MetaRobots { get; set; }
 
+    string? OgAudio { get; set; }
+
     string? OgDescription { get; set; }
 
+    string? OgDeterminer { get; set; }
+
     string? OgImage { get; set; }
+
+    string? OgLocale { get; set; }
+
+    IList<string> OgLocaleAlternates { get; }
 
     string? OgSiteName { get; set; }
 
@@ -27,6 +37,8 @@ public interface ISeoHelper
     string? OgType { get; set; }
 
     string? OgUrl { get; set; }
+
+    string? OgVideo { get; set; }
 
     string? PageTitle { get; set; }
 

@@ -15,9 +15,13 @@ The `SeoHelper`-class exposes multiple properties to get or set multiple SEO-rel
 - `MetaDescription`: Gets or sets the meta-description for web-page.
 - `MetaKeywords`: Gets or sets the meta-keywords for web-page.
 - `MetaRobots`: Gets or sets meta-robots instructions web-page.
+- `OgAudio`: Gets or sets the open graph audio URL for web-page.
 - `OgDescription`: Gets or sets the open graph description for web-page.
 Falls back on value in `MetaDescription`.
+- `OgDeterminer`: Gets or sets the open graph determiner for web-page.
 - `OgImage`: Gets or sets the open graph image for web-page.
+- `OgLocale`: Gets or sets the open graph locale for web-page.
+- `OgLocaleAlternates`: Gets or sets the open graph alternate locales for web-page.
 - `OgSiteName`: Gets or sets the open graph site-name for web-page.
 Falls back on value in `SiteName`.
 - `OgTitle`: Gets or sets the open graph title for web-page.
@@ -25,6 +29,7 @@ Falls back on value in `PageTitle`.
 - `OgType`: Gets or sets the open graph type for web-page.
 - `OgUrl`: Gets or sets the open graph URL for web-page.
 Falls back on value in `LinkCanonical`.
+- `OgVideo`: Gets or sets the open graph video URL for web-page.
 - `PageTitle`: Gets or sets the title for a web-page.
   - `SiteName`: Gets or sets the name for the web-site. Used as base for `DocumentTitle`.
 
