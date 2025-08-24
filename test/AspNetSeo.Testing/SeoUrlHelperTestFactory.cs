@@ -1,4 +1,5 @@
-﻿using AspNetSeo.CoreMvc.Internal;
+﻿using AspNetSeo.CoreMvc;
+using AspNetSeo.CoreMvc.Internal;
 using Microsoft.AspNetCore.Mvc.Routing;
 
 namespace AspNetSeo.Testing;

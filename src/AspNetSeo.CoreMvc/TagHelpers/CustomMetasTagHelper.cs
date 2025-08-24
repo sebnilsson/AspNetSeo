@@ -1,11 +1,18 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace AspNetSeo.CoreMvc.TagHelpers;
 
+/// <summary>
+/// Renders custom meta elements.
+/// </summary>
+/// <param name="seoHelper">The SEO helper.</param>
 [HtmlTargetElement("custom-metas", TagStructure = TagStructure.NormalOrSelfClosing)]
 public class CustomMetasTagHelper(ISeoHelper seoHelper) : SeoTagHelperBase(seoHelper)
 {
+    /// <summary>Builds the meta tags.</summary>
+    /// <param name="context">Tag helper context.</param>
+    /// <param name="output">Tag helper output.</param>
     public override void Process(
         TagHelperContext context,
         TagHelperOutput output)
@@ -49,3 +56,4 @@ public class CustomMetasTagHelper(ISeoHelper seoHelper) : SeoTagHelperBase(seoHe
         output.Content.AppendHtml(tag);
     }
 }
+
