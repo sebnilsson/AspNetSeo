@@ -12,8 +12,10 @@ public abstract class TagHelperTestBase
         return $"<meta content=\"{content}\" name=\"{name}\" />";
     }
 
-    public static string OpenGraphTag(string name, string content)
+    public static string OpenGraphTag(string name, string content, bool reverseAttributes = false)
     {
-        return $"<meta property=\"{name}\" content=\"{content}\" />";
+        return !reverseAttributes
+            ? $"<meta property=\"{name}\" content=\"{content}\" />"
+            : $"<meta content=\"{content}\" property=\"{name}\" />";
     }
 }

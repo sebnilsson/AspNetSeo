@@ -1,4 +1,4 @@
-using AspNetSeo.CoreMvc.TagHelpers;
+﻿using AspNetSeo.CoreMvc.TagHelpers;
 using AspNetSeo.Internal;
 using AspNetSeo.Testing;
 using Microsoft.AspNetCore.Razor.TagHelpers;
@@ -18,31 +18,32 @@ public class OgLocaleAlternateTagHelperTest : TagHelperTestBase
         Assert.Equal(expected, html);
     }
 
-    public static IEnumerable<object[]> GetMemberData()
+    public static TheoryData<string, TagHelper> GetMemberData()
     {
-        yield return new object[]
+        var data = new TheoryData<string, TagHelper>
         {
-            OpenGraphTag(OgMetaName.LocaleAlternate, "da_DK") + Environment.NewLine +
-            OpenGraphTag(OgMetaName.LocaleAlternate, "en_US"),
-            TagHelperTestFactory.Create(
-                seo => new OgLocaleAlternateTagHelper(seo),
-                seo => { seo.OgLocaleAlternates.Add("da_DK"); seo.OgLocaleAlternates.Add("en_US"); })
+            {
+                OpenGraphTag(OgMetaName.LocaleAlternate, "da_DK", reverseAttributes: true)
+                    + Environment.NewLine
+                    + OpenGraphTag(OgMetaName.LocaleAlternate, "en_US", reverseAttributes: true),
+                TagHelperTestFactory.Create(
+                    seo => new OgLocaleAlternateTagHelper(seo),
+                    seo => { seo.OgLocaleAlternates.Add("da_DK"); seo.OgLocaleAlternates.Add("en_US"); })
+            },
+            {
+                OpenGraphTag(OgMetaName.LocaleAlternate, "de_DE", reverseAttributes: true),
+                TagHelperTestFactory.Create(
+                    seo => new OgLocaleAlternateTagHelper(seo),
+                    seo => { seo.OgLocaleAlternates.Add("da_DK"); },
+                    tag => tag.Value = "de_DE")
+            },
+            {
+                string.Empty,
+                TagHelperTestFactory.Create(
+                    seo => new OgLocaleAlternateTagHelper(seo))
+            }
         };
 
-        yield return new object[]
-        {
-            OpenGraphTag(OgMetaName.LocaleAlternate, "de_DE"),
-            TagHelperTestFactory.Create(
-                seo => new OgLocaleAlternateTagHelper(seo),
-                seo => { seo.OgLocaleAlternates.Add("da_DK"); },
-                tag => tag.Value = "de_DE")
-        };
-
-        yield return new object[]
-        {
-            string.Empty,
-            TagHelperTestFactory.Create(
-                seo => new OgLocaleAlternateTagHelper(seo))
-        };
+        return data;
     }
 }

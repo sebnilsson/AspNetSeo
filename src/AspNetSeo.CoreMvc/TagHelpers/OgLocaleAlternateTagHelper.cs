@@ -1,7 +1,6 @@
-using AspNetSeo.Internal;
+﻿using AspNetSeo.Internal;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Razor.TagHelpers;
-using System.Linq;
 
 namespace AspNetSeo.CoreMvc.TagHelpers;
 
@@ -13,7 +12,7 @@ public class OgLocaleAlternateTagHelper(ISeoHelper seoHelper) : SeoTagHelperBase
     public override void Process(TagHelperContext context, TagHelperOutput output)
     {
         var values = Value != null
-            ? new[] { Value }
+            ? [Value]
             : SeoHelper.OgLocaleAlternates;
 
         if (values == null || !values.Any())
