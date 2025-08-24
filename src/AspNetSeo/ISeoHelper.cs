@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace AspNetSeo;
+﻿namespace AspNetSeo;
 
 public interface ISeoHelper
 {

@@ -1,5 +1,4 @@
 ﻿using AspNetSeo.Internal;
-using System.Collections.Generic;
 
 namespace AspNetSeo;
 
