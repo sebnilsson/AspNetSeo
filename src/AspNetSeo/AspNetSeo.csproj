@@ -8,7 +8,7 @@
     <AssemblyTitle>ASP.NET SEO</AssemblyTitle>
     
     <PackageId>AspNetSeo</PackageId>
-    <Version>1.5.0</Version>
+    <Version>1.5.5</Version>
 
     <PackageTags>AspNet SEO</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
