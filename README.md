@@ -15,9 +15,13 @@ The `SeoHelper`-class exposes multiple properties to get or set multiple SEO-rel
 - `MetaDescription`: Gets or sets the meta-description for web-page.
 - `MetaKeywords`: Gets or sets the meta-keywords for web-page.
 - `MetaRobots`: Gets or sets meta-robots instructions web-page.
+- `OgAudio`: Gets or sets the open graph audio URL for web-page.
 - `OgDescription`: Gets or sets the open graph description for web-page.
 Falls back on value in `MetaDescription`.
+- `OgDeterminer`: Gets or sets the open graph determiner for web-page.
 - `OgImage`: Gets or sets the open graph image for web-page.
+- `OgLocale`: Gets or sets the open graph locale for web-page.
+- `OgLocaleAlternates`: Gets or sets the open graph alternate locales for web-page.
 - `OgSiteName`: Gets or sets the open graph site-name for web-page.
 Falls back on value in `SiteName`.
 - `OgTitle`: Gets or sets the open graph title for web-page.
@@ -25,6 +29,7 @@ Falls back on value in `PageTitle`.
 - `OgType`: Gets or sets the open graph type for web-page.
 - `OgUrl`: Gets or sets the open graph URL for web-page.
 Falls back on value in `LinkCanonical`.
+- `OgVideo`: Gets or sets the open graph video URL for web-page.
 - `PageTitle`: Gets or sets the title for a web-page.
   - `SiteName`: Gets or sets the name for the web-site. Used as base for `DocumentTitle`.
 
@@ -34,7 +39,9 @@ where `{0}` is the value from `PageTitle` and `{1}` is the value from `SiteName`
 
 ### Methods
 
-- `SetCustomMeta(string key, string value)`: Add any custom meta-tag.
+- `SetCustomMeta(string key, string value, CustomMetaAttributeKey? attribute = null)`: Add any
+  custom meta-tag. Keys starting with known prefixes such as `og:` or `fb:` default to the `property` attribute. Use
+  the `attribute` parameter to explicitly choose `name` or `property`.
 - `SetMetaRobots(bool index, bool follow)`: Specify the instructions for robots.
 Updates the value for `MetaRobots`.
 
@@ -122,9 +129,10 @@ public IActionResult Edit()
 Tag Helpers are available to render the values set through the `SeoHelper`-class.
 They also expose **attributes to override or set the values on the fly** in the markup.
 
-Examples: `<document-title />` renders the combined `PageTitle` and `SiteName`. 
+Examples: `<document-title />` renders the combined `PageTitle` and `SiteName`.
 `<link-canonical />` renders the canonical URL for the page.
 `<og-url />` renders the set URL for the page and falls back to value used in `<link-canonical />`.
+`<seo-tags />` renders all supported SEO tags at once.
 
 **Individual tags will not be rendered if there is no valid data provided for them**,
 either through the `SeoHelper`-class or exposed attributes.

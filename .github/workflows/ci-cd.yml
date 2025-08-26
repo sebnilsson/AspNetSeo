@@ -1,0 +1,69 @@
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
+
+name: CI/CD
+on:
+  workflow_dispatch: # Allow running the workflow manually from the GitHub UI
+  push:
+    branches:
+      - 'main'       # Run the workflow when pushing to the main branch
+      - 'develop'    # Also run on develop, but skip publishing
+  pull_request:
+    branches:
+      - 'main'       # Run tests on PRs targeting main
+      - 'develop'    # Run tests on PRs targeting develop
+
+env:
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
+  DOTNET_NOLOGO: true
+  NuGetDirectory: ${{ github.workspace}}/.nuget
+
+jobs:
+  build:
+    runs-on: &runner ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: |
+          8.x
+          9.x
+
+    - name: Restore dependencies
+      run: dotnet restore
+
+    - name: Build solution
+      run: dotnet build --configuration Release --no-restore
+
+    - name: Run tests
+      run: dotnet test --configuration Release --no-build --no-restore
+
+    - name: Create NuGet package
+      if: github.event_name == 'push'
+      run: dotnet pack --configuration Release --no-restore --output ${{ env.NuGetDirectory }}
+
+    - name: Upload package artifact
+      if: github.event_name == 'push'
+      uses: actions/upload-artifact@v4
+      with:
+        name: nuget-packages
+        path: ${{ env.NuGetDirectory }}/*.nupkg
+        if-no-files-found: error
+
+  publish:
+    needs: build
+    if: github.event_name == 'push' && github.ref_name == 'main'
+    runs-on: *runner
+
+    steps:
+    - name: Download package artifact
+      uses: actions/download-artifact@v4
+      with:
+        name: nuget-packages
+        path: ${{ env.NuGetDirectory }}
+
+    - name: Publish NuGet package
+      run: dotnet nuget push ${{ env.NuGetDirectory }}/*.nupkg --api-key ${{ secrets.NUGET_APIKEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate

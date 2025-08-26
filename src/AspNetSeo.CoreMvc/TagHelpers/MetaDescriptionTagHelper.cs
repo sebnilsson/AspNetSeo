@@ -4,12 +4,20 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace AspNetSeo.CoreMvc.TagHelpers;
 
+/// <summary>
+/// Renders the meta description tag.
+/// </summary>
+/// <param name="seoHelper">The SEO helper.</param>
 [HtmlTargetElement("meta-description", TagStructure = TagStructure.WithoutEndTag)]
 [OutputElementHint("meta")]
 public class MetaDescriptionTagHelper(ISeoHelper seoHelper) : SeoTagHelperBase(seoHelper)
 {
+    /// <summary>Value to override.</summary>
     public string? Value { get; set; }
 
+    /// <summary>Builds the tag.</summary>
+    /// <param name="context">Tag helper context.</param>
+    /// <param name="output">Tag helper output.</param>
     public override void Process(
         TagHelperContext context,
         TagHelperOutput output)
@@ -21,3 +29,4 @@ public class MetaDescriptionTagHelper(ISeoHelper seoHelper) : SeoTagHelperBase(s
         output.ProcessMeta(MetaName.Description, content);
     }
 }
+

@@ -9,7 +9,7 @@ public class HomeViewModel
 
     public static HomeViewModel Default => s_defaultLazy.Value;
 
-    public IReadOnlyList<string> ActionNames { get; private set; } = [];
+    public string[] ActionNames { get; private set; } = [];
 
     private static HomeViewModel GetDefault()
     {
@@ -18,12 +18,12 @@ public class HomeViewModel
         return model;
     }
 
-    private static List<string> GetActionNames()
+    private static string[] GetActionNames()
     {
         var controllerType = typeof(HomeController);
 
         var properties = controllerType.GetMethods().Where(x => x.ReturnType == typeof(IActionResult));
 
-        return properties.Select(x => x.Name).OrderBy(x => x).ToList();
+        return [.. properties.Select(x => x.Name).OrderBy(x => x)];
     }
 }

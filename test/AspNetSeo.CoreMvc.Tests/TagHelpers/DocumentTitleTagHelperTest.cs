@@ -20,32 +20,30 @@ public class DocumentTitleTagHelperTest : TagHelperTestBase
         Assert.Equal(expected, html);
     }
 
-    public static IEnumerable<object[]> GetMemberData()
+    public static TheoryData<string, TagHelper> GetMemberData => new()
     {
-        yield return new object[]
         {
             "<title>TEST_PAGE_TITLE</title>",
             TagHelperTestFactory.Create(
                 seo => new DocumentTitleTagHelper(seo),
                 seo => seo.PageTitle = "TEST_PAGE_TITLE")
-        };
-        yield return new object[]
+        },
         {
             "<title>ABCÅÄÖåäöüÜ</title>",
             TagHelperTestFactory.Create(
                 seo => new DocumentTitleTagHelper(seo),
                 seo => seo.PageTitle = "ABCÅÄÖåäöüÜ")
-        };
-        yield return new object[]
+        },
         {
             "<title>TEST_PAGE_TITLE - TEST_SITE_NAME</title>",
             TagHelperTestFactory.Create(
-                seo => {
+                seo =>
+                {
                     seo.SiteName = "TEST_SITE_NAME";
 
                     return new DocumentTitleTagHelper(seo);
                 },
                 seo => seo.PageTitle = "TEST_PAGE_TITLE")
-        };
-    }
+        }
+    };
 }

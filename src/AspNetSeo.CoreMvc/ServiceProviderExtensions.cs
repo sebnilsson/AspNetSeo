@@ -2,8 +2,14 @@
 
 namespace AspNetSeo.CoreMvc;
 
+/// <summary>
+/// Extensions for <see cref="IServiceProvider"/>.
+/// </summary>
 public static class ServiceProviderExtensions
 {
+    /// <summary>Gets a registered <see cref="ISeoHelper"/>.</summary>
+    /// <param name="serviceProvider">The service provider.</param>
+    /// <returns>The SEO helper.</returns>
     public static ISeoHelper GetSeoHelper(this IServiceProvider serviceProvider)
     {
         if (serviceProvider == null)
@@ -23,3 +29,4 @@ public static class ServiceProviderExtensions
         return seoHelper;
     }
 }
+

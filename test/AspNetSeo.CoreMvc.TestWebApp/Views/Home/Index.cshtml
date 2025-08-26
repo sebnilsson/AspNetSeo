@@ -78,13 +78,13 @@
 
     <p>
         <strong>Seo.CustomMetas</strong>:<br />
-        @foreach (var item in Seo.CustomMetas)
-    {
-        <span>
+        @foreach (var item in Seo.CustomMetas.Values)
+        {
+            <span>
                 <code>@item.Key</code> =
                 <code>@item.Value</code>
             </span>
-    }
+        }
     </p>
 
     @*<h2>HTML Tags</h2>

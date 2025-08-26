@@ -2,8 +2,14 @@
 
 namespace AspNetSeo.CoreMvc;
 
+/// <summary>
+/// Extension methods for <see cref="ActionContext"/>.
+/// </summary>
 public static class ActionContextExtensions
 {
+    /// <summary>Gets the registered <see cref="ISeoHelper"/>.</summary>
+    /// <param name="context">The MVC action context.</param>
+    /// <returns>The SEO helper.</returns>
     public static ISeoHelper GetSeoHelper(this ActionContext context)
     {
         ArgumentNullException.ThrowIfNull(context);
@@ -20,3 +26,4 @@ public static class ActionContextExtensions
         return seoHelper;
     }
 }
+

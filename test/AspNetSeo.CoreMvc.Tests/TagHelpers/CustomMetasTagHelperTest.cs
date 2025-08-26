@@ -1,5 +1,6 @@
 ﻿using AspNetSeo.CoreMvc.TagHelpers;
 using AspNetSeo.Testing;
+using Microsoft.AspNetCore.Razor.TagHelpers;
 using Xunit;
 
 namespace AspNetSeo.CoreMvc.Tests.TagHelpers;
@@ -24,21 +25,70 @@ public class CustomMetasTagHelperTest : TagHelperTestBase
 
         // Assert
         var expected =
-            $"{MetaTagContentFirst("CUSTOM_KEY1", "CUSTOM_VALUE1")}" +
+            $"{MetaTag("CUSTOM_KEY1", "CUSTOM_VALUE1")}" +
             $"{Environment.NewLine}" +
-            $"{MetaTagContentFirst("CUSTOM_KEY2", "CUSTOM_VALUE2")}";
+            $"{MetaTag("CUSTOM_KEY2", "CUSTOM_VALUE2")}";
 
         Assert.Equal(expected, html);
     }
 
-    public static IEnumerable<object[]> GetMemberData()
+    [Fact]
+    public void Process_KnownPrefixes_UsesPropertyAttribute()
     {
-        yield return new object[]
+        // Arrange
+        var tagHelper = TagHelperTestFactory.Create(
+                seo => new CustomMetasTagHelper(seo),
+                seo =>
+                {
+                    seo.SetCustomMeta("og:image:width", "100");
+                    seo.SetCustomMeta("fb:app_id", "1");
+                    seo.SetCustomMeta("custom", "c");
+                });
+
+        // Act
+        var html = tagHelper.GetHtml("custom-metas");
+
+        // Assert
+        string[] expected = [
+            $"{OpenGraphTag("og:image:width", "100", reverseAttributes: true)}",
+            $"{OpenGraphTag("fb:app_id", "1", reverseAttributes: true)}",
+            $"{MetaTag("custom", "c")}"
+        ];
+
+        Assert.Equal(string.Join(Environment.NewLine, expected), html);
+    }
+
+    [Fact]
+    public void Process_OverrideDetection_UsesExplicitChoice()
+    {
+        // Arrange
+        var tagHelper = TagHelperTestFactory.Create(
+                seo => new CustomMetasTagHelper(seo),
+                seo =>
+                {
+                    seo.SetCustomMeta("og:title", "x", CustomMetaAttributeKey.Name);
+                    seo.SetCustomMeta("plain", "y", CustomMetaAttributeKey.Property);
+                });
+
+        // Act
+        var html = tagHelper.GetHtml("custom-metas");
+
+        // Assert
+        var expected =
+            $"{MetaTag("og:title", "x")}" +
+            $"{Environment.NewLine}" +
+            $"{OpenGraphTag("plain", "y", reverseAttributes: true)}";
+
+        Assert.Equal(expected, html);
+    }
+
+    public static TheoryData<string, TagHelper> GetMemberData => new()
+    {
         {
             "<title>TEST_PAGE_TITLE</title>",
             TagHelperTestFactory.Create(
                 seo => new CustomMetasTagHelper(seo),
                 seo => seo.PageTitle = "TEST_PAGE_TITLE")
-        };
-    }
+        }
+    };
 }

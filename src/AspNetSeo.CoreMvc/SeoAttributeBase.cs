@@ -2,8 +2,13 @@
 
 namespace AspNetSeo.CoreMvc;
 
+/// <summary>
+/// Base attribute for setting SEO values.
+/// </summary>
 public abstract class SeoAttributeBase : ActionFilterAttribute
 {
+    /// <summary>Injects values before the action executes.</summary>
+    /// <param name="context">The action context.</param>
     public override void OnActionExecuting(ActionExecutingContext context)
     {
         if (context == null)
@@ -21,5 +26,8 @@ public abstract class SeoAttributeBase : ActionFilterAttribute
         OnHandleSeoValues(seoHelper);
     }
 
+    /// <summary>Applies values to the helper.</summary>
+    /// <param name="seoHelper">The SEO helper.</param>
     public abstract void OnHandleSeoValues(ISeoHelper seoHelper);
 }
+
