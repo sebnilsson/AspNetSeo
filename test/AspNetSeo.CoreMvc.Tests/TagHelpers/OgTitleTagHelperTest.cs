@@ -19,17 +19,16 @@ public class OgTitleTagHelperTest : TagHelperTestBase
         Assert.Equal(string.Empty, html);
     }
 
-    public static IEnumerable<object[]> GetMemberData()
+    public static TheoryData<TagHelper> GetMemberData => new()
     {
-        yield return new object[]
         {
-            //MetaTag(OgMetaName.Title, "TEST_SITE_NAME"),
             TagHelperTestFactory.Create(
-                seo => {
+                seo =>
+                {
                     seo.SiteName = "TEST_SITE_NAME";
 
                     return new OgTitleTagHelper(seo);
                 })
-        };
-    }
+        }
+    };
 }

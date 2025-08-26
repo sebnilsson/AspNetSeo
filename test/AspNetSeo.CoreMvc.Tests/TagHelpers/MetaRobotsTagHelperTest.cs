@@ -21,46 +21,37 @@ public class MetaRobotsTagHelperTest : TagHelperTestBase
         Assert.Equal(expected, html);
     }
 
-    public static IEnumerable<object[]> GetMemberData()
+    public static TheoryData<string, TagHelper> GetMemberData => new()
     {
-        yield return new object[]
         {
             MetaTag(MetaName.Robots, "TEST_ROBOTS", reverseAttributes: true),
             TagHelperTestFactory.Create(
                 seo => new MetaRobotsTagHelper(seo),
                 seo => seo.MetaRobots = "TEST_ROBOTS")
-        };
-
-        yield return new object[]
+        },
         {
             MetaTag(MetaName.Robots, $"{MetaRobotsValue.Index}, {MetaRobotsValue.Follow}", reverseAttributes: true),
             TagHelperTestFactory.Create(
                 seo => new MetaRobotsTagHelper(seo),
                 seo => seo.SetMetaRobots(index: true, follow: true))
-        };
-
-        yield return new object[]
+        },
         {
             MetaTag(MetaName.Robots, $"{MetaRobotsValue.Index}, {MetaRobotsValue.NoFollow}", reverseAttributes: true),
             TagHelperTestFactory.Create(
                 seo => new MetaRobotsTagHelper(seo),
                 seo => seo.SetMetaRobots(index: true, follow: false))
-        };
-
-        yield return new object[]
+        },
         {
             MetaTag(MetaName.Robots, $"{MetaRobotsValue.NoIndex}, {MetaRobotsValue.Follow}", reverseAttributes: true),
             TagHelperTestFactory.Create(
                 seo => new MetaRobotsTagHelper(seo),
                 seo => seo.SetMetaRobots(index: false, follow: true))
-        };
-
-        yield return new object[]
+        },
         {
             MetaTag(MetaName.Robots, $"{MetaRobotsValue.NoIndex}, {MetaRobotsValue.NoFollow}", reverseAttributes: true),
             TagHelperTestFactory.Create(
                 seo => new MetaRobotsTagHelper(seo),
                 seo => seo.SetMetaRobots(index: false, follow: false))
-        };
-    }
+        }
+    };
 }

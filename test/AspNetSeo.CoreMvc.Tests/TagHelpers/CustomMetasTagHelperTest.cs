@@ -31,14 +31,13 @@ public class CustomMetasTagHelperTest : TagHelperTestBase
         Assert.Equal(expected, html);
     }
 
-    public static IEnumerable<object[]> GetMemberData()
+    public static TheoryData<string, TagHelper> GetMemberData => new()
     {
-        yield return new object[]
         {
             "<title>TEST_PAGE_TITLE</title>",
             TagHelperTestFactory.Create(
                 seo => new CustomMetasTagHelper(seo),
                 seo => seo.PageTitle = "TEST_PAGE_TITLE")
-        };
-    }
+        }
+    };
 }

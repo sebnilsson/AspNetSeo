@@ -21,83 +21,80 @@ public class OgUrlTagHelperTest : TagHelperTestBase
         Assert.Equal(expected, html);
     }
 
-    public static IEnumerable<object[]> GetMemberData()
+    public static TheoryData<string, TagHelper> GetMemberData()
     {
         var urlHelper = SeoUrlHelperTestFactory.Create(
             new Uri("http://urlhelper.co/helper/page.html?query=123"));
 
-        yield return new object[]
+        return new TheoryData<string, TagHelper>
         {
-            OpenGraphTag(OgMetaName.Url, "https://t.com/t/test/TEST_OG_URL?q=1&amp;query=&#xF6;"),
-            TagHelperTestFactory.Create(
-                seo => new OgUrlTagHelper(seo, urlHelper),
-                seo => {
-                    seo.SiteUrl = "https://t.com/t/";
-                    seo.OgUrl = "test/TEST_OG_URL?q=1&query=ö";
-                })
-        };
-
-        yield return new object[]
-        {
-            OpenGraphTag(OgMetaName.Url, "http://urlhelper.co/test/TEST_OG_URL?q=1&amp;query=&#xF6;"),
-            TagHelperTestFactory.Create(
-                seo => new OgUrlTagHelper(seo, urlHelper),
-                seo => {
-                    seo.OgUrl = "/test/TEST_OG_URL?q=1&query=ö";
-                })
-        };
-
-        yield return new object[]
-        {
-            OpenGraphTag(OgMetaName.Url, "https://t.co/t/t/test/TEST_OG_URL?q=1&amp;query=&#xF6;"),
-            TagHelperTestFactory.Create(
-                seo => new OgUrlTagHelper(seo, urlHelper),
-                seo => {
-                    seo.SiteUrl = "https://t.co/t/t/";
-                    seo.OgUrl = "test/TEST_OG_URL?q=1&query=ö";
-                })
-        };
-
-        yield return new object[]
-        {
-            string.Empty,
-            TagHelperTestFactory.Create(
-                seo => new OgUrlTagHelper(seo, urlHelper),
-                seo => {
-                    seo.SiteUrl = "https://t.com/test/";
-                })
-        };
-
-        yield return new object[]
-        {
-            OpenGraphTag(OgMetaName.Url, "https://t.co/test/test.html"),
-            TagHelperTestFactory.Create(
-                seo => new OgUrlTagHelper(seo, urlHelper),
-                seo => {
-                    seo.SiteUrl = "https://t.co/t/t/";
-                    seo.OgUrl = "~/test/test.html";
-                })
-        };
-
-        yield return new object[]
-        {
-            OpenGraphTag(OgMetaName.Url, "https://t.com/t/test/TEST_OG_URL?q=1&amp;query=&#xF6;"),
-            TagHelperTestFactory.Create(
-                seo => new OgUrlTagHelper(seo, urlHelper),
-                seo => {
-                    seo.SiteUrl = "https://t.com/t/";
-                    seo.LinkCanonical = "test/TEST_OG_URL?q=1&query=ö";
-                })
-        };
-
-        yield return new object[]
-        {
-            OpenGraphTag(OgMetaName.Url, "http://urlhelper.co/test/TEST_OG_URL?q=1&amp;query=&#xF6;"),
-            TagHelperTestFactory.Create(
-                seo => new OgUrlTagHelper(seo, urlHelper),
-                seo => {
-                    seo.LinkCanonical = "/test/TEST_OG_URL?q=1&query=ö";
-                })
+            {
+                OpenGraphTag(OgMetaName.Url, "https://t.com/t/test/TEST_OG_URL?q=1&amp;query=&#xF6;"),
+                TagHelperTestFactory.Create(
+                    seo => new OgUrlTagHelper(seo, urlHelper),
+                    seo =>
+                    {
+                        seo.SiteUrl = "https://t.com/t/";
+                        seo.OgUrl = "test/TEST_OG_URL?q=1&query=ö";
+                    })
+            },
+            {
+                OpenGraphTag(OgMetaName.Url, "http://urlhelper.co/test/TEST_OG_URL?q=1&amp;query=&#xF6;"),
+                TagHelperTestFactory.Create(
+                    seo => new OgUrlTagHelper(seo, urlHelper),
+                    seo =>
+                    {
+                        seo.OgUrl = "/test/TEST_OG_URL?q=1&query=ö";
+                    })
+            },
+            {
+                OpenGraphTag(OgMetaName.Url, "https://t.co/t/t/test/TEST_OG_URL?q=1&amp;query=&#xF6;"),
+                TagHelperTestFactory.Create(
+                    seo => new OgUrlTagHelper(seo, urlHelper),
+                    seo =>
+                    {
+                        seo.SiteUrl = "https://t.co/t/t/";
+                        seo.OgUrl = "test/TEST_OG_URL?q=1&query=ö";
+                    })
+            },
+            {
+                string.Empty,
+                TagHelperTestFactory.Create(
+                    seo => new OgUrlTagHelper(seo, urlHelper),
+                    seo =>
+                    {
+                        seo.SiteUrl = "https://t.com/test/";
+                    })
+            },
+            {
+                OpenGraphTag(OgMetaName.Url, "https://t.co/test/test.html"),
+                TagHelperTestFactory.Create(
+                    seo => new OgUrlTagHelper(seo, urlHelper),
+                    seo =>
+                    {
+                        seo.SiteUrl = "https://t.co/t/t/";
+                        seo.OgUrl = "~/test/test.html";
+                    })
+            },
+            {
+                OpenGraphTag(OgMetaName.Url, "https://t.com/t/test/TEST_OG_URL?q=1&amp;query=&#xF6;"),
+                TagHelperTestFactory.Create(
+                    seo => new OgUrlTagHelper(seo, urlHelper),
+                    seo =>
+                    {
+                        seo.SiteUrl = "https://t.com/t/";
+                        seo.LinkCanonical = "test/TEST_OG_URL?q=1&query=ö";
+                    })
+            },
+            {
+                OpenGraphTag(OgMetaName.Url, "http://urlhelper.co/test/TEST_OG_URL?q=1&amp;query=&#xF6;"),
+                TagHelperTestFactory.Create(
+                    seo => new OgUrlTagHelper(seo, urlHelper),
+                    seo =>
+                    {
+                        seo.LinkCanonical = "/test/TEST_OG_URL?q=1&query=ö";
+                    })
+            }
         };
     }
 }

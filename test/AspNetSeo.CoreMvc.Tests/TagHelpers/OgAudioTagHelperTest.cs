@@ -18,30 +18,25 @@ public class OgAudioTagHelperTest : TagHelperTestBase
         Assert.Equal(expected, html);
     }
 
-    public static IEnumerable<object[]> GetMemberData()
+    public static TheoryData<string, TagHelper> GetMemberData => new()
     {
-        yield return new object[]
         {
             OpenGraphTag(OgMetaName.Audio, "TEST_OG_AUDIO"),
             TagHelperTestFactory.Create(
                 seo => new OgAudioTagHelper(seo),
                 seo => seo.OgAudio = "TEST_OG_AUDIO")
-        };
-
-        yield return new object[]
+        },
         {
             OpenGraphTag(OgMetaName.Audio, "OVERRIDE_AUDIO"),
             TagHelperTestFactory.Create(
                 seo => new OgAudioTagHelper(seo),
                 seo => seo.OgAudio = "TEST_OG_AUDIO",
                 tag => tag.Value = "OVERRIDE_AUDIO")
-        };
-
-        yield return new object[]
+        },
         {
             string.Empty,
             TagHelperTestFactory.Create(
                 seo => new OgAudioTagHelper(seo))
-        };
-    }
+        }
+    };
 }

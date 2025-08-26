@@ -18,30 +18,25 @@ public class OgDeterminerTagHelperTest : TagHelperTestBase
         Assert.Equal(expected, html);
     }
 
-    public static IEnumerable<object[]> GetMemberData()
+    public static TheoryData<string, TagHelper> GetMemberData => new()
     {
-        yield return new object[]
         {
             OpenGraphTag(OgMetaName.Determiner, "the"),
             TagHelperTestFactory.Create(
                 seo => new OgDeterminerTagHelper(seo),
                 seo => seo.OgDeterminer = "the")
-        };
-
-        yield return new object[]
+        },
         {
             OpenGraphTag(OgMetaName.Determiner, "a"),
             TagHelperTestFactory.Create(
                 seo => new OgDeterminerTagHelper(seo),
                 seo => seo.OgDeterminer = "the",
                 tag => tag.Value = "a")
-        };
-
-        yield return new object[]
+        },
         {
             string.Empty,
             TagHelperTestFactory.Create(
                 seo => new OgDeterminerTagHelper(seo))
-        };
-    }
+        }
+    };
 }

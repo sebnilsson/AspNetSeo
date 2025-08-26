@@ -20,84 +20,74 @@ public class LinkCanonicalTagHelperTest : TagHelperTestBase
         Assert.Equal(expected, html);
     }
 
-    public static IEnumerable<object[]> GetMemberData()
+    public static TheoryData<string, TagHelper> GetMemberData()
     {
         var urlHelper = SeoUrlHelperTestFactory.Create(
             new Uri("http://url-helper.co/helper/page.html?query=123"));
 
-        yield return new object[]
+        return new TheoryData<string, TagHelper>
         {
-            string.Empty,
-            TagHelperTestFactory.Create(
-                seo => new LinkCanonicalTagHelper(seo, urlHelper),
-                seo => {
-                    seo.SiteUrl = "https://t.com/t/";
-                    seo.OgUrl = null;
-                })
-        };
-
-        yield return new object[]
-        {
-            string.Empty,
-            TagHelperTestFactory.Create(
-                seo => new LinkCanonicalTagHelper(seo, urlHelper),
-                seo => {
-                    seo.SiteUrl = "https://t.com/test/";
-                })
-        };
-
-        yield return new object[]
-        {
-            LinkCanonicalTag("https://t.com/t/test/TEST_OG_URL?q=1&amp;query=&#xF6;"),
-            TagHelperTestFactory.Create(
-                seo => new LinkCanonicalTagHelper(seo, urlHelper),
-                seo => {
-                    seo.SiteUrl = "https://t.com/t/";
-                    seo.LinkCanonical = "test/TEST_OG_URL?q=1&query=ö";
-                })
-        };
-
-        yield return new object[]
-        {
-            LinkCanonicalTag("http://url-helper.co/test/TEST_OG_URL?q=1&amp;query=&#xF6;"),
-            TagHelperTestFactory.Create(
-                seo => new LinkCanonicalTagHelper(seo, urlHelper),
-                seo => {
-                    seo.LinkCanonical = "/test/TEST_OG_URL?q=1&query=ö";
-                })
-        };
-
-        yield return new object[]
-        {
-            LinkCanonicalTag("https://t.co/t/t/test/TEST_OG_URL?q=1&amp;query=&#xF6;"),
-            TagHelperTestFactory.Create(
-                seo => new LinkCanonicalTagHelper(seo, urlHelper),
-                seo => {
-                    seo.SiteUrl = "https://t.co/t/t/";
-                    seo.LinkCanonical = "test/TEST_OG_URL?q=1&query=ö";
-                })
-        };
-
-        yield return new object[]
-        {
-            LinkCanonicalTag("https://t.co/test/test.html"),
-            TagHelperTestFactory.Create(
-                seo => new LinkCanonicalTagHelper(seo, urlHelper),
-                seo => {
-                    seo.SiteUrl = "https://t.co/t/t/";
-                    seo.LinkCanonical = "~/test/test.html";
-                })
-        };
-
-        yield return new object[]
-        {
-            LinkCanonicalTag("http://url-helper.co/test/test.html"),
-            TagHelperTestFactory.Create(
-                seo => new LinkCanonicalTagHelper(seo, urlHelper),
-                seo => {
-                    seo.SiteUrl = null;
-                    seo.LinkCanonical = "~/test/test.html";
-                })
+            {
+                string.Empty,
+                TagHelperTestFactory.Create(
+                    seo => new LinkCanonicalTagHelper(seo, urlHelper),
+                    seo => {
+                        seo.SiteUrl = "https://t.com/t/";
+                        seo.OgUrl = null;
+                    })
+            },
+            {
+                string.Empty,
+                TagHelperTestFactory.Create(
+                    seo => new LinkCanonicalTagHelper(seo, urlHelper),
+                    seo => {
+                        seo.SiteUrl = "https://t.com/test/";
+                    })
+            },
+            {
+                LinkCanonicalTag("https://t.com/t/test/TEST_OG_URL?q=1&amp;query=&#xF6;"),
+                TagHelperTestFactory.Create(
+                    seo => new LinkCanonicalTagHelper(seo, urlHelper),
+                    seo => {
+                        seo.SiteUrl = "https://t.com/t/";
+                        seo.LinkCanonical = "test/TEST_OG_URL?q=1&query=ö";
+                    })
+            },
+            {
+                LinkCanonicalTag("http://url-helper.co/test/TEST_OG_URL?q=1&amp;query=&#xF6;"),
+                TagHelperTestFactory.Create(
+                    seo => new LinkCanonicalTagHelper(seo, urlHelper),
+                    seo => {
+                        seo.LinkCanonical = "/test/TEST_OG_URL?q=1&query=ö";
+                    })
+            },
+            {
+                LinkCanonicalTag("https://t.co/t/t/test/TEST_OG_URL?q=1&amp;query=&#xF6;"),
+                TagHelperTestFactory.Create(
+                    seo => new LinkCanonicalTagHelper(seo, urlHelper),
+                    seo => {
+                        seo.SiteUrl = "https://t.co/t/t/";
+                        seo.LinkCanonical = "test/TEST_OG_URL?q=1&query=ö";
+                    })
+            },
+            {
+                LinkCanonicalTag("https://t.co/test/test.html"),
+                TagHelperTestFactory.Create(
+                    seo => new LinkCanonicalTagHelper(seo, urlHelper),
+                    seo => {
+                        seo.SiteUrl = "https://t.co/t/t/";
+                        seo.LinkCanonical = "~/test/test.html";
+                    })
+            },
+            {
+                LinkCanonicalTag("http://url-helper.co/test/test.html"),
+                TagHelperTestFactory.Create(
+                    seo => new LinkCanonicalTagHelper(seo, urlHelper),
+                    seo => {
+                        seo.SiteUrl = null;
+                        seo.LinkCanonical = "~/test/test.html";
+                    })
+            }
         };
     }
 
