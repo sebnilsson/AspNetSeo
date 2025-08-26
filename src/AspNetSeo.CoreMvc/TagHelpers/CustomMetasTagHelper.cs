@@ -1,6 +1,5 @@
-using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Razor.TagHelpers;
-using AspNetSeo;
 
 namespace AspNetSeo.CoreMvc.TagHelpers;
 
@@ -11,6 +10,9 @@ namespace AspNetSeo.CoreMvc.TagHelpers;
 [HtmlTargetElement("custom-metas", TagStructure = TagStructure.NormalOrSelfClosing)]
 public class CustomMetasTagHelper(ISeoHelper seoHelper) : SeoTagHelperBase(seoHelper)
 {
+    private const string ATTRIBUTE_KEY_NAME = "name";
+    private const string ATTRIBUTE_KEY_PROPERTY = "property";
+
     /// <summary>Builds the meta tags.</summary>
     /// <param name="context">Tag helper context.</param>
     /// <param name="output">Tag helper output.</param>
@@ -31,7 +33,9 @@ public class CustomMetasTagHelper(ISeoHelper seoHelper) : SeoTagHelperBase(seoHe
         foreach (var custom in SeoHelper.CustomMetas.Values)
         {
             if (!isFirst)
+            {
                 output.Content.AppendHtml(Environment.NewLine);
+            }
 
             AddCustomMeta(output, custom);
 
@@ -39,7 +43,7 @@ public class CustomMetasTagHelper(ISeoHelper seoHelper) : SeoTagHelperBase(seoHe
         }
     }
 
-    private void AddCustomMeta(TagHelperOutput output, CustomMetaItem item)
+    private static void AddCustomMeta(TagHelperOutput output, CustomMetaItem item)
     {
         var name = item.Key;
         var content = item.Value;
@@ -54,9 +58,7 @@ public class CustomMetasTagHelper(ISeoHelper seoHelper) : SeoTagHelperBase(seoHe
             TagRenderMode = TagRenderMode.SelfClosing
         };
 
-        var attributeName = ShouldUseProperty(item)
-            ? "property"
-            : "name";
+        var attributeName = GetAttributeName(item);
 
         tag.Attributes[attributeName] = name;
         tag.Attributes["content"] = content;
@@ -64,30 +66,19 @@ public class CustomMetasTagHelper(ISeoHelper seoHelper) : SeoTagHelperBase(seoHe
         output.Content.AppendHtml(tag);
     }
 
-    private bool ShouldUseProperty(CustomMetaItem item)
+    private static string GetAttributeName(CustomMetaItem item)
     {
         if (item.Attribute is CustomMetaAttributeKey attr)
         {
-            return attr == CustomMetaAttributeKey.Property;
+            return attr == CustomMetaAttributeKey.Property ? ATTRIBUTE_KEY_PROPERTY : ATTRIBUTE_KEY_NAME;
         }
 
-        return DetectProperty(item.Key);
+        var isProperty = s_propertyPrefixes.Any(x => item.Key.StartsWith(x));
+
+        return isProperty ? ATTRIBUTE_KEY_PROPERTY : ATTRIBUTE_KEY_NAME;
     }
 
-    private static bool DetectProperty(string key)
-    {
-        foreach (var prefix in PropertyPrefixes)
-        {
-            if (key.StartsWith(prefix, StringComparison.OrdinalIgnoreCase))
-            {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    private static readonly string[] PropertyPrefixes =
+    private static readonly string[] s_propertyPrefixes =
     [
         "og:",
         "fb:",

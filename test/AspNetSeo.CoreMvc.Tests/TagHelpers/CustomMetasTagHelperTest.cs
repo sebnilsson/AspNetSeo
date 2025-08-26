@@ -2,7 +2,6 @@
 using AspNetSeo.Testing;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using Xunit;
-using AspNetSeo;
 
 namespace AspNetSeo.CoreMvc.Tests.TagHelpers;
 
@@ -50,14 +49,13 @@ public class CustomMetasTagHelperTest : TagHelperTestBase
         var html = tagHelper.GetHtml("custom-metas");
 
         // Assert
-        var expected =
-            $"{OpenGraphTag("og:image:width", "100")}" +
-            $"{Environment.NewLine}" +
-            $"{OpenGraphTag("fb:app_id", "1")}" +
-            $"{Environment.NewLine}" +
-            $"{MetaTag("custom", "c")}";
+        string[] expected = [
+            $"{OpenGraphTag("og:image:width", "100", reverseAttributes: true)}",
+            $"{OpenGraphTag("fb:app_id", "1", reverseAttributes: true)}",
+            $"{MetaTag("custom", "c")}"
+        ];
 
-        Assert.Equal(expected, html);
+        Assert.Equal(string.Join(Environment.NewLine, expected), html);
     }
 
     [Fact]
@@ -79,7 +77,7 @@ public class CustomMetasTagHelperTest : TagHelperTestBase
         var expected =
             $"{MetaTag("og:title", "x")}" +
             $"{Environment.NewLine}" +
-            $"{OpenGraphTag("plain", "y")}";
+            $"{OpenGraphTag("plain", "y", reverseAttributes: true)}";
 
         Assert.Equal(expected, html);
     }

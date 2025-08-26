@@ -48,7 +48,7 @@ public class SeoHelper : ISeoHelper
     public string? OgLocale { get; set; }
 
     /// <inheritdoc />
-    public string[] OgLocaleAlternates { get; set; } = Array.Empty<string>();
+    public string[] OgLocaleAlternates { get; set; } = [];
 
     /// <inheritdoc />
     public string? OgSiteName { get; set; }

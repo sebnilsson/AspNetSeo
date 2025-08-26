@@ -1,4 +1,5 @@
-﻿using Xunit;
+﻿using AspNetSeo;
+using Xunit;
 
 namespace AspNetSeo.CoreMvc.Tests;
 
@@ -35,5 +36,31 @@ public class CustomMetaAttributeTest
         Assert.Equal(
             "TEST_META_CUSTOM_VALUE2",
             customMetas["TEST_META_CUSTOM_KEY2"].Value);
+    }
+
+    [Fact]
+    public void OnHandleSeoValues_ExplicitAttribute_SetsAttributeOnCustomMetas()
+    {
+        // Arrange
+        var seoHelper = new SeoHelper();
+
+        var attributeNameOverride = new CustomMetaAttribute(
+            "og:title",
+            "TITLE_VALUE",
+            CustomMetaAttributeKey.Name);
+        var attributePropertyOverride = new CustomMetaAttribute(
+            "plain",
+            "PLAIN_VALUE",
+            CustomMetaAttributeKey.Property);
+
+        // Act
+        attributeNameOverride.OnHandleSeoValues(seoHelper);
+        attributePropertyOverride.OnHandleSeoValues(seoHelper);
+
+        // Assert
+        var customMetas = seoHelper.CustomMetas;
+
+        Assert.Equal(CustomMetaAttributeKey.Name, customMetas["og:title"].Attribute);
+        Assert.Equal(CustomMetaAttributeKey.Property, customMetas["plain"].Attribute);
     }
 }

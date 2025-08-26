@@ -1,6 +1,4 @@
-using AspNetSeo;
-
-namespace AspNetSeo.CoreMvc;
+﻿namespace AspNetSeo.CoreMvc;
 
 /// <summary>
 /// Adds a custom meta tag.

@@ -47,4 +47,80 @@ public class SeoHelperTests
         // Assert
         Assert.Equal(expected, _seoHelper.MetaRobots);
     }
+
+    [Fact]
+    public void SetCustomMeta_AddsNewItem_SetsValueAndAttribute()
+    {
+        // Arrange
+        var key = "og:title";
+        var value = "Hello";
+        var attribute = CustomMetaAttributeKey.Property;
+
+        // Act
+        _seoHelper.SetCustomMeta(key, value, attribute);
+
+        // Assert
+        Assert.True(_seoHelper.CustomMetas.ContainsKey(key));
+        var item = _seoHelper.CustomMetas[key];
+        Assert.Equal(key, item.Key);
+        Assert.Equal(value, item.Value);
+        Assert.Equal(attribute, item.Attribute);
+        Assert.Single(_seoHelper.CustomMetas);
+    }
+
+    [Fact]
+    public void SetCustomMeta_UpdatesExisting_OverwritesValueAndAttribute()
+    {
+        // Arrange
+        var key = "description";
+        _seoHelper.SetCustomMeta(key, "old", CustomMetaAttributeKey.Name);
+
+        // Act
+        _seoHelper.SetCustomMeta(key, "new", CustomMetaAttributeKey.Property);
+
+        // Assert
+        Assert.True(_seoHelper.CustomMetas.ContainsKey(key));
+        var item = _seoHelper.CustomMetas[key];
+        Assert.Equal("new", item.Value);
+        Assert.Equal(CustomMetaAttributeKey.Property, item.Attribute);
+        Assert.Single(_seoHelper.CustomMetas);
+    }
+
+    [Fact]
+    public void SetCustomMeta_Remove_WhenValueIsNull_RemovesEntry()
+    {
+        // Arrange
+        var key = "keywords";
+        _seoHelper.SetCustomMeta(key, "k1,k2", CustomMetaAttributeKey.Name);
+        Assert.True(_seoHelper.CustomMetas.ContainsKey(key));
+
+        // Act
+        _seoHelper.SetCustomMeta(key, null);
+
+        // Assert
+        Assert.False(_seoHelper.CustomMetas.ContainsKey(key));
+        Assert.Empty(_seoHelper.CustomMetas);
+    }
+
+    [Fact]
+    public void SetCustomMeta_NullKey_Throws()
+    {
+        // Act + Assert
+        Assert.Throws<ArgumentNullException>(() => _seoHelper.SetCustomMeta(null!, "value"));
+    }
+
+    [Fact]
+    public void SetCustomMeta_IsCaseInsensitive_UpdatesSameEntry()
+    {
+        // Arrange
+        _seoHelper.SetCustomMeta("META:KEY", "A");
+
+        // Act
+        _seoHelper.SetCustomMeta("meta:key", "B");
+
+        // Assert
+        Assert.Single(_seoHelper.CustomMetas);
+        Assert.Equal("B", _seoHelper.CustomMetas["META:KEY"].Value);
+        Assert.Equal("B", _seoHelper.CustomMetas["meta:key"].Value);
+    }
 }
