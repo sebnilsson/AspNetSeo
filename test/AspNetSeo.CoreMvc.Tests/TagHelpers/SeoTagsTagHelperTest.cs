@@ -27,8 +27,7 @@ public class SeoTagsTagHelperTest : TagHelperTestBase
                 seo.OgDeterminer = "the";
                 seo.OgImage = "image.png";
                 seo.OgLocale = "en_US";
-                seo.OgLocaleAlternates.Add("da_DK");
-                seo.OgLocaleAlternates.Add("de_DE");
+                seo.OgLocaleAlternates = new[] { "da_DK", "de_DE" };
                 seo.OgType = "website";
                 seo.OgVideo = "video.mp4";
             });
@@ -62,4 +61,3 @@ public class SeoTagsTagHelperTest : TagHelperTestBase
         Assert.Equal(expected, html);
     }
 }
-

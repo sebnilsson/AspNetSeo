@@ -1,4 +1,4 @@
-namespace AspNetSeo;
+﻿namespace AspNetSeo;
 
 /// <summary>
 /// Provides properties for storing SEO related information used when rendering
@@ -70,7 +70,7 @@ public interface ISeoHelper
     /// <summary>
     /// Gets the collection of alternate Open Graph locales for the page.
     /// </summary>
-    IList<string> OgLocaleAlternates { get; }
+    string[] OgLocaleAlternates { get; set; }
 
     /// <summary>
     /// Gets or sets the Open Graph site name. Falls back to <see cref="SiteName"/>.

@@ -1,4 +1,6 @@
-﻿namespace AspNetSeo.CoreMvc;
+﻿using System.Linq;
+
+namespace AspNetSeo.CoreMvc;
 
 /// <summary>
 /// Adds alternate Open Graph locales.
@@ -19,10 +21,9 @@ public class OgLocaleAlternateAttribute : SeoAttributeBase
     /// <param name="seoHelper">The SEO helper.</param>
     public override void OnHandleSeoValues(ISeoHelper seoHelper)
     {
-        foreach (var value in _values)
-        {
-            seoHelper.OgLocaleAlternates.Add(value);
-        }
+        var existing = seoHelper.OgLocaleAlternates ?? Array.Empty<string>();
+        var combined = existing.Concat(_values ?? Array.Empty<string>()).ToArray();
+        seoHelper.OgLocaleAlternates = combined;
     }
 }
 

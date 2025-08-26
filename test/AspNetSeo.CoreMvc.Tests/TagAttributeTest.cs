@@ -135,7 +135,7 @@ public class TagAttributeTest
             new OgLocaleAlternateAttribute("da_DK", "en_US"),
             GetResultFactory(
                 (ISeoHelper seoHelper) => seoHelper.OgLocaleAlternates),
-            new List<string> { "da_DK", "en_US" }
+            new[] { "da_DK", "en_US" }
         };
 
         yield return new object[]

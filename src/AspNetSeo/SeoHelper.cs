@@ -1,4 +1,4 @@
-using AspNetSeo.Internal;
+﻿using AspNetSeo.Internal;
 
 namespace AspNetSeo;
 
@@ -48,7 +48,7 @@ public class SeoHelper : ISeoHelper
     public string? OgLocale { get; set; }
 
     /// <inheritdoc />
-    public IList<string> OgLocaleAlternates { get; } = new List<string>();
+    public string[] OgLocaleAlternates { get; set; } = Array.Empty<string>();
 
     /// <inheritdoc />
     public string? OgSiteName { get; set; }
