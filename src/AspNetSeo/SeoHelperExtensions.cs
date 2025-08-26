@@ -1,4 +1,4 @@
-namespace AspNetSeo;
+﻿namespace AspNetSeo;
 
 /// <summary>
 /// Helper extensions for SEO values.

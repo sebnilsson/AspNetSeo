@@ -1,4 +1,4 @@
-using AspNetSeo.CoreMvc;
+﻿using AspNetSeo.CoreMvc;
 using AspNetSeo.CoreMvc.Internal;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 

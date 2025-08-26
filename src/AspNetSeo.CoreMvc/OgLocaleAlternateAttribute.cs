@@ -1,28 +1,21 @@
-﻿using System.Linq;
-
-namespace AspNetSeo.CoreMvc;
+﻿namespace AspNetSeo.CoreMvc;
 
 /// <summary>
 /// Adds alternate Open Graph locales.
 /// </summary>
+/// <remarks>Initializes the attribute.</remarks>
+/// <param name="values">Locale values.</param>
 [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = true, Inherited = false)]
-public class OgLocaleAlternateAttribute : SeoAttributeBase
+public class OgLocaleAlternateAttribute(params string[] values) : SeoAttributeBase
 {
-    private readonly string[] _values;
-
-    /// <summary>Initializes the attribute.</summary>
-    /// <param name="values">Locale values.</param>
-    public OgLocaleAlternateAttribute(params string[] values)
-    {
-        _values = values;
-    }
+    private readonly string[] _values = values;
 
     /// <summary>Applies the locale alternates.</summary>
     /// <param name="seoHelper">The SEO helper.</param>
     public override void OnHandleSeoValues(ISeoHelper seoHelper)
     {
-        var existing = seoHelper.OgLocaleAlternates ?? Array.Empty<string>();
-        var combined = existing.Concat(_values ?? Array.Empty<string>()).ToArray();
+        var existing = seoHelper.OgLocaleAlternates ?? [];
+        string[] combined = [.. existing, .. _values];
         seoHelper.OgLocaleAlternates = combined;
     }
 }

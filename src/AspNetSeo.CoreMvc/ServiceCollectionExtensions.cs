@@ -1,4 +1,4 @@
-using AspNetSeo.CoreMvc.Internal;
+﻿using AspNetSeo.CoreMvc.Internal;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.Extensions.DependencyInjection;
