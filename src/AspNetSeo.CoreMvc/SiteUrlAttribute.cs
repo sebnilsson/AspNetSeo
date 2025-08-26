@@ -1,4 +1,4 @@
-namespace AspNetSeo.CoreMvc;
+﻿namespace AspNetSeo.CoreMvc;
 
 /// <summary>
 /// Sets the default site URL.

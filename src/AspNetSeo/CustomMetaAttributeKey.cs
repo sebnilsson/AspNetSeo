@@ -1,4 +1,4 @@
-namespace AspNetSeo;
+﻿namespace AspNetSeo;
 
 /// <summary>
 /// Specifies which attribute a custom meta tag key should use when rendered.

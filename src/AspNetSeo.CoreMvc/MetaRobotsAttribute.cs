@@ -1,4 +1,4 @@
-using AspNetSeo.Internal;
+﻿using AspNetSeo.Internal;
 
 namespace AspNetSeo.CoreMvc;
 
