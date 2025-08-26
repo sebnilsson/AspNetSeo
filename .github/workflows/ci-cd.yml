@@ -15,7 +15,7 @@ on:
 env:
   DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
   DOTNET_NOLOGO: true
-  NuGetDirectory: ${{ github.workspace}}/.nuget
+  NuGetDirectory: ${{ github.workspace}}/artifacts
 
 jobs:
   build:
@@ -54,7 +54,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: nuget-packages
-        path: ${{ env.NuGetDirectory }}/*.nupkg
+        path: ${{ env.NuGetDirectory }}
         if-no-files-found: error
 
   publish:
