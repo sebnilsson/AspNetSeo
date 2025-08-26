@@ -10,8 +10,8 @@ public class SeoHelper : ISeoHelper
     internal const string? DefaultDocumentTitleFormat = "{0} - {1}";
 
     /// <inheritdoc />
-    public IDictionary<string, string?> CustomMetas { get; }
-        = new Dictionary<string, string?>(StringComparer.OrdinalIgnoreCase);
+    public IDictionary<string, CustomMetaItem> CustomMetas { get; }
+        = new Dictionary<string, CustomMetaItem>(StringComparer.OrdinalIgnoreCase);
 
     /// <inheritdoc />
     public string? DocumentTitle => DocumentTitleValue.Get(this);
@@ -75,12 +75,18 @@ public class SeoHelper : ISeoHelper
     public string? SiteUrl { get; set; }
 
     /// <inheritdoc />
-    public void SetCustomMeta(string? key, string? value)
+    public void SetCustomMeta(string? key, string? value, CustomMetaAttributeKey? attribute = null)
     {
         if (key == null)
             throw new ArgumentNullException(nameof(key));
 
-        CustomMetas[key] = value;
+        if (value == null)
+        {
+            CustomMetas.Remove(key);
+            return;
+        }
+
+        CustomMetas[key] = new CustomMetaItem(key, value, attribute);
     }
 
     /// <inheritdoc />

@@ -7,9 +7,10 @@
 public interface ISeoHelper
 {
     /// <summary>
-    /// Gets a collection of additional meta tags to render.
+    /// Gets a collection of additional meta tags to render, including optional
+    /// attribute information for each entry.
     /// </summary>
-    IDictionary<string, string?> CustomMetas { get; }
+    IDictionary<string, CustomMetaItem> CustomMetas { get; }
 
     /// <summary>
     /// Gets the combined document title for the page.
@@ -117,7 +118,10 @@ public interface ISeoHelper
     /// </summary>
     /// <param name="key">The name of the meta tag.</param>
     /// <param name="value">The value of the meta tag.</param>
-    void SetCustomMeta(string key, string? value);
+    /// <param name="attribute">Explicitly specifies whether the tag uses the
+    /// <c>name</c> or <c>property</c> attribute. A <c>null</c> value lets the
+    /// library detect the correct attribute based on the key.</param>
+    void SetCustomMeta(string key, string? value, CustomMetaAttributeKey? attribute = null);
 
     /// <summary>
     /// Sets the meta robots value based on the supplied index and follow flags.

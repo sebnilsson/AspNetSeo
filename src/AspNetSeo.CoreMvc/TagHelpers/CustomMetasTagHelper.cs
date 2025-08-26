@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Razor.TagHelpers;
+using AspNetSeo;
 
 namespace AspNetSeo.CoreMvc.TagHelpers;
 
@@ -27,19 +28,22 @@ public class CustomMetasTagHelper(ISeoHelper seoHelper) : SeoTagHelperBase(seoHe
         output.Attributes.Clear();
 
         var isFirst = true;
-        foreach (var custom in SeoHelper.CustomMetas)
+        foreach (var custom in SeoHelper.CustomMetas.Values)
         {
             if (!isFirst)
                 output.Content.AppendHtml(Environment.NewLine);
 
-            AddCustomMeta(output, custom.Key, custom.Value);
+            AddCustomMeta(output, custom);
 
             isFirst = false;
         }
     }
 
-    private static void AddCustomMeta(TagHelperOutput output, string? name, string? content)
+    private void AddCustomMeta(TagHelperOutput output, CustomMetaItem item)
     {
+        var name = item.Key;
+        var content = item.Value;
+
         if (name == null || content == null)
         {
             return;
@@ -50,10 +54,52 @@ public class CustomMetasTagHelper(ISeoHelper seoHelper) : SeoTagHelperBase(seoHe
             TagRenderMode = TagRenderMode.SelfClosing
         };
 
-        tag.Attributes["name"] = name;
+        var attributeName = ShouldUseProperty(item)
+            ? "property"
+            : "name";
+
+        tag.Attributes[attributeName] = name;
         tag.Attributes["content"] = content;
 
         output.Content.AppendHtml(tag);
     }
+
+    private bool ShouldUseProperty(CustomMetaItem item)
+    {
+        if (item.Attribute is CustomMetaAttributeKey attr)
+        {
+            return attr == CustomMetaAttributeKey.Property;
+        }
+
+        return DetectProperty(item.Key);
+    }
+
+    private static bool DetectProperty(string key)
+    {
+        foreach (var prefix in PropertyPrefixes)
+        {
+            if (key.StartsWith(prefix, StringComparison.OrdinalIgnoreCase))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private static readonly string[] PropertyPrefixes =
+    [
+        "og:",
+        "fb:",
+        "article:",
+        "music:",
+        "video:",
+        "profile:",
+        "book:",
+        "books:",
+        "business:",
+        "product:",
+        "place:"
+    ];
 }
 

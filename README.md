@@ -39,7 +39,9 @@ where `{0}` is the value from `PageTitle` and `{1}` is the value from `SiteName`
 
 ### Methods
 
-- `SetCustomMeta(string key, string value)`: Add any custom meta-tag.
+- `SetCustomMeta(string key, string value, CustomMetaAttributeKey? attribute = null)`: Add any
+  custom meta-tag. Keys starting with prefixes such as `og:` or `fb:` default to the `property` attribute. Use
+  the `attribute` parameter to explicitly choose `name` or `property`.
 - `SetMetaRobots(bool index, bool follow)`: Specify the instructions for robots.
 Updates the value for `MetaRobots`.
 

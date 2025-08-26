@@ -31,9 +31,9 @@ public class CustomMetaAttributeTest
         Assert.Equal(2, customMetas.Count);
         Assert.Equal(
             "TEST_META_CUSTOM_VALUE1",
-            customMetas["TEST_META_CUSTOM_KEY1"]);
+            customMetas["TEST_META_CUSTOM_KEY1"].Value);
         Assert.Equal(
             "TEST_META_CUSTOM_VALUE2",
-            customMetas["TEST_META_CUSTOM_KEY2"]);
+            customMetas["TEST_META_CUSTOM_KEY2"].Value);
     }
 }
