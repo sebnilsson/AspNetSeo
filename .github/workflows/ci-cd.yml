@@ -7,6 +7,10 @@ on:
     branches:
       - 'main'       # Run the workflow when pushing to the main branch
       - 'develop'    # Also run on develop, but skip publishing
+  pull_request:
+    branches:
+      - 'main'       # Run tests on PRs targeting main
+      - 'develop'    # Run tests on PRs targeting develop
 
 env:
   DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
@@ -14,13 +18,13 @@ env:
   NuGetDirectory: ${{ github.workspace}}/.nuget
 
 jobs:
-  publish:
-    runs-on: ubuntu-latest
+  build:
+    runs-on: &runner ubuntu-latest
 
     steps:
     - name: Checkout
       uses: actions/checkout@v4
-      
+
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
@@ -35,11 +39,31 @@ jobs:
       run: dotnet build --configuration Release --no-restore
 
     - name: Run tests
-      run: dotnet test --no-restore
-      
+      run: dotnet test --configuration Release --no-build --no-restore
+
     - name: Create NuGet package
+      if: github.event_name == 'push'
       run: dotnet pack --configuration Release --no-restore --output ${{ env.NuGetDirectory }}
 
+    - name: Upload package artifact
+      if: github.event_name == 'push'
+      uses: actions/upload-artifact@v4
+      with:
+        name: nuget-packages
+        path: ${{ env.NuGetDirectory }}/*.nupkg
+        if-no-files-found: error
+
+  publish:
+    needs: build
+    if: github.event_name == 'push' && github.ref_name == 'main'
+    runs-on: *runner
+
+    steps:
+    - name: Download package artifact
+      uses: actions/download-artifact@v4
+      with:
+        name: nuget-packages
+        path: ${{ env.NuGetDirectory }}
+
     - name: Publish NuGet package
-      if: github.ref_name == 'main'
       run: dotnet nuget push ${{ env.NuGetDirectory }}/*.nupkg --api-key ${{ secrets.NUGET_APIKEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
