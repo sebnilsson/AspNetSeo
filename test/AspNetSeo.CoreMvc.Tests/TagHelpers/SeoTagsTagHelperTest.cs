@@ -1,4 +1,4 @@
-using AspNetSeo.CoreMvc.TagHelpers;
+﻿using AspNetSeo.CoreMvc.TagHelpers;
 using AspNetSeo.Internal;
 using AspNetSeo.Testing;
 using Xunit;
@@ -41,17 +41,17 @@ public class SeoTagsTagHelperTest : TagHelperTestBase
             $"""
             <title>Test page - Test site</title>
             <link rel="canonical" href="https://example.com/test.html" />
-            {MetaTag(MetaName.Description, "Desc")}
-            {MetaTag(MetaName.Keywords, "kw1,kw2")}
-            {MetaTag(MetaName.Robots, "index, nofollow")}
+            {MetaTag(MetaName.Description, "Desc", reverseAttributes: true)}
+            {MetaTag(MetaName.Keywords, "kw1,kw2", reverseAttributes: true)}
+            {MetaTag(MetaName.Robots, $"{MetaRobotsValue.Index}, {MetaRobotsValue.NoFollow}", reverseAttributes: true)}
             {MetaTag("x", "y")}
             {OpenGraphTag(OgMetaName.Audio, "audio.mp3")}
             {OpenGraphTag(OgMetaName.Description, "Desc")}
             {OpenGraphTag(OgMetaName.Determiner, "the")}
             {OpenGraphTag(OgMetaName.Image, "image.png")}
             {OpenGraphTag(OgMetaName.Locale, "en_US")}
-            {OpenGraphTag(OgMetaName.LocaleAlternate, "da_DK")}
-            {OpenGraphTag(OgMetaName.LocaleAlternate, "de_DE")}
+            {OpenGraphTag(OgMetaName.LocaleAlternate, "da_DK", reverseAttributes: true)}
+            {OpenGraphTag(OgMetaName.LocaleAlternate, "de_DE", reverseAttributes: true)}
             {OpenGraphTag(OgMetaName.SiteName, "Test site")}
             {OpenGraphTag(OgMetaName.Title, "Test page")}
             {OpenGraphTag(OgMetaName.Type, "website")}

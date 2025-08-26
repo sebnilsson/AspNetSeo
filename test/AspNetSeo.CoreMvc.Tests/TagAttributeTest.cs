@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using AspNetSeo.Internal;
 using Xunit;
 
 namespace AspNetSeo.CoreMvc.Tests;
@@ -62,7 +63,7 @@ public class TagAttributeTest
             new MetaRobotsAttribute(index: true, follow: true),
             GetResultFactory(
                 (ISeoHelper seoHelper) => seoHelper.MetaRobots),
-            "INDEX, FOLLOW",
+            $"{MetaRobotsValue.Index}, {MetaRobotsValue.Follow}",
         };
 
         yield return new object[]
@@ -70,7 +71,7 @@ public class TagAttributeTest
             new MetaRobotsAttribute(index: false, follow: true),
             GetResultFactory(
                 (ISeoHelper seoHelper) => seoHelper.MetaRobots),
-            "NOINDEX, FOLLOW",
+            $"{MetaRobotsValue.NoIndex}, {MetaRobotsValue.Follow}",
         };
 
         yield return new object[]
@@ -78,7 +79,7 @@ public class TagAttributeTest
             new MetaRobotsAttribute(index: true, follow: false),
             GetResultFactory(
                 (ISeoHelper seoHelper) => seoHelper.MetaRobots),
-            "INDEX, NOFOLLOW",
+            $"{MetaRobotsValue.Index}, {MetaRobotsValue.NoFollow}",
         };
 
         yield return new object[]
@@ -86,7 +87,7 @@ public class TagAttributeTest
             new MetaRobotsAttribute(index: false, follow: false),
             GetResultFactory(
                 (ISeoHelper seoHelper) => seoHelper.MetaRobots),
-            "NOINDEX, NOFOLLOW",
+            $"{MetaRobotsValue.NoIndex}, {MetaRobotsValue.NoFollow}"
         };
 
         yield return new object[]

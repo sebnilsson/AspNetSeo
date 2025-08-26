@@ -2,14 +2,11 @@
 
 public abstract class TagHelperTestBase
 {
-    public static string MetaTag(string name, string content)
+    public static string MetaTag(string name, string content, bool reverseAttributes = false)
     {
-        return $"<meta name=\"{name}\" content=\"{content}\" />";
-    }
-
-    public static string MetaTagContentFirst(string name, string content)
-    {
-        return $"<meta content=\"{content}\" name=\"{name}\" />";
+        return reverseAttributes
+            ? $"<meta name=\"{name}\" content=\"{content}\" />"
+            : $"<meta content=\"{content}\" name=\"{name}\" />";
     }
 
     public static string OpenGraphTag(string name, string content, bool reverseAttributes = false)
