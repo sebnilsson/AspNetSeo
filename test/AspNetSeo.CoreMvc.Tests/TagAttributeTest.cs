@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using AspNetSeo.Internal;
+﻿using AspNetSeo.Internal;
 using Xunit;
 
 namespace AspNetSeo.CoreMvc.Tests;
@@ -8,10 +7,10 @@ public class TagAttributeTest
 {
     [Theory]
     [MemberData(nameof(GetMemberData))]
-    public void OnHandleSeoValues_TestData_ReturnsExpectedHtml<TResult>(
+    public void OnHandleSeoValues_TestData_ReturnsExpectedHtml(
         SeoAttributeBase attribute,
-        Func<ISeoHelper, TResult> seoHelperResultFactory,
-        TResult expected)
+        Func<ISeoHelper, object> seoHelperResultFactory,
+        object expected)
     {
         // Arrange
         var seoHelper = new SeoHelper();
@@ -24,188 +23,30 @@ public class TagAttributeTest
 
         Assert.Equal(expected, result);
     }
-    public static IEnumerable<object[]> GetMemberData()
+
+    public static TheoryData<SeoAttributeBase, Func<ISeoHelper, object?>, object> GetMemberData => new()
     {
-        yield return new object[]
-        {
-            new LinkCanonicalAttribute("TEST_LINK_CANONICAL"),
-            GetResultFactory(
-                (ISeoHelper seoHelper) => seoHelper.LinkCanonical),
-            "TEST_LINK_CANONICAL",
-        };
-
-        yield return new object[]
-        {
-            new MetaDescriptionAttribute("TEST_META_DESCRIPTION"),
-            GetResultFactory(
-                (ISeoHelper seoHelper) => seoHelper.MetaDescription),
-            "TEST_META_DESCRIPTION",
-        };
-
-        yield return new object[]
-        {
-            new MetaKeywordsAttribute("TEST_META_KEYWORDS"),
-            GetResultFactory(
-                (ISeoHelper seoHelper) => seoHelper.MetaKeywords),
-            "TEST_META_KEYWORDS",
-        };
-
-        yield return new object[]
-        {
-            new MetaRobotsAttribute("TEST_META_ROBOTS"),
-            GetResultFactory(
-                (ISeoHelper seoHelper) => seoHelper.MetaRobots),
-            "TEST_META_ROBOTS",
-        };
-
-        yield return new object[]
-        {
-            new MetaRobotsAttribute(index: true, follow: true),
-            GetResultFactory(
-                (ISeoHelper seoHelper) => seoHelper.MetaRobots),
-            $"{MetaRobotsValue.Index}, {MetaRobotsValue.Follow}",
-        };
-
-        yield return new object[]
-        {
-            new MetaRobotsAttribute(index: false, follow: true),
-            GetResultFactory(
-                (ISeoHelper seoHelper) => seoHelper.MetaRobots),
-            $"{MetaRobotsValue.NoIndex}, {MetaRobotsValue.Follow}",
-        };
-
-        yield return new object[]
-        {
-            new MetaRobotsAttribute(index: true, follow: false),
-            GetResultFactory(
-                (ISeoHelper seoHelper) => seoHelper.MetaRobots),
-            $"{MetaRobotsValue.Index}, {MetaRobotsValue.NoFollow}",
-        };
-
-        yield return new object[]
-        {
-            new MetaRobotsAttribute(index: false, follow: false),
-            GetResultFactory(
-                (ISeoHelper seoHelper) => seoHelper.MetaRobots),
-            $"{MetaRobotsValue.NoIndex}, {MetaRobotsValue.NoFollow}"
-        };
-
-        yield return new object[]
-        {
-            new OgAudioAttribute("TEST_OG_AUDIO"),
-            GetResultFactory(
-                (ISeoHelper seoHelper) => seoHelper.OgAudio),
-            "TEST_OG_AUDIO",
-        };
-
-        yield return new object[]
-        {
-            new OgDescriptionAttribute("TEST_OG_DESCRIPTION"),
-            GetResultFactory(
-                (ISeoHelper seoHelper) => seoHelper.OgDescription),
-            "TEST_OG_DESCRIPTION",
-        };
-
-        yield return new object[]
-        {
-            new OgDeterminerAttribute("TEST_OG_DETERMINER"),
-            GetResultFactory(
-                (ISeoHelper seoHelper) => seoHelper.OgDeterminer),
-            "TEST_OG_DETERMINER",
-        };
-
-        yield return new object[]
-        {
-            new OgImageAttribute("TEST_OG_IMAGE"),
-            GetResultFactory(
-                (ISeoHelper seoHelper) => seoHelper.OgImage),
-            "TEST_OG_IMAGE",
-        };
-
-        yield return new object[]
-        {
-            new OgLocaleAttribute("TEST_OG_LOCALE"),
-            GetResultFactory(
-                (ISeoHelper seoHelper) => seoHelper.OgLocale),
-            "TEST_OG_LOCALE",
-        };
-
-        yield return new object[]
-        {
-            new OgLocaleAlternateAttribute("da_DK", "en_US"),
-            GetResultFactory(
-                (ISeoHelper seoHelper) => seoHelper.OgLocaleAlternates),
-            new[] { "da_DK", "en_US" }
-        };
-
-        yield return new object[]
-        {
-            new OgSiteNameAttribute("TEST_OG_SITE_NAME"),
-            GetResultFactory(
-                (ISeoHelper seoHelper) => seoHelper.OgSiteName),
-            "TEST_OG_SITE_NAME",
-        };
-
-        yield return new object[]
-        {
-            new OgTitleAttribute("TEST_OG_TITLE"),
-            GetResultFactory(
-                (ISeoHelper seoHelper) => seoHelper.OgTitle),
-            "TEST_OG_TITLE",
-        };
-
-        yield return new object[]
-        {
-            new OgTypeAttribute("TEST_OG_TYPE"),
-            GetResultFactory(
-                (ISeoHelper seoHelper) => seoHelper.OgType),
-            "TEST_OG_TYPE",
-        };
-
-        yield return new object[]
-        {
-            new OgUrlAttribute("TEST_OG_URL"),
-            GetResultFactory(
-                (ISeoHelper seoHelper) => seoHelper.OgUrl),
-            "TEST_OG_URL",
-        };
-
-        yield return new object[]
-        {
-            new OgVideoAttribute("TEST_OG_VIDEO"),
-            GetResultFactory(
-                (ISeoHelper seoHelper) => seoHelper.OgVideo),
-            "TEST_OG_VIDEO",
-        };
-
-        yield return new object[]
-        {
-            new PageTitleAttribute("TEST_PAGE_TITLE"),
-            GetResultFactory(
-                (ISeoHelper seoHelper) => seoHelper.PageTitle),
-            "TEST_PAGE_TITLE",
-        };
-
-        yield return new object[]
-        {
-            new SiteNameAttribute("TEST_SITE_NAME"),
-            GetResultFactory(
-                (ISeoHelper seoHelper) => seoHelper.SiteName),
-            "TEST_SITE_NAME",
-        };
-
-        yield return new object[]
-        {
-            new SiteUrlAttribute("TEST_SITE_URL"),
-            GetResultFactory(
-                (ISeoHelper seoHelper) => seoHelper.SiteUrl),
-            "TEST_SITE_URL",
-        };
-    }
-
-    private static object GetResultFactory<TResult>(
-        Func<ISeoHelper, TResult> factory)
-    {
-        return factory;
-    }
+        { new LinkCanonicalAttribute("TEST_LINK_CANONICAL"), seoHelper => seoHelper.LinkCanonical, "TEST_LINK_CANONICAL" },
+        { new MetaDescriptionAttribute("TEST_META_DESCRIPTION"), seoHelper => seoHelper.MetaDescription, "TEST_META_DESCRIPTION" },
+        { new MetaKeywordsAttribute("TEST_META_KEYWORDS"), seoHelper => seoHelper.MetaKeywords, "TEST_META_KEYWORDS" },
+        { new MetaRobotsAttribute("TEST_META_ROBOTS"), seoHelper => seoHelper.MetaRobots, "TEST_META_ROBOTS" },
+        { new MetaRobotsAttribute(index: true, follow: true), seoHelper => seoHelper.MetaRobots, $"{MetaRobotsValue.Index}, {MetaRobotsValue.Follow}" },
+        { new MetaRobotsAttribute(index: false, follow: true), seoHelper => seoHelper.MetaRobots, $"{MetaRobotsValue.NoIndex}, {MetaRobotsValue.Follow}" },
+        { new MetaRobotsAttribute(index: true, follow: false), seoHelper => seoHelper.MetaRobots, $"{MetaRobotsValue.Index}, {MetaRobotsValue.NoFollow}" },
+        { new MetaRobotsAttribute(index: false, follow: false), seoHelper => seoHelper.MetaRobots, $"{MetaRobotsValue.NoIndex}, {MetaRobotsValue.NoFollow}" },
+        { new OgAudioAttribute("TEST_OG_AUDIO"), seoHelper => seoHelper.OgAudio, "TEST_OG_AUDIO" },
+        { new OgDescriptionAttribute("TEST_OG_DESCRIPTION"), seoHelper => seoHelper.OgDescription, "TEST_OG_DESCRIPTION" },
+        { new OgDeterminerAttribute("TEST_OG_DETERMINER"), seoHelper => seoHelper.OgDeterminer, "TEST_OG_DETERMINER" },
+        { new OgImageAttribute("TEST_OG_IMAGE"), seoHelper => seoHelper.OgImage, "TEST_OG_IMAGE" },
+        { new OgLocaleAttribute("TEST_OG_LOCALE"), seoHelper => seoHelper.OgLocale, "TEST_OG_LOCALE" },
+        { new OgLocaleAlternateAttribute("da_DK", "en_US"), seoHelper => seoHelper.OgLocaleAlternates, new[] { "da_DK", "en_US" } },
+        { new OgSiteNameAttribute("TEST_OG_SITE_NAME"), seoHelper => seoHelper.OgSiteName, "TEST_OG_SITE_NAME" },
+        { new OgTitleAttribute("TEST_OG_TITLE"), seoHelper => seoHelper.OgTitle, "TEST_OG_TITLE" },
+        { new OgTypeAttribute("TEST_OG_TYPE"), seoHelper => seoHelper.OgType, "TEST_OG_TYPE" },
+        { new OgUrlAttribute("TEST_OG_URL"), seoHelper => seoHelper.OgUrl, "TEST_OG_URL" },
+        { new OgVideoAttribute("TEST_OG_VIDEO"), seoHelper => seoHelper.OgVideo, "TEST_OG_VIDEO" },
+        { new PageTitleAttribute("TEST_PAGE_TITLE"), seoHelper => seoHelper.PageTitle, "TEST_PAGE_TITLE" },
+        { new SiteNameAttribute("TEST_SITE_NAME"), seoHelper => seoHelper.SiteName, "TEST_SITE_NAME" },
+        { new SiteUrlAttribute("TEST_SITE_URL"), seoHelper => seoHelper.SiteUrl, "TEST_SITE_URL" }
+    };
 }

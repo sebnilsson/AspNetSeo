@@ -18,30 +18,25 @@ public class OgLocaleTagHelperTest : TagHelperTestBase
         Assert.Equal(expected, html);
     }
 
-    public static IEnumerable<object[]> GetMemberData()
+    public static TheoryData<string, TagHelper> GetMemberData => new()
     {
-        yield return new object[]
         {
             OpenGraphTag(OgMetaName.Locale, "da_DK"),
             TagHelperTestFactory.Create(
                 seo => new OgLocaleTagHelper(seo),
                 seo => seo.OgLocale = "da_DK")
-        };
-
-        yield return new object[]
+        },
         {
             OpenGraphTag(OgMetaName.Locale, "en_US"),
             TagHelperTestFactory.Create(
                 seo => new OgLocaleTagHelper(seo),
                 seo => seo.OgLocale = "da_DK",
                 tag => tag.Value = "en_US")
-        };
-
-        yield return new object[]
+        },
         {
             string.Empty,
             TagHelperTestFactory.Create(
                 seo => new OgLocaleTagHelper(seo))
-        };
-    }
+        }
+    };
 }
