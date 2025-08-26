@@ -1,78 +1,130 @@
 namespace AspNetSeo;
 
 /// <summary>
-/// Describes SEO-related values.
+/// Provides properties for storing SEO related information used when rendering
+/// HTML head tags.
 /// </summary>
 public interface ISeoHelper
 {
-    /// <summary>Custom meta tags.</summary>
+    /// <summary>
+    /// Gets a collection of additional meta tags to render.
+    /// </summary>
     IDictionary<string, string?> CustomMetas { get; }
 
-    /// <summary>Computed document title.</summary>
+    /// <summary>
+    /// Gets the combined document title for the page.
+    /// </summary>
     string? DocumentTitle { get; }
 
-    /// <summary>Title format pattern.</summary>
+    /// <summary>
+    /// Gets or sets the format used to combine the page and site titles.
+    /// The default value is "{0} - {1}".
+    /// </summary>
     string? DocumentTitleFormat { get; set; }
 
-    /// <summary>Canonical link.</summary>
+    /// <summary>
+    /// Gets or sets the canonical link for the page.
+    /// </summary>
     string? LinkCanonical { get; set; }
 
-    /// <summary>Meta description.</summary>
+    /// <summary>
+    /// Gets or sets the meta description for the page.
+    /// </summary>
     string? MetaDescription { get; set; }
 
-    /// <summary>Meta keywords.</summary>
+    /// <summary>
+    /// Gets or sets the meta keywords for the page.
+    /// </summary>
     string? MetaKeywords { get; set; }
 
-    /// <summary>Meta robots value.</summary>
+    /// <summary>
+    /// Gets or sets the meta robots value for the page.
+    /// </summary>
     string? MetaRobots { get; set; }
 
-    /// <summary>Open Graph audio.</summary>
+    /// <summary>
+    /// Gets or sets the Open Graph audio URL for the page.
+    /// </summary>
     string? OgAudio { get; set; }
 
-    /// <summary>Open Graph description.</summary>
+    /// <summary>
+    /// Gets or sets the Open Graph description for the page.
+    /// </summary>
     string? OgDescription { get; set; }
 
-    /// <summary>Open Graph determiner.</summary>
+    /// <summary>
+    /// Gets or sets the Open Graph determiner for the page.
+    /// </summary>
     string? OgDeterminer { get; set; }
 
-    /// <summary>Open Graph image.</summary>
+    /// <summary>
+    /// Gets or sets the Open Graph image URL for the page.
+    /// </summary>
     string? OgImage { get; set; }
 
-    /// <summary>Open Graph locale.</summary>
+    /// <summary>
+    /// Gets or sets the Open Graph locale for the page.
+    /// </summary>
     string? OgLocale { get; set; }
 
-    /// <summary>Alternate locales.</summary>
+    /// <summary>
+    /// Gets the collection of alternate Open Graph locales for the page.
+    /// </summary>
     IList<string> OgLocaleAlternates { get; }
 
-    /// <summary>Open Graph site name.</summary>
+    /// <summary>
+    /// Gets or sets the Open Graph site name. Falls back to <see cref="SiteName"/>.
+    /// </summary>
     string? OgSiteName { get; set; }
 
-    /// <summary>Open Graph title.</summary>
+    /// <summary>
+    /// Gets or sets the Open Graph title. Falls back to <see cref="PageTitle"/>.
+    /// </summary>
     string? OgTitle { get; set; }
 
-    /// <summary>Open Graph type.</summary>
+    /// <summary>
+    /// Gets or sets the Open Graph type for the page.
+    /// </summary>
     string? OgType { get; set; }
 
-    /// <summary>Open Graph URL.</summary>
+    /// <summary>
+    /// Gets or sets the Open Graph URL. Falls back to <see cref="LinkCanonical"/>.
+    /// </summary>
     string? OgUrl { get; set; }
 
-    /// <summary>Open Graph video.</summary>
+    /// <summary>
+    /// Gets or sets the Open Graph video URL for the page.
+    /// </summary>
     string? OgVideo { get; set; }
 
-    /// <summary>Page title.</summary>
+    /// <summary>
+    /// Gets or sets the page title.
+    /// </summary>
     string? PageTitle { get; set; }
 
-    /// <summary>Site name.</summary>
+    /// <summary>
+    /// Gets or sets the site name used when composing the document title.
+    /// </summary>
     string? SiteName { get; set; }
 
-    /// <summary>Site URL.</summary>
+    /// <summary>
+    /// Gets or sets the base site URL used for resolving relative links.
+    /// </summary>
     string? SiteUrl { get; set; }
 
-    /// <summary>Sets a custom meta tag.</summary>
+    /// <summary>
+    /// Adds or updates a custom meta tag.
+    /// </summary>
+    /// <param name="key">The name of the meta tag.</param>
+    /// <param name="value">The value of the meta tag.</param>
     void SetCustomMeta(string key, string? value);
 
-    /// <summary>Creates a robots value.</summary>
-    /// <returns>The meta robots string.</returns>
+    /// <summary>
+    /// Sets the meta robots value based on the supplied index and follow flags.
+    /// </summary>
+    /// <param name="index">Whether the page should be indexed.</param>
+    /// <param name="follow">Whether links on the page should be followed.</param>
+    /// <returns>The generated meta robots string.</returns>
     string SetMetaRobots(bool index, bool follow);
 }
 

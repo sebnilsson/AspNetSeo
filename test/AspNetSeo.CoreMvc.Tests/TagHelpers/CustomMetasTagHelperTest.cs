@@ -24,9 +24,9 @@ public class CustomMetasTagHelperTest : TagHelperTestBase
 
         // Assert
         var expected =
-            $"{MetaTagContentFirst("CUSTOM_KEY1", "CUSTOM_VALUE1")}" +
+            $"{MetaTag("CUSTOM_KEY1", "CUSTOM_VALUE1")}" +
             $"{Environment.NewLine}" +
-            $"{MetaTagContentFirst("CUSTOM_KEY2", "CUSTOM_VALUE2")}";
+            $"{MetaTag("CUSTOM_KEY2", "CUSTOM_VALUE2")}";
 
         Assert.Equal(expected, html);
     }

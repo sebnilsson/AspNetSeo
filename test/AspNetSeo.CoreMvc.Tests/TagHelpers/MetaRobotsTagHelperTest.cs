@@ -25,7 +25,7 @@ public class MetaRobotsTagHelperTest : TagHelperTestBase
     {
         yield return new object[]
         {
-            MetaTag(MetaName.Robots, "TEST_ROBOTS"),
+            MetaTag(MetaName.Robots, "TEST_ROBOTS", reverseAttributes: true),
             TagHelperTestFactory.Create(
                 seo => new MetaRobotsTagHelper(seo),
                 seo => seo.MetaRobots = "TEST_ROBOTS")
@@ -33,7 +33,7 @@ public class MetaRobotsTagHelperTest : TagHelperTestBase
 
         yield return new object[]
         {
-            MetaTag(MetaName.Robots, "INDEX, FOLLOW"),
+            MetaTag(MetaName.Robots, $"{MetaRobotsValue.Index}, {MetaRobotsValue.Follow}", reverseAttributes: true),
             TagHelperTestFactory.Create(
                 seo => new MetaRobotsTagHelper(seo),
                 seo => seo.SetMetaRobots(index: true, follow: true))
@@ -41,7 +41,7 @@ public class MetaRobotsTagHelperTest : TagHelperTestBase
 
         yield return new object[]
         {
-            MetaTag(MetaName.Robots, "INDEX, NOFOLLOW"),
+            MetaTag(MetaName.Robots, $"{MetaRobotsValue.Index}, {MetaRobotsValue.NoFollow}", reverseAttributes: true),
             TagHelperTestFactory.Create(
                 seo => new MetaRobotsTagHelper(seo),
                 seo => seo.SetMetaRobots(index: true, follow: false))
@@ -49,7 +49,7 @@ public class MetaRobotsTagHelperTest : TagHelperTestBase
 
         yield return new object[]
         {
-            MetaTag(MetaName.Robots, "NOINDEX, FOLLOW"),
+            MetaTag(MetaName.Robots, $"{MetaRobotsValue.NoIndex}, {MetaRobotsValue.Follow}", reverseAttributes: true),
             TagHelperTestFactory.Create(
                 seo => new MetaRobotsTagHelper(seo),
                 seo => seo.SetMetaRobots(index: false, follow: true))
@@ -57,7 +57,7 @@ public class MetaRobotsTagHelperTest : TagHelperTestBase
 
         yield return new object[]
         {
-            MetaTag(MetaName.Robots, "NOINDEX, NOFOLLOW"),
+            MetaTag(MetaName.Robots, $"{MetaRobotsValue.NoIndex}, {MetaRobotsValue.NoFollow}", reverseAttributes: true),
             TagHelperTestFactory.Create(
                 seo => new MetaRobotsTagHelper(seo),
                 seo => seo.SetMetaRobots(index: false, follow: false))

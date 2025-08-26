@@ -1,4 +1,5 @@
-﻿using Xunit;
+﻿using AspNetSeo.Internal;
+using Xunit;
 
 namespace AspNetSeo.Tests;
 
@@ -31,10 +32,10 @@ public class SeoHelperTests
     }
 
     [Theory]
-    [InlineData(true, true, "INDEX, FOLLOW")]
-    [InlineData(true, false, "INDEX, NOFOLLOW")]
-    [InlineData(false, true, "NOINDEX, FOLLOW")]
-    [InlineData(false, false, "NOINDEX, NOFOLLOW")]
+    [InlineData(true, true, $"{MetaRobotsValue.Index}, {MetaRobotsValue.Follow}")]
+    [InlineData(true, false, $"{MetaRobotsValue.Index}, {MetaRobotsValue.NoFollow}")]
+    [InlineData(false, true, $"{MetaRobotsValue.NoIndex}, {MetaRobotsValue.Follow}")]
+    [InlineData(false, false, $"{MetaRobotsValue.NoIndex}, {MetaRobotsValue.NoFollow}")]
     public void SetMetaRobots_IndexAndFollow_ReturnsRobotsString(
         bool index,
         bool follow,

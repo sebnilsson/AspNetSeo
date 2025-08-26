@@ -127,9 +127,10 @@ public IActionResult Edit()
 Tag Helpers are available to render the values set through the `SeoHelper`-class.
 They also expose **attributes to override or set the values on the fly** in the markup.
 
-Examples: `<document-title />` renders the combined `PageTitle` and `SiteName`. 
+Examples: `<document-title />` renders the combined `PageTitle` and `SiteName`.
 `<link-canonical />` renders the canonical URL for the page.
 `<og-url />` renders the set URL for the page and falls back to value used in `<link-canonical />`.
+`<seo-tags />` renders all supported SEO tags at once.
 
 **Individual tags will not be rendered if there is no valid data provided for them**,
 either through the `SeoHelper`-class or exposed attributes.

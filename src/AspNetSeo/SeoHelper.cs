@@ -3,80 +3,78 @@ using AspNetSeo.Internal;
 namespace AspNetSeo;
 
 /// <summary>
-/// Concrete implementation of <see cref="ISeoHelper"/>.
+/// Default implementation of <see cref="ISeoHelper"/> for storing SEO data.
 /// </summary>
 public class SeoHelper : ISeoHelper
 {
     internal const string? DefaultDocumentTitleFormat = "{0} - {1}";
 
-    /// <summary>Custom meta tags.</summary>
+    /// <inheritdoc />
     public IDictionary<string, string?> CustomMetas { get; }
         = new Dictionary<string, string?>(StringComparer.OrdinalIgnoreCase);
 
-    /// <summary>Calculated document title.</summary>
+    /// <inheritdoc />
     public string? DocumentTitle => DocumentTitleValue.Get(this);
 
-    /// <summary>Format pattern for the title.</summary>
+    /// <inheritdoc />
     public string? DocumentTitleFormat { get; set; }
         = DefaultDocumentTitleFormat;
 
-    /// <summary>Canonical link.</summary>
+    /// <inheritdoc />
     public string? LinkCanonical { get; set; }
 
-    /// <summary>Meta description.</summary>
+    /// <inheritdoc />
     public string? MetaDescription { get; set; }
 
-    /// <summary>Meta keywords.</summary>
+    /// <inheritdoc />
     public string? MetaKeywords { get; set; }
 
-    /// <summary>Meta robots value.</summary>
+    /// <inheritdoc />
     public string? MetaRobots { get; set; }
 
-    /// <summary>Open Graph audio.</summary>
+    /// <inheritdoc />
     public string? OgAudio { get; set; }
 
-    /// <summary>Open Graph description.</summary>
+    /// <inheritdoc />
     public string? OgDescription { get; set; }
 
-    /// <summary>Open Graph determiner.</summary>
+    /// <inheritdoc />
     public string? OgDeterminer { get; set; }
 
-    /// <summary>Open Graph image.</summary>
+    /// <inheritdoc />
     public string? OgImage { get; set; }
 
-    /// <summary>Open Graph locale.</summary>
+    /// <inheritdoc />
     public string? OgLocale { get; set; }
 
-    /// <summary>Alternate locales.</summary>
+    /// <inheritdoc />
     public IList<string> OgLocaleAlternates { get; } = new List<string>();
 
-    /// <summary>Open Graph site name.</summary>
+    /// <inheritdoc />
     public string? OgSiteName { get; set; }
 
-    /// <summary>Open Graph title.</summary>
+    /// <inheritdoc />
     public string? OgTitle { get; set; }
 
-    /// <summary>Open Graph type.</summary>
+    /// <inheritdoc />
     public string? OgType { get; set; }
 
-    /// <summary>Open Graph URL.</summary>
+    /// <inheritdoc />
     public string? OgUrl { get; set; }
 
-    /// <summary>Open Graph video.</summary>
+    /// <inheritdoc />
     public string? OgVideo { get; set; }
 
-    /// <summary>Page title.</summary>
+    /// <inheritdoc />
     public string? PageTitle { get; set; }
 
-    /// <summary>Site name.</summary>
+    /// <inheritdoc />
     public string? SiteName { get; set; }
 
-    /// <summary>Site URL.</summary>
+    /// <inheritdoc />
     public string? SiteUrl { get; set; }
 
-    /// <summary>Stores a custom meta tag.</summary>
-    /// <param name="key">Meta name.</param>
-    /// <param name="value">Meta value.</param>
+    /// <inheritdoc />
     public void SetCustomMeta(string? key, string? value)
     {
         if (key == null)
@@ -85,10 +83,7 @@ public class SeoHelper : ISeoHelper
         CustomMetas[key] = value;
     }
 
-    /// <summary>Sets the robots directive.</summary>
-    /// <param name="index">Whether indexing is allowed.</param>
-    /// <param name="follow">Whether following is allowed.</param>
-    /// <returns>The robots string.</returns>
+    /// <inheritdoc />
     public string SetMetaRobots(bool index, bool follow)
     {
         MetaRobots = MetaRobotsValue.Get(index, follow);

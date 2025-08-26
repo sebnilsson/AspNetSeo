@@ -26,7 +26,7 @@ public class MetaTagHelperTest : TagHelperTestBase
     {
         yield return new object[]
         {
-            MetaTag(MetaName.Description, "TEST_DESCRIPTION"),
+            MetaTag(MetaName.Description, "TEST_DESCRIPTION", reverseAttributes : true),
             TagHelperTestFactory.Create(
                 seo => new MetaDescriptionTagHelper(seo),
                 seo => seo.MetaDescription = "TEST_DESCRIPTION"),
@@ -35,7 +35,7 @@ public class MetaTagHelperTest : TagHelperTestBase
 
         yield return new object[]
         {
-            MetaTag(MetaName.Keywords, "TEST_KEYWORDS"),
+            MetaTag(MetaName.Keywords, "TEST_KEYWORDS", reverseAttributes : true),
             TagHelperTestFactory.Create(
                 seo => new MetaKeywordsTagHelper(seo),
                 seo => seo.MetaKeywords = "TEST_KEYWORDS"),

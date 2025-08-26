@@ -2,3 +2,4 @@
 
 [assembly: InternalsVisibleTo("AspNetSeo.CoreMvc")]
 [assembly: InternalsVisibleTo("AspNetSeo.CoreMvc.Tests")]
+[assembly: InternalsVisibleTo("AspNetSeo.Tests")]
