@@ -1,5 +1,6 @@
 ﻿using AspNetSeo.CoreMvc.TagHelpers;
 using AspNetSeo.Testing;
+using Microsoft.AspNetCore.Razor.TagHelpers;
 using Xunit;
 
 namespace AspNetSeo.CoreMvc.Tests.TagHelpers;

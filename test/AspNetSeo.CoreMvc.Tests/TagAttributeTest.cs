@@ -1,4 +1,4 @@
-using AspNetSeo.Internal;
+﻿using AspNetSeo.Internal;
 using Xunit;
 
 namespace AspNetSeo.CoreMvc.Tests;
@@ -24,7 +24,7 @@ public class TagAttributeTest
         Assert.Equal(expected, result);
     }
 
-    public static TheoryData<SeoAttributeBase, Func<ISeoHelper, object>, object> GetMemberData => new()
+    public static TheoryData<SeoAttributeBase, Func<ISeoHelper, object?>, object> GetMemberData => new()
     {
         { new LinkCanonicalAttribute("TEST_LINK_CANONICAL"), seoHelper => seoHelper.LinkCanonical, "TEST_LINK_CANONICAL" },
         { new MetaDescriptionAttribute("TEST_META_DESCRIPTION"), seoHelper => seoHelper.MetaDescription, "TEST_META_DESCRIPTION" },
@@ -50,4 +50,3 @@ public class TagAttributeTest
         { new SiteUrlAttribute("TEST_SITE_URL"), seoHelper => seoHelper.SiteUrl, "TEST_SITE_URL" }
     };
 }
-
