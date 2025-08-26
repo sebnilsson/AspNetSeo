@@ -28,13 +28,13 @@ public class OgLocaleAlternateTagHelperTest : TagHelperTestBase
                     + OpenGraphTag(OgMetaName.LocaleAlternate, "en_US", reverseAttributes: true),
                 TagHelperTestFactory.Create(
                     seo => new OgLocaleAlternateTagHelper(seo),
-                    seo => { seo.OgLocaleAlternates = new[] { "da_DK", "en_US" }; })
+                    seo => { seo.OgLocaleAlternates = ["da_DK", "en_US"]; })
             },
             {
                 OpenGraphTag(OgMetaName.LocaleAlternate, "de_DE", reverseAttributes: true),
                 TagHelperTestFactory.Create(
                     seo => new OgLocaleAlternateTagHelper(seo),
-                    seo => { seo.OgLocaleAlternates = new[] { "da_DK" }; },
+                    seo => { seo.OgLocaleAlternates = ["da_DK"]; },
                     tag => tag.Value = "de_DE")
             },
             {
